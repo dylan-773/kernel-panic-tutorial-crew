@@ -1,0 +1,27 @@
+{
+  "schema": "kp-verdict/1",
+  "gap": "ram-budget",
+  "verdict": "APPROVE",
+  "claims": [
+    {
+      "text": "5",
+      "symbol": "run-reducer.ts:BASE_RAM",
+      "verdict": "TRUE",
+      "quote": "export const BASE_RAM = 5;"
+    },
+    {
+      "text": "9",
+      "symbol": "run-reducer.ts:MAX_RAM",
+      "verdict": "TRUE",
+      "quote": "export const MAX_RAM = 9;"
+    },
+    {
+      "text": "2",
+      "symbol": "duel-setup.ts:carryCap",
+      "verdict": "TRUE",
+      "quote": "const carryCap = 2;"
+    }
+  ],
+  "objection": null,
+  "required": null
+}

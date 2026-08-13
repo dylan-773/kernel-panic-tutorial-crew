@@ -1,0 +1,28 @@
+{
+  "schema": "kp-generated/1",
+  "gap": "ram-budget",
+  "action": "tip",
+  "tip": {
+    "id": "ram",
+    "teaches": ["ram", "ramCarry"],
+    "control": "the RAM readout in the dive left rail",
+    "text": "Refills to 5 RAM each turn, raisable to 9 by upgrade. Up to 2 unspent RAM carries into your next turn; past that it is lost."
+  },
+  "claims": [
+    {
+      "text": "5",
+      "symbol": "run-reducer.ts:BASE_RAM",
+      "resolves": "BASE_RAM = 5, the per turn RAM budget before any night upgrade."
+    },
+    {
+      "text": "9",
+      "symbol": "run-reducer.ts:MAX_RAM",
+      "resolves": "MAX_RAM = 9, the ceiling a night RAM pick can raise ramPerTurn to."
+    },
+    {
+      "text": "2",
+      "symbol": "duel-setup.ts:carryCap",
+      "resolves": "carryCap is set to 2 for the player's SideEcon when a duel is generated, the cap on unspent RAM carried into the next turn."
+    }
+  ]
+}

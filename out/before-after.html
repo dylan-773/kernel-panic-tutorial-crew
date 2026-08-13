@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kernel Panic tutorial crew: before and after</title>
+<style>
+:root {
+  /* the game's own phosphor tokens, copied from styles.css so the callout
+     below renders in the colours it renders in in the game */
+  --px-void:#030704; --ch:#35e66f; --ch2:#9dff3d; --ch-hot:#eaffe6;
+  --ch-dim:color-mix(in srgb, var(--ch) 52%, var(--px-void));
+  --ch-faint:color-mix(in srgb, var(--ch) 26%, var(--px-void));
+  --ch-soft:color-mix(in srgb, var(--ch) 14%, transparent);
+  --px-glow:color-mix(in srgb, var(--ch) 45%, transparent);
+  --kp-display:"Silkscreen","IBM Plex Mono",monospace;
+  --kp-term:"VT323","IBM Plex Mono",monospace;
+  /* page chrome */
+  --bg:#050b07; --fg:#c9f2d4; --dim:#5f7f68; --line:#1b2b21;
+  --ok:#7CFFB2; --warn:#FFD166; --bad:#FF6B6B; --panel:#0a120d;
+  --accent:#7CFFB2; }
+* { box-sizing:border-box }
+body { margin:0; background:var(--bg); color:var(--fg);
+  font:14px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; }
+.wrap { max-width:1040px; margin:0 auto; padding:32px 20px 80px }
+h1 { font-size:20px; letter-spacing:.14em; margin:0 0 6px }
+h2 { font-size:15px; letter-spacing:.12em; margin:40px 0 12px;
+  border-bottom:1px solid var(--line); padding-bottom:8px }
+h3 { font-size:14px; margin:0; letter-spacing:.06em }
+p { margin:8px 0 }
+.mut { color:var(--dim) }
+.lede { color:var(--dim); max-width:70ch; margin-bottom:24px }
+.term { background:#060907; border:1px solid var(--line); border-left:3px solid var(--dim);
+  padding:12px 14px; overflow-x:auto; white-space:pre; font-size:12.5px; margin:0 }
+.term.bad { border-left-color:var(--bad); color:#ffd9d9 }
+.term.ok { border-left-color:var(--ok); color:#d6ffe8 }
+.ba { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0 }
+@media (max-width:700px) { .ba { grid-template-columns:1fr } }
+.col { background:var(--panel); border:1px solid var(--line); padding:12px; min-width:0 }
+.lab { display:block; font-size:10px; letter-spacing:.22em; color:var(--dim); margin-bottom:10px }
+.lab-a { color:var(--ok) }
+.empty { color:var(--dim); font-style:italic; padding:18px 8px; text-align:center;
+  border:1px dashed var(--line) }
+.gap { border:1px solid var(--line); padding:16px; margin:14px 0; background:#0d130f }
+.gap header { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px }
+.rank { color:var(--dim); font-size:12px }
+.pill { font-size:10px; letter-spacing:.12em; border:1px solid var(--line);
+  padding:2px 8px; color:var(--dim) }
+.pill.red { border-color:var(--bad); color:var(--bad) }
+.tier0 { border-color:var(--ok); color:var(--ok) }
+.tier1 { border-color:var(--warn); color:var(--warn) }
+.stop { font-size:13px; max-width:80ch }
+.signals { margin:8px 0; padding-left:18px; font-size:12.5px; color:var(--fg) }
+.signals b { color:var(--accent); font-weight:400 }
+.tip { background:#060907; border:1px solid var(--line); padding:10px }
+.tipctl { display:block; font-size:10px; letter-spacing:.16em; color:var(--dim); margin-bottom:6px }
+.lbl { display:inline-block; border:1px solid var(--line); padding:6px 12px;
+  font-size:11px; letter-spacing:.16em; color:var(--dim) }
+.lbl-new { border-color:var(--ok); color:var(--ok) }
+.waiver { border-left:3px solid var(--warn); padding:8px 12px; font-size:12.5px;
+  background:#060907; margin-top:8px }
+.verdict { border-top:1px solid var(--line); margin-top:12px; padding-top:10px; font-size:12.5px }
+.verdict.ok b { color:var(--ok) } .verdict.warn b { color:var(--warn) }
+.q { margin-top:6px } .q code { display:block; background:#060907; padding:6px 10px;
+  border-left:2px solid var(--line); color:var(--fg); overflow-x:auto }
+.copy { padding:12px; background:#060907; border-left:3px solid var(--line) }
+.copy.bad { border-left-color:var(--bad) } .copy.good { border-left-color:var(--ok) }
+.finding { border:1px solid var(--warn); padding:18px; margin:36px 0; background:#12100a }
+.finding h2 { margin-top:0; border-color:var(--warn); color:var(--warn) }
+.foot { color:var(--dim); font-size:12px; margin-top:40px; border-top:1px solid var(--line);
+  padding-top:16px }
+/* ---- lifted verbatim from game/src/styles.css ---- */
+/* ============ TEACH CALLOUT ============ */
+
+.kp-teach {
+  --tick: var(--ch-hot);
+  position: absolute;
+  z-index: 320;
+  width: 270px;
+  background: rgba(0, 0, 0, 0.94);
+  border: 2px solid var(--ch-hot);
+  padding: 13px 13px 11px;
+  animation: kp-fw-in 180ms steps(4) both;
+}
+.kp-teach-title {
+  font-family: var(--kp-display);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ch-hot);
+  margin-bottom: 7px;
+}
+.kp-teach .kp-frame-stripe { --stripe: var(--ch-hot); height: 6px; margin-bottom: 9px; opacity: 0.6; }
+.kp-teach-body { font-family: var(--kp-term); font-size: 18px; line-height: 1.35; color: var(--ch); }
+.kp-teach-ok { margin-top: 12px; margin-left: auto; display: block; font-size: 10px; padding: 8px 14px; }
+.kp-teach-line { position: absolute; background: var(--ch-hot); }
+.kp-teach-line-down { width: 2px; height: 26px; left: 26px; bottom: -26px; }
+.kp-teach-line-up { width: 2px; height: 26px; left: 26px; top: -26px; }
+.kp-teach-line-left { height: 2px; width: 28px; left: -28px; top: 28px; }
+.kp-teach-line-right { height: 2px; width: 28px; right: -28px; top: 28px; }
+.kp-teach-dot { position: absolute; width: 6px; height: 6px; background: var(--ch-hot); animation: kp-teach-pulse 1.2s steps(2) infinite; }
+.kp-teach-dot-down { left: 24px; bottom: -32px; }
+.kp-teach-dot-up { left: 24px; top: -32px; }
+.kp-teach-dot-left { left: -34px; top: 26px; }
+.kp-teach-dot-right { right: -34px; top: 26px; }
+@keyframes kp-teach-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+@media (prefers-reduced-motion: reduce) {
+  .kp-teach, .kp-teach-dot,
+  .kp-ticker span, .kp-startmenu, .kp-slotwrap,
+  .kp-mark-slice, .kp-wallscope-roll, .kp-wallscope-pip,
+  .kp-btn2-danger, .kp-task-danger:hover {
+    animation: none;
+  }
+}
+.kp-story-nextglyph {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: block;
+  animation: kp-teach-pulse 1.2s steps(2) infinite;
+}
+/* ============================================================
+   Teaching layer: leader-line callouts (kpos-teach-callout-v2)
+   Form comes from the system block (.kp-teach + line/dot pieces);
+   this section is the per-anchor compass placement against the
+   new window layouts, plus the tier-1 tap tips.
+   ============================================================ */
+
+/* anchors host the absolutely-positioned card; every surface that mounts
+ * a <Teach> is position: relative via the window body child rule */
+
+/* INBOX card READOUT: card sits right of the readout block, line exits left */
+.kp-teach-readout { top: 38%; right: -20px; }
+.kp-teach-readout::before { content: none; }
+/* REPAIR.LOG center rail: strain band and cache both sit center-column;
+ * the card exits LEFT, clearing the dive-log rail */
+.kp-teach-rows { top: 120px; left: 210px; }
+.kp-teach-draft { top: 46%; left: 230px; }
+/* DIVE.EXE: par lives in the right telemetry rail; the card hangs under
+ * the meter box inside the rail, leader line up to the row */
+.kp-teach-par { top: calc(100% + 30px); right: 0; }
+/* board-area moments ride the top edge of the wrap, clear of the virus
+ * card (center) and the threat banners (bottom) */
+.kp-teach-screen { top: 56px; left: 50%; transform: translateX(-50%); }
+.kp-teach-patch { top: 56px; right: 24px; }
+/* NIGHT.SYS: unchanged homes */
+.kp-teach-grid { top: 150px; left: 30px; }
+.kp-teach-craft { left: 50%; top: 46%; transform: translateX(-50%); }
+/* Teach anchor for the crafting bench moment. */
+.kp-teach-craft {
+  left: 50%;
+  top: 46%;
+  transform: translateX(-50%);
+}
+.kp-feed-rec i {
+  width: 7px;
+  height: 7px;
+  background: var(--px-void);
+  animation: kp-teach-pulse 1.2s steps(2) infinite;
+}
+.kp-teach { max-width:none }
+</style></head><body><div class="wrap">
+
+<h1>KERNEL PANIC TUTORIAL CREW</h1>
+<p class="lede">A goal oriented agent read the design vault, scanned the game's
+teaching layer, found the mechanics nothing teaches, decided what to build and in
+what order, and wrote the code. Run <b>2026-08-13-d</b>:
+131 features read from the GDD, 11 gaps
+(5 at tier 0, 4 at tier 1, 2 at tier 2), 5 artifacts generated.</p>
+
+<h2>The game's own harness</h2>
+<div class="ba">
+  <div class="col"><span class="lab">BEFORE</span><pre class="term bad">TEACH FAIL: 5 problem(s)
+  - mechanic &quot;cascade&quot; (Cascade banking) has no teaching moment and no waiver. First contact: duel.
+  - mechanic &quot;kitConfig&quot; (Swapping program modes) has no teaching moment and no waiver. First contact: loadout.
+  - mechanic &quot;ram&quot; (RAM per turn as the action budget) has no teaching moment and no waiver. First contact: tutorial.
+  - mechanic &quot;ramCarry&quot; (Unspent RAM carries into the next turn, capped) has no teaching moment and no waiver. First contact: duel.
+  - mechanic &quot;reach2&quot; (Rotating within two steps of your territory) has no teaching moment and no waiver. First contact: tutorial.</pre></div>
+  <div class="col"><span class="lab lab-a">AFTER</span><pre class="term ok">OK: 39 mechanics, 25 taught, 14 waived, 10 coachmarks, 7 tips, 10 tutorial beats
+OK: surfaces reached by the run walk: analyze, day, dayOpen, duel, finalePre, finaleWin, opener, result, runEnd, tutIntro, tutOutro, tutorial, upgrade
+OK: teaching coverage complete</pre></div>
+</div>
+<p class="mut">This is <code>game/src/game/dev/teach-sim.ts</code>, vendored
+unmodified from the shipped game. It is 498 lines and nothing in this repo
+wrote it.</p>
+
+<h2>The gaps, in the order the agent chose to build them</h2>
+
+<section class="gap">
+  <header>
+    <span class="rank">#1</span>
+    <h3>ram-budget</h3>
+    <span class="pill tier1">tier 1</span>
+    <span class="pill">tip</span>
+    <span class="pill red">harness red</span>
+  </header>
+  <p class="stop"><b>Why this rung.</b> Stops at question 2 (will the player want this information again). Tier 0 cannot carry the whole mechanic: duel.tsx already renders the RAM number, the pip row and a &#x27;+N NEXT&#x27; banked chip in the dv-rambox, but none of those glyphs say why the number resets each turn, what the per-turn refill is, or that only 2 unspent points survive into the next one; that context is exactly what makes it reference, not a label. It is not a coachmark either: the player rereads this fact every single turn for the whole run, which is the tip definition, not the once-and-dismissed coachmark one. The fix is cheap because the call site already exists and is empty: duel.tsx:1060 calls tip(&quot;ram&quot;) inside a TapTip and gets undefined back, since no TeachTip with id &quot;ram&quot; exists in TEACH_TIPS.</p>
+  <ul class="signals"><li><b>harness-red</b> teach-sim fails on both ram and ramCarry <span class="mut">teach-sim.before.txt lists both ids as uncovered with no waiver; the build stays red until something teaches them.</span></li><li><b>first-contact-day</b> tutorial, day 0 <span class="mut">ram&#x27;s firstContact is tutorial: it governs every action the player can take from their very first click, before any other resource exists.</span></li><li><b>resource-cost</b> RAM is one of the two scarce resources the signals table names <span class="mut">a wrong mental model of the per-turn budget or the carry cap costs a real decision on every turn of every dive, not just the first one.</span></li></ul>
+  <div class="ba">
+    <div class="col"><span class="lab">BEFORE</span><div class="empty">hovering the RAM readout in the dive left rail says nothing</div></div>
+    <div class="col"><span class="lab lab-a">AFTER</span><div class="tip"><span class="tipctl">the RAM readout in the dive left rail</span>Refills to 5 RAM each turn, raisable to 9 by upgrade. Up to 2 unspent RAM carries into your next turn; past that it is lost.</div></div>
+  </div>
+  <div class="verdict ok"><b>APPROVE</b><div class="q"><span class="mut">run-reducer.ts:BASE_RAM</span><code>export const BASE_RAM = 5;</code></div><div class="q"><span class="mut">run-reducer.ts:MAX_RAM</span><code>export const MAX_RAM = 9;</code></div><div class="q"><span class="mut">duel-setup.ts:carryCap</span><code>const carryCap = 2;</code></div></div>
+</section>
+<section class="gap">
+  <header>
+    <span class="rank">#2</span>
+    <h3>reach2</h3>
+    <span class="pill tier0">tier 0</span>
+    <span class="pill">waiver</span>
+    <span class="pill red">harness red</span>
+  </header>
+  <p class="stop"><b>Why this rung.</b> Stops at question 1 (can the interface just say it). Yes, and it already does: duel-board.tsx applies the dv-legal class and a lit dv-legalring rect only to cells inReach returns true for, so an out-of-reach junction never looks clickable and never highlights. The player learns the 2-step boundary the same way they learn a wall is solid, by watching which cells light up as their built ground grows, not by reading a number. No tier above zero adds anything a rendered affordance does not already carry, and the tutorial&#x27;s own first beat already calls out &#x27;a glowing junction,&#x27; which is this same highlight.</p>
+  <ul class="signals"><li><b>harness-red</b> teach-sim fails on reach2 <span class="mut">teach-sim.before.txt lists reach2 as uncovered with no waiver.</span></li><li><b>first-contact-day</b> tutorial, day 0 <span class="mut">gates which cells the player can even attempt to act on from the first rotation of the opening dive.</span></li><li><b>ladder-tier</b> tier 0, costs the teaching budget nothing <span class="mut">the fix is a waiver string, not new content, so it cannot strain any surface&#x27;s moment cap.</span></li></ul>
+  <div class="ba">
+    <div class="col"><span class="lab">BEFORE</span><div class="empty">the harness is red: no moment, no waiver</div></div>
+    <div class="col"><span class="lab lab-a">AFTER</span><div class="waiver">On an unbuilt junction the dv-legal class and the lit dv-legalring rect apply only when inReach returns true, so the reach boundary for rotating into new ground is learned by watching which unclaimed junctions light up as built ground grows, not by reading a number. A built junction is always legal to rotate regardless of reach; that is ownership, not this mechanic, and ATTACK or DEFEND targeting during a cast is governed separately by attackTargetLegal and defendTargetLegal, not by inReach at all.</div></div>
+  </div>
+  <div class="verdict ok"><b>APPROVE</b><div class="q"><span class="mut">duel-power.ts:inReach</span><code>if (!isJunction(c0) || c0.built) return false;</code></div><div class="q"><span class="mut">duel-power.ts:canRotate</span><code>if (c.built) return true;</code></div></div>
+</section>
+<section class="gap">
+  <header>
+    <span class="rank">#3</span>
+    <h3>cascade</h3>
+    <span class="pill tier2">tier 2</span>
+    <span class="pill">coachmark</span>
+    <span class="pill red">harness red</span>
+  </header>
+  <p class="stop"><b>Why this rung.</b> Stops at question 3 (is it a rule that changes what they should do, needed once, at a specific moment). Tier 0 cannot carry it: the payoff is read out of a settle event (kit.ts:cascadeRam banking RAM, surgeTierOf shattering locks or destroying a trap at higher counts) and there is nothing permanent on the grid to hang a label on between settles. Tier 1 is the wrong shape too: this is not a number the player consults on demand, it is a strategic instruction, hold the chain behind one unturned junction, then flip it together, that only matters the first time a bank actually lands. If it fires as reference instead of at the cascadeBanked moment, a player who never banks never sees it and keeps flipping nodes one at a time, missing the entire payoff. The known-drift table already flags that the shipped game&#x27;s version of this exact coachmark states the wrong threshold (four nodes, cascadeRam pays from three), so whatever ships here has to be checked against the symbol, not copied from memory.</p>
+  <ul class="signals"><li><b>harness-red</b> teach-sim fails on cascade <span class="mut">teach-sim.before.txt lists cascade as uncovered with no waiver.</span></li><li><b>first-contact-day</b> duel, day 1 <span class="mut">the first legitimate three-node settle can happen as early as the first regular dive after the tutorial.</span></li><li><b>surface-budget</b> duel has 2 of 4 moments and 0 of 2 firstSight used <span class="mut">code_scan&#x27;s budget.surfaces.duel shows room for a non-firstSight cascadeBanked moment without straining either cap.</span></li><li><b>resource-cost</b> cascade banks RAM directly <span class="mut">cascadeRam pays RAM into the next turn only on a big settle, so missing this is a foregone resource advantage every dive, not flavor.</span></li></ul>
+  <div class="ba">
+    <div class="col"><span class="lab">BEFORE</span><div class="empty">the surface renders, and says nothing about it</div></div>
+    <div class="col"><span class="lab lab-a">AFTER</span><div class="kp-teach kp-teach-screen" role="note" style="position:static;transform:none;margin:0"><strong class="kp-teach-title">CASCADE</strong><p>Lighting three or more nodes in one settle banks RAM into your next turn instead of spending it now.</p><p>Six or more shatters every enemy lock on this board. Ten or more also destroys one armed enemy trap. Hold the chain, then flip it.</p><button type="button" class="kp-teach-ok">GOT IT</button></div></div>
+  </div>
+  <div class="verdict ok"><b>APPROVE</b><div class="q"><span class="mut">kit.ts:cascadeRam</span><code>if (lit &lt; 3) return 0;</code></div><div class="q"><span class="mut">kit.ts:surgeTierOf</span><code>if (lit &gt;= 6) return &quot;surge&quot;;</code></div><div class="q"><span class="mut">kit.ts:surgeTierOf</span><code>if (lit &gt;= 10) return &quot;break&quot;;</code></div></div>
+</section>
+<section class="gap">
+  <header>
+    <span class="rank">#4</span>
+    <h3>kitConfig</h3>
+    <span class="pill tier1">tier 1</span>
+    <span class="pill">tip</span>
+    <span class="pill red">harness red</span>
+  </header>
+  <p class="stop"><b>Why this rung.</b> Stops at question 2 (will the player want this information again). Tier 0 already carries half of it: loadout.tsx&#x27;s lo-mode buttons disable unowned modes and suffix them with &#x27;?&#x27;, which self-explains that a mode is locked. It cannot carry the other half, why it is locked and what unlocks it, because that fact has no label surface of its own. Tier 2 is the wrong shape: LOADOUT.CFG is revisited all run long with no single first-sight moment worth spending a callout on, and the screen&#x27;s own footline already states configuring is optional (&#x27;TUNE IT WHENEVER&#x27;), so a once-only interruption fights the screen&#x27;s own framing. The code already half-built the fix: loadout.tsx calls tip(&quot;modeLocked&quot;) for every locked mode button and gets undefined back, since no TeachTip with that id exists in TEACH_TIPS yet.</p>
+  <ul class="signals"><li><b>harness-red</b> teach-sim fails on kitConfig <span class="mut">teach-sim.before.txt lists kitConfig as uncovered with no waiver.</span></li><li><b>first-contact-day</b> loadout, pre-dive <span class="mut">lowest urgency of the four uncovered mechanics: LOADOUT.CFG has no clock and is freely revisited before every dive.</span></li><li><b>ladder-tier</b> tier 1, costs nothing against any surface cap <span class="mut">tips are not subject to MAX_MOMENTS_PER_SURFACE or MAX_FIRST_SIGHT_PER_SURFACE, so this closes the gap for free.</span></li></ul>
+  <div class="ba">
+    <div class="col"><span class="lab">BEFORE</span><div class="empty">hovering a locked mode button in LOADOUT.CFG&#x27;s program panel says nothing</div></div>
+    <div class="col"><span class="lab lab-a">AFTER</span><div class="tip"><span class="tipctl">a locked mode button in LOADOUT.CFG&#x27;s program panel</span>Locked until you draft the config augment that unlocks this mode. Owning it is not enough either: switch to it here before a dive.</div></div>
+  </div>
+  <div class="verdict ok"><b>APPROVE</b><div class="q"><span class="mut">content/kit.ts:AUGMENTS</span><code>kind: &quot;config&quot;,</code></div></div>
+</section>
+<section class="gap">
+  <header>
+    <span class="rank">#5</span>
+    <h3>patchCellUse-cost</h3>
+    <span class="pill tier2">tier 2</span>
+    <span class="pill">coachmark</span>
+    <span class="pill grey">harness silent</span>
+  </header>
+  <p class="stop"><b>Why this rung.</b> Stops at question 3 (is it a rule that changes what they should do, needed once, at a specific moment), the same question that already justified tier 2 for patchCellUse and still does. The RAM cost of a placement is a fact the player needs at the moment they first hold a piece, not a recurring lookup, so tier 1 does not fit; there is also no permanent label surface for a per-placement cost sitting on the grid between holds, so tier 0 does not fit either. Nothing about the correct answer to question 3 has changed, so the coachmark stays. What changed is that the copy inside it is wrong: the shipped line says &#x27;fuse it in for 2 RAM&#x27; while patch-cells.ts:PLACE_COST is 4. The fix rewrites the claim inside the existing patch-cell-use moment to cite PLACE_COST directly, so verify_copy.py can hold it accountable.</p>
+  <ul class="signals"><li><b>resource-cost</b> states 2 RAM, code charges 4 <span class="mut">every player who reads patch-cell-use&#x27;s line before this fix budgets their RAM wrong for the rest of that turn and, if they remember the number, every turn after.</span></li><li><b>ladder-tier</b> tier 2, unchanged <span class="mut">the mechanic is already correctly pitched as a once-per-first-holding coachmark; only the sentence inside it is wrong.</span></li></ul>
+  <div class="ba">
+    <div class="col"><span class="lab">BEFORE</span><div class="empty">the surface renders, and says nothing about it</div></div>
+    <div class="col"><span class="lab lab-a">AFTER</span><div class="kp-teach kp-teach-screen" role="note" style="position:static;transform:none;margin:0"><strong class="kp-teach-title">PATCH PIECE</strong><p>You are carrying a piece. Click a slag block within reach to fuse it in for 4 RAM. One use, then it is gone.</p><p>Arms land exactly as held, never rotating once placed. Fit it to the wall you cannot route around, not the first slag you see.</p><button type="button" class="kp-teach-ok">GOT IT</button></div></div>
+  </div>
+  <div class="verdict ok"><b>APPROVE</b><div class="q"><span class="mut">patch-cells.ts:PLACE_COST</span><code>export const PLACE_COST = 4;</code></div><div class="q"><span class="mut">duel.tsx:DuelScreen</span><code>&lt;Teach id=&quot;patch-cell-use&quot; signals={{ holdingCells: state.patchPouch.length &gt; 0 }} /&gt;</code></div></div>
+</section>
+<section class="gap">
+  <header>
+    <span class="rank">#6</span>
+    <h3>oneUndo</h3>
+    <span class="pill tier1">tier 1</span>
+    <span class="pill">tip</span>
+    <span class="pill grey">harness silent</span>
+  </header>
+  <p class="stop"><b>Why this rung.</b> Stops at question 2 (will the player want this information again). Tier 0 cannot carry it alone: the UNDO button&#x27;s dynamic label already states which move it will take back and that it is once per turn (duel.tsx: &#x27;UNDO &#x27; + undoLabel + &#x27; (Z)&#x27;), but says nothing about a trap the move sprang. duel-commands.ts:takeUndo re-applies whatever the reverted move sprang and keeps the RAM drain, specifically, per its own comment, so undo cannot be used as &#x27;a free minesweeper.&#x27; That is a fact worth having on hover every time the player weighs taking the undo, which is reference, not a rule they only need once. Tier 2 does not fit either: none of the seven TeachWhen triggers (firstSight, overPar, holdingCells, cascadeBanked, draftOffered, craftReady, swapOffered) fires on &#x27;about to undo a sprung trap,&#x27; and inventing one is a reducer change outside this crew&#x27;s scope, so a standing tip on the existing control is the only rung that needs nothing new from the engine.</p>
+  <ul class="signals"><li><b>resource-cost</b> a sprung trap&#x27;s drain survives the undo <span class="mut">duel-commands.ts:takeUndo keeps drainNext and re-fires the trap on rollback, so an undo does not refund what the trap already cost.</span></li><li><b>ladder-tier</b> tier 1, no new trigger needed <span class="mut">no TeachWhen value fits this moment, so only a tier that does not require one, a tip on the existing UNDO control, is buildable without a reducer change.</span></li></ul>
+  <div class="ba">
+    <div class="col"><span class="lab">BEFORE</span><div class="empty">nothing teaches this</div></div>
+    <div class="col"><span class="lab lab-a">AFTER</span><div class="empty">(no artifact)</div></div>
+  </div>
+  
+</section>
+<section class="gap">
+  <header>
+    <span class="rank">#7</span>
+    <h3>builtVsPower</h3>
+    <span class="pill tier0">tier 0</span>
+    <span class="pill">waiver</span>
+    <span class="pill grey">harness silent</span>
+  </header>
+  <p class="stop"><b>Why this rung.</b> Stops at question 1 (can the interface just say it). Yes, already does. duel-board.tsx pushes a distinct dv-cut class the instant a built junction goes dark while staying built, and the surrounding comment names this deliberately: &#x27;the one state the old model could not express, and the one the player most needs to see.&#x27; The permanence of built ground is shown by that visual state persisting differently from both lit and never-built, not stated in words anywhere, so a moment or tip would only restate a distinction the grid already renders every round.</p>
+  <ul class="signals"><li><b>ladder-tier</b> tier 0, already rendered <span class="mut">dv-cut in duel-board.tsx marks built-but-dark distinctly from lit and from never-built on every render, with no gap for a coachmark to fill.</span></li></ul>
+  <div class="ba">
+    <div class="col"><span class="lab">BEFORE</span><div class="empty">nothing teaches this</div></div>
+    <div class="col"><span class="lab lab-a">AFTER</span><div class="empty">(no artifact)</div></div>
+  </div>
+  
+</section>
+<section class="gap">
+  <header>
+    <span class="rank">#8</span>
+    <h3>splitBoards</h3>
+    <span class="pill tier0">tier 0</span>
+    <span class="pill">waiver</span>
+    <span class="pill grey">harness silent</span>
+  </header>
+  <p class="stop"><b>Why this rung.</b> Stops at question 1 (can the interface just say it). Yes. The two sides render as two separate board panels the player switches between (the view state and TAB), and duel.tsx&#x27;s own legal-cell logic enforces the separation rather than merely describing it: rotation returns no legal cells at all unless view === &quot;player&quot;, and the enemy board is reachable only through ATTACK targeting. A player who tries to click across the enemy grid directly gets nothing, which teaches the separation more permanently than a callout would.</p>
+  <ul class="signals"><li><b>ladder-tier</b> tier 0, already structural <span class="mut">duel.tsx&#x27;s legal-cell computation makes cross-board manipulation impossible by construction, not just unlabeled.</span></li></ul>
+  <div class="ba">
+    <div class="col"><span class="lab">BEFORE</span><div class="empty">nothing teaches this</div></div>
+    <div class="col"><span class="lab lab-a">AFTER</span><div class="empty">(no artifact)</div></div>
+  </div>
+  
+</section>
+<section class="gap">
+  <header>
+    <span class="rank">#9</span>
+    <h3>winConditions</h3>
+    <span class="pill tier0">tier 0</span>
+    <span class="pill">waiver</span>
+    <span class="pill grey">harness silent</span>
+  </header>
+  <p class="stop"><b>Why this rung.</b> Stops at question 1 (can the interface just say it), split across three existing lines rather than one. A goal win prints its own end-of-dive sentence (&#x27;Your signal reached the goal first. The intrusion collapses.&#x27;), a cap win is already covered by the turnCap waiver&#x27;s payout row, and the seal ending only exists inside the opening dive, where the bench narrates it directly as part of the scripted beat ladder. Nothing on any surface needs to enumerate &#x27;there are three endings,&#x27; because the specific one that just happened is stated on the screen where it happened, every time.</p>
+  <ul class="signals"><li><b>ladder-tier</b> tier 0, coverage already exists in three places <span class="mut">the goal overlay, the turnCap waiver, and the tutorial&#x27;s own scripted seal narration between them already state every outcome the mechanic describes.</span></li></ul>
+  <div class="ba">
+    <div class="col"><span class="lab">BEFORE</span><div class="empty">nothing teaches this</div></div>
+    <div class="col"><span class="lab lab-a">AFTER</span><div class="empty">(no artifact)</div></div>
+  </div>
+  
+</section>
+<section class="gap">
+  <header>
+    <span class="rank">#10</span>
+    <h3>theKit</h3>
+    <span class="pill tier1">tier 1</span>
+    <span class="pill">none</span>
+    <span class="pill grey">harness silent</span>
+  </header>
+  <p class="stop"><b>Why this rung.</b> Never reaches a stop on the procedure. It fails question 1 because there is no single control to label, the claim spans all six modes across two programs. It fails question 2 because it is not a recurring number, it is a synthesis (&#x27;modes answer each other rather than laddering&#x27;). It fails question 3 because it is not tied to one moment either, a player can meet any of the six answers at any time depending on what the opponent telegraphs. The individual mode effects it is built from are already carried by the modeEffects blanket waiver (each mode has its own desc on hover, in the kit card, and in MANUAL.TXT). Teaching the closed-loop framing itself would mean authoring a new synthesis view, most plausibly a MANUAL.TXT section, which is a design and content project, not a placement decision this crew makes this cycle.</p>
+  <ul class="signals"><li><b>ladder-tier</b> no rung fits without inventing a new surface <span class="mut">no existing control, trigger, or recurring number can anchor a six-mode synthesis; the closest fit is a MANUAL.TXT addition, which is out of scope for a coachmark or a tip.</span></li></ul>
+  <div class="ba">
+    <div class="col"><span class="lab">BEFORE</span><div class="empty">nothing teaches this</div></div>
+    <div class="col"><span class="lab lab-a">AFTER</span><div class="empty">(no artifact)</div></div>
+  </div>
+  
+</section>
+<section class="gap">
+  <header>
+    <span class="rank">#11</span>
+    <h3>gridlockChip</h3>
+    <span class="pill tier0">tier 0</span>
+    <span class="pill">none</span>
+    <span class="pill grey">harness silent</span>
+  </header>
+  <p class="stop"><b>Why this rung.</b> Exits at question 1 (can the interface just say it) with no usable answer, because there is no longer a state left for any interface to say anything about. gridlockChip&#x27;s current waiver claims &#x27;the gridlock end overlay says the dead link bites,&#x27; but duel-types.ts:DuelEndKind only defines &#x27;goal&#x27; | &#x27;cap&#x27; | &#x27;seal&#x27;, no gridlock case exists to render that overlay, and gridlockWin is threaded through run-reducer.ts and save.ts but is never set true anywhere in duel-actions.ts. Question 1 fails for lack of a screen to point at, and questions 2 through 5 fail for the same underlying reason and do not need to be asked: a tip, a coachmark and a beat all assume a player can still encounter the mechanic, and this one cannot be encountered in the shipped reducer at all. The fix is removing the dead field from the reducer, not answering any ladder question with a teaching artifact.</p>
+  <ul class="signals"><li><b>harness-red</b> not red, but stale <span class="mut">gridlockChip currently reads as waived and green, which hides that the waiver&#x27;s own claim, a gridlock end overlay, has no code path left to trigger it.</span></li><li><b>ladder-tier</b> no tier applies to dead code <span class="mut">every rung of the ladder assumes the mechanic can still happen to a player; this one cannot, so the fix is outside the ladder entirely.</span></li></ul>
+  <div class="ba">
+    <div class="col"><span class="lab">BEFORE</span><div class="empty">nothing teaches this</div></div>
+    <div class="col"><span class="lab lab-a">AFTER</span><div class="empty">(no artifact)</div></div>
+  </div>
+  
+</section>
+
+<section class="finding">
+  <h2>The gap nobody planted</h2>
+  <p>Four gaps in this repo were removed by a script. This one was already there.
+  The coachmark the crew regenerated is <b>more accurate than the one it replaced</b>,
+  and the replaced line is live in the shipped game.</p>
+  <div class="ba">
+    <div class="col"><span class="lab">SHIPPED</span><div class="copy bad">,
+    order: 50,
+    notBeforeDay: 1,
+    title: </div></div>
+    <div class="col"><span class="lab lab-a">REGENERATED</span><div class="copy good">Lighting three or more nodes in one settle banks RAM into your next turn instead of spending it now.</div></div>
+  </div>
+  <pre class="term">export function cascadeRam(lit: number): number {
+  if (lit &lt; 3) return 0;
+  if (lit &lt; 6) return 1;</pre>
+  <p class="mut">game/src/game/content/kit.ts. It pays from three. The harness has
+  been green over that sentence for its entire life, because a coverage check
+  cannot read English.</p>
+</section>
+
+<p class="foot">The callout markup and its CSS are lifted from
+<code>components/game/teach.tsx</code> and <code>styles.css</code>; the panel
+around them is a mock. Generated by <code>tools/build_demo.py</code> from
+<code>runs/2026-08-13-d/</code>. Nothing on this page was written by hand.</p>
+</div></body></html>

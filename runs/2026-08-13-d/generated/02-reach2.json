@@ -1,0 +1,22 @@
+{
+  "schema": "kp-generated/1",
+  "gap": "reach2",
+  "action": "waiver",
+  "waiver": {
+    "id": "reach2",
+    "text": "On an unbuilt junction the dv-legal class and the lit dv-legalring rect apply only when inReach returns true, so the reach boundary for rotating into new ground is learned by watching which unclaimed junctions light up as built ground grows, not by reading a number. A built junction is always legal to rotate regardless of reach; that is ownership, not this mechanic, and ATTACK or DEFEND targeting during a cast is governed separately by attackTargetLegal and defendTargetLegal, not by inReach at all.",
+    "expiresIf": "duel-board.tsx stops gating dv-legal and dv-legalring on inReach for unbuilt junctions, or canRotate stops granting built junctions legality unconditionally so the two cases can no longer be told apart."
+  },
+  "claims": [
+    {
+      "text": "cells inReach returns true for",
+      "symbol": "duel-power.ts:inReach",
+      "resolves": "inReach walks the working reach from built ground through unbuilt junctions and returns whether idx is reachable; it is only reached at all for a junction that is not built."
+    },
+    {
+      "text": "always legal to rotate regardless of reach",
+      "symbol": "duel-power.ts:canRotate",
+      "resolves": "canRotate returns true for a built junction before it ever calls inReach (if (c.built) return true;), so built ground is exempt from the reach check entirely."
+    }
+  ]
+}

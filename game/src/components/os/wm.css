@@ -1,0 +1,225 @@
+/* ============================================================
+   KP/OS window manager + desktop icons (kpos-shell v2)
+   Solid ink title strips with void pixel text, stepped corners,
+   hard offset + glow shadows, X-only chrome, no-scrollbar law.
+   ============================================================ */
+
+/* ---------- floating window ---------- */
+
+.kp-fw {
+  position: absolute;
+  min-width: var(--kp-win-w-floor, 420px);
+  /* v3 (law 3): the DESK is the authority, not the browser. The old
+   * ceiling was min(100vh - 120px, 760px), a browser unit that clamped a
+   * 654px window to 349px inside a stage. Windows carry their own measured
+   * heights and never exceed the desk they are tiled on. */
+  max-height: calc(100cqb - 12px);
+  display: flex;
+  flex-direction: column;
+  background: var(--px-void);
+  border: 3px solid var(--ch-dim);
+  /* shadow spec matched to the study windows (9px hard offset + glow).
+   * GHOSTING FIX (inbox-v3 round 3): this was `filter: drop-shadow`, which
+   * rasterizes the whole window subtree and re-blurs it on every size step,
+   * leaving ghost edges behind a scaling window. The frame is opaque, so
+   * box-shadow renders identically for free. */
+  box-shadow:
+    9px 9px 0 rgba(0, 0, 0, 0.8),
+    0 0 26px color-mix(in srgb, var(--ch) 25%, transparent);
+  animation: kp-fw-in 180ms steps(4) both;
+  outline: none;
+}
+
+@keyframes kp-fw-in {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+.kp-fw:focus { outline: none; }
+.kp-fw-focused { border-color: var(--ch); }
+.kp-fw-dragging { user-select: none; }
+
+/* study-grade windows: full-height frames, capped only by the desk. v3
+ * builds every panel to the ~700px ceiling, so `tall` is now the same
+ * budget as everything else and exists only as a marker. */
+.kp-fw-tall { max-height: calc(100cqb - 12px); }
+
+/* FOCUS-PULSE 220ms steps(4) */
+.kp-fw-refocus { animation: kp-fw-focus-pulse 220ms steps(4); }
+@keyframes kp-fw-focus-pulse {
+  from { border-color: var(--ch-hot); }
+  to { border-color: var(--ch); }
+}
+
+/* the inverted title strip: ink fill, void pixel text */
+.kp-fw-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 34px;
+  padding: 6px 8px 6px 14px;
+  background: var(--ch-dim);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  position: relative;
+}
+.kp-fw-focused .kp-fw-bar { background: var(--ch); }
+.kp-fw-dragging .kp-fw-bar { cursor: grabbing; }
+
+.kp-fw-title {
+  font-family: var(--kp-display);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--px-void);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* the one window button that works: a pixel-art X, void-on-ink.
+ * Drawn as 3px "pixels" via box-shadow so it stays crisp at any hue. */
+.kp-fw-close {
+  flex: none;
+  margin-left: auto;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--px-void);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.kp-fw-close i {
+  display: block;
+  width: 3px;
+  height: 3px;
+  margin: 0 9px 9px 0;
+  background: currentColor;
+  box-shadow:
+    3px 3px, 6px 6px, 9px 9px,
+    9px 0, 6px 3px, 3px 6px, 0 9px;
+}
+.kp-fw-close:hover { background: var(--px-void); color: var(--ch); }
+.kp-fw-close:active { transform: translate(1px, 1px); }
+
+/* darknet stays "the odd one out" via the stepped notch + void chevron */
+.kp-frame-notched-bar {
+  clip-path: polygon(0 16px, 8px 16px, 8px 8px, 16px 8px, 16px 0, 100% 0, 100% 100%, 0 100%);
+  padding-left: 22px;
+}
+.kp-bar-chevron { display: flex; gap: 3px; margin-left: 8px; }
+.kp-bar-chevron i { width: 4px; height: 12px; background: var(--px-void); }
+.kp-bar-chevron i:nth-child(2) { height: 8px; margin-top: 4px; }
+.kp-bar-chevron i:nth-child(3) { height: 5px; margin-top: 7px; }
+
+/* NO-SCROLLBAR LAW: body free, ceiling on the frame */
+.kp-fw-body {
+  flex: 1;
+  min-height: 0;
+  overflow: visible;
+  color: var(--ch);
+  font-family: var(--kp-mono);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+}
+/* every window interior carries the fine checker dither */
+.kp-fw-body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-conic-gradient(color-mix(in srgb, var(--ch) 5%, transparent) 0% 25%, transparent 0% 50%);
+  background-size: 4px 4px;
+}
+.kp-fw-body > * { position: relative; }
+
+/* PAGE-FLIP 160ms steps(4) */
+.kp-page-flip { animation: kp-page-flip 160ms steps(4) both; }
+@keyframes kp-page-flip {
+  0% { transform: translateX(-16px); opacity: 0; }
+  49% { transform: translateX(-16px); opacity: 0; }
+  50% { transform: translateX(16px); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+
+/* ---------- desktop icons: free-floating shaded pixel pictograms ---------- */
+
+.kp-dicon-grid {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.kp-dicon {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--ch);
+  cursor: pointer;
+}
+.kp-dicon:hover .kp-dicon-glyph svg { filter: drop-shadow(0 0 10px var(--px-glow)); }
+.kp-dicon:hover .kp-dicon-label { background: var(--ch); }
+.kp-dicon:active { transform: translate(1px, 1px); }
+.kp-dicon:active .kp-dicon-label { background: var(--ch-hot); }
+
+.kp-dicon-glyph {
+  position: relative;
+  width: 76px;
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kp-dicon-glyph svg { shape-rendering: crispEdges; max-width: 100%; max-height: 100%; }
+
+.kp-dicon-label {
+  position: relative;
+  z-index: 2;
+  font-family: var(--kp-display);
+  font-size: 8px;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-align: center;
+  background: var(--ch-dim);
+  color: var(--px-void);
+  padding: 4px 8px;
+}
+
+.kp-dicon-badge {
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ch-hot);
+  color: var(--px-void);
+  font-family: var(--kp-display);
+  font-size: 11px;
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kp-fw, .kp-fw-refocus, .kp-page-flip {
+    animation: none;
+  }
+}

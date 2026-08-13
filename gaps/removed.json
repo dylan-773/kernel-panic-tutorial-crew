@@ -1,0 +1,72 @@
+{
+  "schema": "kp-gap-removed/1",
+  "note": "The answer key. gaps/ is off limits to every agent in the crew; tools/verify_blind.py fails the run if any agent read it. It is committed so a reader can check the agent's output against what was actually taken away.",
+  "source_plan": "gaps/plan.json",
+  "gaps": [
+    {
+      "kind": "teaching-moment",
+      "id": "cascade-bank",
+      "covers": [
+        "cascade"
+      ],
+      "correct_action": "tier 2, a coachmark",
+      "why": "A rule the player needs once, at a moment, that changes what they do next: line a chain up and trip it, instead of rotating one node at a time. The GDD calls this the signature moment.",
+      "removed": [
+        {
+          "file": "src/game/content/teaching.ts",
+          "text": "  {\n    id: \"cascade-bank\",\n    teaches: [\"cascade\"],\n    surface: \"duel\",\n    when: \"cascadeBanked\",\n    anchor: \"screen\",\n    order: 50,\n    notBeforeDay: 1,\n    title: \"CASCADE\",\n    copyOrder: \"copy-cascade-bank\",\n    lines: [\n      \"Four or more nodes claimed off one rotation banks bonus RAM for your very next turn.\",\n      \"That is what just happened. Line a chain up first, then trip it, instead of one node at a time.\",\n    ],\n  },\n"
+        },
+        {
+          "file": "src/components/game/duel.tsx",
+          "text": "          <Teach id=\"cascade-bank\" signals={{ cascadeBanked: sawCascade }} />\n"
+        }
+      ]
+    },
+    {
+      "kind": "teach-tip",
+      "id": "ram",
+      "covers": [
+        "ram",
+        "ramCarry"
+      ],
+      "correct_action": "tier 1, a tooltip",
+      "why": "A recurring number the player will want AGAIN every turn for the whole run. Reference, not a rule. Strips coverage for two mechanics at once, which the prioritizer should notice.",
+      "removed": [
+        {
+          "file": "src/game/content/teaching.ts",
+          "text": "  {\n    id: \"ram\",\n    teaches: [\"ram\", \"ramCarry\"],\n    control: \"the RAM readout in the dive dock, and the day board's per turn summary\",\n    text: \"Refills every turn. A rotation or a cast costs 1. Up to 2 unspent carries over. The rest is lost.\",\n  },\n"
+        }
+      ]
+    },
+    {
+      "kind": "teach-tip",
+      "id": "modeLocked",
+      "covers": [
+        "kitConfig"
+      ],
+      "correct_action": "tier 0, a label",
+      "why": "The button already renders OFFLINE and the tip only explains what OFFLINE means. A clearer label retires the need for teaching entirely. gdd/70-teaching/teaching-tips.md names this one as tier-0 work outright.",
+      "removed": [
+        {
+          "file": "src/game/content/teaching.ts",
+          "text": "  {\n    id: \"modeLocked\",\n    teaches: [\"kitConfig\"],\n    control: \"a locked mode button in the kit\",\n    text: \"Config not installed. Clear jobs and take a CONFIG augment from the draft to unlock it.\",\n  },\n"
+        }
+      ]
+    },
+    {
+      "kind": "mechanic-waiver",
+      "id": "reach2",
+      "covers": [
+        "reach2"
+      ],
+      "correct_action": "restore the waiver, build nothing",
+      "why": "The legal rotation set is drawn as glowing junctions. The affordance is the teaching. Writing a coachmark here would be teaching something the board already says.",
+      "removed": [
+        {
+          "file": "src/game/content/teaching.ts",
+          "text": "    waiver: \"The legal set is drawn as glowing junctions. The affordance is the teaching.\",\n"
+        }
+      ]
+    }
+  ]
+}

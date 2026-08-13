@@ -1,0 +1,28 @@
+{
+  "schema": "kp-generated/1",
+  "gap": "splitBoards",
+  "action": "waiver",
+  "waiver": {
+    "id": "splitBoards",
+    "text": "The two sides render as separate board panels the player switches between, and duel.tsx's own legal-cell computation returns no legal cells at all for rotating or placing unless the player is viewing their own board, so cross-board manipulation is impossible by construction, not just unlabeled.",
+    "expiresIf": "duel.tsx's legal-cell computation stops gating rotation and placement on the current view being the player's own board, or the two boards stop rendering as separate panels."
+  },
+  "label": {
+    "file": "src/game/content/teaching.ts",
+    "before": "    id: \"builtVsPower\",\n    label: \"Built ground never un-makes\",\n    firstContact: \"duel\",\n    waiver: \"duel-board.tsx pushes a distinct dv-cut class the instant a built junction goes dark while staying built, so the permanence of built ground is shown as its own visual state on every render, not stated in words.\",\n  },\n];",
+    "after": "    id: \"builtVsPower\",\n    label: \"Built ground never un-makes\",\n    firstContact: \"duel\",\n    waiver: \"duel-board.tsx pushes a distinct dv-cut class the instant a built junction goes dark while staying built, so the permanence of built ground is shown as its own visual state on every render, not stated in words.\",\n  },\n  {\n    id: \"splitBoards\",\n    label: \"Split boards\",\n    firstContact: \"duel\",\n    waiver: \"The two sides render as separate board panels the player switches between, and duel.tsx's own legal-cell computation returns no legal cells at all for rotating or placing unless the player is viewing their own board, so cross-board manipulation is impossible by construction, not just unlabeled.\",\n  },\n];",
+    "why": "MECHANIC_INVENTORY has no row for splitBoards at all (the silent-gap class), so the waiver above has nothing to attach to until this row exists. Chained after 07-builtVsPower.json's insertion so all three land without colliding."
+  },
+  "claims": [
+    {
+      "text": "The two sides",
+      "symbol": "duel-types.ts:Side",
+      "resolves": "Side is the union \"player\" | \"opp\", exactly two values, one per board panel the player switches between."
+    },
+    {
+      "text": "no legal cells",
+      "symbol": "duel.tsx:legal",
+      "resolves": "the legal cell set returns out (empty of new adds) for rotation and placement whenever view !== \"player\", so the enemy board can only ever be reached through ATTACK targeting, never direct manipulation."
+    }
+  ]
+}

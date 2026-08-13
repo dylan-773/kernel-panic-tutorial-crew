@@ -1,0 +1,873 @@
+{
+  "files": {
+    "00-index/design-change-log.md": {
+      "bytes": 4415,
+      "sha256": "ddda4a5fe00943e57ffe5f0162de5f46731716da7bfc214d316daa3b19c7d2b4"
+    },
+    "00-index/home.md": {
+      "bytes": 3167,
+      "sha256": "57554f6277ff53f58d320e080d47f898158b7d11168508f65af9b472221dd4f2"
+    },
+    "00-index/revision-history.md": {
+      "bytes": 3192,
+      "sha256": "503e53b624f0773ea7203226bbae5346e36d26c2cdec26860a8e0e785d282696"
+    },
+    "00-index/table-of-contents.md": {
+      "bytes": 5102,
+      "sha256": "8d5ba1fa1d332c48336ac2b1027be57e1ef26d9bdbe2eacf1766d75db7b7ee0f"
+    },
+    "00-index/vault-conventions.md": {
+      "bytes": 3604,
+      "sha256": "34a58cab88d42039078da8812f0da9e5146163cb48c62eeb550d87252c6b0039"
+    },
+    "10-design/10-design.md": {
+      "bytes": 650,
+      "sha256": "65d167c403ddcb02c6a80b9a6e63adc49f545f8f9ba6da2339a2e94bdef89f53"
+    },
+    "10-design/core-loop.md": {
+      "bytes": 1814,
+      "sha256": "a1fc99d54da2b79d2b0c1a8098eb795dfa2e214b80b836313949a85cfe48a777"
+    },
+    "10-design/design-pillars.md": {
+      "bytes": 2149,
+      "sha256": "d77634e77b77dd2ef0c1303b7bd6e2c2852b17592d944af83b038b358b82705c"
+    },
+    "10-design/elevator-pitch.md": {
+      "bytes": 1878,
+      "sha256": "fdf4b4b5c3cdae02f8872d00e3fc01e6aacea006c8cd6e8000deabeee160b68b"
+    },
+    "10-design/game-flowchart.md": {
+      "bytes": 1840,
+      "sha256": "2e013854ad15c1b053b745d7b232f36e58e4f258bb687546d39bae9e8e24053c"
+    },
+    "10-design/game-goals.md": {
+      "bytes": 1949,
+      "sha256": "4da5558dc89f5e7fdcc6df4e730c6dba3515735870315188add88f537a063412"
+    },
+    "10-design/game-progression.md": {
+      "bytes": 1961,
+      "sha256": "b2f5483cec531f5fa48a1df5d48900be3438264a6b751f558cf5e92629a620c4"
+    },
+    "20-mechanics/20-mechanics.md": {
+      "bytes": 3350,
+      "sha256": "6e1bc6f8c2c28df5cf4e42c0327f12ad1f96ca13424b81614efbe5507d48a133"
+    },
+    "20-mechanics/arm-halt.md": {
+      "bytes": 1333,
+      "sha256": "bcc7e0b5c82753b9f28ff4285da11ccdad8ec439feb12623d99c0ea655ea122d"
+    },
+    "20-mechanics/arm-siphon.md": {
+      "bytes": 1278,
+      "sha256": "0f9bf0a6e77b5bf93f6bd32e6cc85de6b13e89a56890bacf9c23ee574f81bd29"
+    },
+    "20-mechanics/attack.md": {
+      "bytes": 1350,
+      "sha256": "e7761e467a8d580be2da9769e40fd47143daaed0b5ed3d81b457f9da40739c32"
+    },
+    "20-mechanics/augment-drafts.md": {
+      "bytes": 1790,
+      "sha256": "8d47413d8bbd4f9d34040acccd10347a61d9a75fe76d1debe8357749443d0692"
+    },
+    "20-mechanics/augments.md": {
+      "bytes": 3168,
+      "sha256": "2ee0caa0369a92c250adce958b93deab8e30a63944d9e6f7da7e3c2c8020bd1f"
+    },
+    "20-mechanics/augments/cheap-shot.md": {
+      "bytes": 467,
+      "sha256": "adf5847d37ec606179a5c666421da0f4db2b8fd302b42ddb7d3c9887aa657719"
+    },
+    "20-mechanics/augments/clamp-driver.md": {
+      "bytes": 565,
+      "sha256": "934735d92fc1871f61eedc3f840f8405715734af402d47ab7f44b884016de26b"
+    },
+    "20-mechanics/augments/clean-run.md": {
+      "bytes": 783,
+      "sha256": "cc17ec5a33dfb3a13dc5b268d4598010d4e26c3fba94aa635088d120dcb24ed2"
+    },
+    "20-mechanics/augments/darknet-rate.md": {
+      "bytes": 677,
+      "sha256": "e7695782f75f9b14e702619c1a998229b13bd26c5cefe262fc6bd2f69071dccf"
+    },
+    "20-mechanics/augments/deep-siphon.md": {
+      "bytes": 460,
+      "sha256": "c251bfb67e014bd1991cb7cd1b552a2da4d2bbc1da2da0e9cc1b28bb99e44df0"
+    },
+    "20-mechanics/augments/echo-tap.md": {
+      "bytes": 484,
+      "sha256": "f4dd045d2e1c2208c881da5e49a01977a68991e59a2bf15d82af578ea95d3bb6"
+    },
+    "20-mechanics/augments/first-fault.md": {
+      "bytes": 727,
+      "sha256": "bd8e228c3a93a29cb5eb209e923782f2ddc017019d31d43432772bbc082ab949"
+    },
+    "20-mechanics/augments/halt-driver.md": {
+      "bytes": 437,
+      "sha256": "0f7f180394407f597b4f64dc754cb8b61cfded538098ceeac2126c684a4b470b"
+    },
+    "20-mechanics/augments/hot-boot.md": {
+      "bytes": 561,
+      "sha256": "397c43d095a861843bb68ec675d506790ef98426b3a0661e3bb562f638e1b0b4"
+    },
+    "20-mechanics/augments/jam-anchor.md": {
+      "bytes": 594,
+      "sha256": "4973d8f3a0541837530295b6c81c020d0eeb9ba419a11d3ce8ef52b20652d874"
+    },
+    "20-mechanics/augments/long-arms.md": {
+      "bytes": 676,
+      "sha256": "d97849383f6a8b8265bd405f4c49f87599d6de668cd4daec37cca4137364c308"
+    },
+    "20-mechanics/augments/overtime-clause.md": {
+      "bytes": 768,
+      "sha256": "0d0469b76fbe9ffb4436013fea63f5985a294345c989d68cbf8787f3c7c489fa"
+    },
+    "20-mechanics/augments/siphon-driver.md": {
+      "bytes": 531,
+      "sha256": "f60fb12019bedb3cd98c3d5ebf316a4bf2b3d1b3f9f53757d7da19199a9d1cdb"
+    },
+    "20-mechanics/augments/splice-refund.md": {
+      "bytes": 688,
+      "sha256": "e186b85a5e7dc2286da837b4b2149db724b59245abaa5518b1a91940982f07e1"
+    },
+    "20-mechanics/augments/sweep-credit.md": {
+      "bytes": 539,
+      "sha256": "d6d747001695a86c3d9b68c15041a8a7c31155f6d2aa8c6dd004b81ba2a228f1"
+    },
+    "20-mechanics/augments/tap-line.md": {
+      "bytes": 689,
+      "sha256": "5658c43f36ee68a1f6811e441a23c758b31090b347d01f642e6b946e049c9928"
+    },
+    "20-mechanics/augments/tripwire.md": {
+      "bytes": 469,
+      "sha256": "8701bfbd6a7e8adb6d17d4944055851df1f0a47b382a6b85b28a9827a55e2453"
+    },
+    "20-mechanics/augments/ward-driver.md": {
+      "bytes": 517,
+      "sha256": "492a9744ceda806c21bbbafece4a75c6169248cb790a86f8d04ac10d6e670690"
+    },
+    "20-mechanics/boost-bays.md": {
+      "bytes": 1327,
+      "sha256": "20d1422d592b5e10240353ff41f200c61b83db742e7a879600f09e8b1ac63ca3"
+    },
+    "20-mechanics/built-and-power.md": {
+      "bytes": 3319,
+      "sha256": "fb40edc1c9112d3c8a6dfa54341b06f3c9998993865e4ba98f682697bdf37eb4"
+    },
+    "20-mechanics/cascades-and-surge.md": {
+      "bytes": 3524,
+      "sha256": "55d1e69af35c9277f0c546bcf45850b921726198b8e85c4b6d3b847c7993e34b"
+    },
+    "20-mechanics/credits.md": {
+      "bytes": 1613,
+      "sha256": "ba00d884ee70c37a3811030c774066d6217f3c5c0bf43d7409bb770fbab70a96"
+    },
+    "20-mechanics/death-and-run-end.md": {
+      "bytes": 2108,
+      "sha256": "55c3f51d0f49deb69b24e8542a536cff2a6a2376780acbc591db1c7d2f918fe3"
+    },
+    "20-mechanics/defend.md": {
+      "bytes": 1244,
+      "sha256": "27d9356499562862ebfbb03e4f4daf879d34e49aa6b8e1bf2a5dda968c985bc2"
+    },
+    "20-mechanics/difficulty-dials.md": {
+      "bytes": 4163,
+      "sha256": "4e14b1a05fdc83a85f9c75d4d0cb662dec7d1b42b24ee16dc0009484092dd46f"
+    },
+    "20-mechanics/economy.md": {
+      "bytes": 1900,
+      "sha256": "aa2355543e4b48bf6a351232711c8aa016367def0ce449becb249416f604b09e"
+    },
+    "20-mechanics/job-pay-and-billing.md": {
+      "bytes": 1398,
+      "sha256": "c03e183137c951d6822ab4354dbb76ee150970836706b159971db4f89a45159f"
+    },
+    "20-mechanics/lock.md": {
+      "bytes": 1172,
+      "sha256": "5491702c11b4716097fae76659de94d2a503eafe4771f61255f70f41d6bfd640"
+    },
+    "20-mechanics/meta-progression.md": {
+      "bytes": 2336,
+      "sha256": "c098699d41c35ee93fdc4f4a6e0da9f60fca3935bb36cf0aa64a0e6e00b83d7c"
+    },
+    "20-mechanics/neural-strain.md": {
+      "bytes": 2122,
+      "sha256": "39e27bfc99d3602082f4dfcccc933fcfc9dfec5396486c063331bbb4e91777ac"
+    },
+    "20-mechanics/opponent-ai.md": {
+      "bytes": 3369,
+      "sha256": "6c2fffae637f9c17437c8841d7daf80ad8a687b13b232c29f319c2082928d141"
+    },
+    "20-mechanics/patch-pieces.md": {
+      "bytes": 2500,
+      "sha256": "6e243a07a996fbe54014493b6eaa23882508a6473d55d4808f544a31f0740df8"
+    },
+    "20-mechanics/player-character.md": {
+      "bytes": 1566,
+      "sha256": "be34ae7a966a3d190db5ec1a269d711b33464a91d06cee86c879a73bcc7fd288"
+    },
+    "20-mechanics/player-inventory.md": {
+      "bytes": 1336,
+      "sha256": "517f97413d23baef03d219b62b01c96b6fde9cdf756f59470eb90572110636a7"
+    },
+    "20-mechanics/player-metrics.md": {
+      "bytes": 1737,
+      "sha256": "b60a98ad027e9cd9a91f75156a0ac6a8055ed215d2272cf8231fd92638afeba5"
+    },
+    "20-mechanics/player-skills.md": {
+      "bytes": 1794,
+      "sha256": "74ca0b8f6a529257fe0152a4c4da31edba0854b32627d47257ce0b67dbf596e3"
+    },
+    "20-mechanics/program-tiers.md": {
+      "bytes": 1095,
+      "sha256": "4d89c8e11ca3c812ebc4e7166644f944f6f83a442c9bca3d81d9ce31d4ca6d06"
+    },
+    "20-mechanics/purge.md": {
+      "bytes": 1203,
+      "sha256": "066b7e2b9e2ac848570fcce0dfe77324c68d09a012210b2ceede7d4518a7b9ed"
+    },
+    "20-mechanics/ram.md": {
+      "bytes": 1963,
+      "sha256": "06c7e24d8014e389e62850bc6a3834b369f743672f55e627a26a21c17123e929"
+    },
+    "20-mechanics/reach-and-placement.md": {
+      "bytes": 2602,
+      "sha256": "d20932a442a5c45dafc9564403eb5ceb6ba8087c5ed8011893de2c4b0a86dad3"
+    },
+    "20-mechanics/redirect.md": {
+      "bytes": 1548,
+      "sha256": "c2baa5459fb8fb42aed3eb8279f5f73be1deec3d89a8d84d7d1124272d5cf188"
+    },
+    "20-mechanics/rotation.md": {
+      "bytes": 3366,
+      "sha256": "8b932a86af92992f5826e47b2d1f8e497e6fefdbfcc90264f02d7ad11914ca83"
+    },
+    "20-mechanics/route-cost-and-par.md": {
+      "bytes": 4074,
+      "sha256": "bd9965705e56cd77e2df7e3e0afdadf353a45f78d182be49ef11abb8ca7654de"
+    },
+    "20-mechanics/scan.md": {
+      "bytes": 1162,
+      "sha256": "7845c8a0c4fa0a2daac589f39f254373937fad73b4a1ac291493eec7c1e82a07"
+    },
+    "20-mechanics/scoring-and-lifetime-stats.md": {
+      "bytes": 1333,
+      "sha256": "5ce50b5b0f51469ef159036baaa509ac90e2adebbe1a709d5b90bd4f0ff56136"
+    },
+    "20-mechanics/split-boards.md": {
+      "bytes": 3247,
+      "sha256": "69ebacb2156cba23e862948930f7b64f9a9e6db07f3027881ec8f53f4b370826"
+    },
+    "20-mechanics/superseded/territory-and-claiming.md": {
+      "bytes": 2996,
+      "sha256": "5f4d1c89bc2ca082ce27412b9c0c5319a3dd4a9b461c6d6e31e0e96394792d6b"
+    },
+    "20-mechanics/the-board.md": {
+      "bytes": 3711,
+      "sha256": "3c4808136ca85fe57dd72cb314d98a82bcd133eeb8f5daa7a71cf0f647107b6b"
+    },
+    "20-mechanics/the-darknet.md": {
+      "bytes": 1456,
+      "sha256": "09bc76a6abdeae4dbccfebc5d7535a333f73eda2001cfbffa6ed406754c2a2fc"
+    },
+    "20-mechanics/the-duel.md": {
+      "bytes": 3364,
+      "sha256": "fe2634d0fa62db4be9be64488eac072700f57206919bbbfd302a63f660ce5ba0"
+    },
+    "20-mechanics/the-kit.md": {
+      "bytes": 2006,
+      "sha256": "20fc8ad0192afbbb0b98f2342570ffe004145da7be2276629cb6385b6ede7dd8"
+    },
+    "20-mechanics/the-night-shop.md": {
+      "bytes": 1921,
+      "sha256": "16c3dced74f60aa1a757d058d16fb61e1673cc043d2f042da2da47e18bb55e1a"
+    },
+    "20-mechanics/the-pouch.md": {
+      "bytes": 1164,
+      "sha256": "5aee4c52a17a2f88e3f5f773799e6cb925261403345d19f2095031dbb85412a2"
+    },
+    "20-mechanics/the-round-cap.md": {
+      "bytes": 2358,
+      "sha256": "189c26ec44b748dbdc511febb9a7e0b7f1811c75c4424b9f5620cf779557483d"
+    },
+    "20-mechanics/traps-and-telegraphs.md": {
+      "bytes": 3310,
+      "sha256": "c82f1fd6a09a31d344806e00730bc15e31d137c253842a14966edb8265a35665"
+    },
+    "20-mechanics/turn-structure.md": {
+      "bytes": 3775,
+      "sha256": "d84fa698197f6f20361bea64f0ea3c017ba8965d66584bf484c4b53aa645f652"
+    },
+    "20-mechanics/ward.md": {
+      "bytes": 1341,
+      "sha256": "7b436fcd130819d1022ad46302751ad10ba5934ed3e28ca288e5c485acbb10af"
+    },
+    "20-mechanics/win-conditions.md": {
+      "bytes": 2515,
+      "sha256": "9b2a2ce2bfd93aff536aa1c321528ff4ed2621992314c2fbbac8a9328069205a"
+    },
+    "30-content/30-content.md": {
+      "bytes": 1180,
+      "sha256": "a731c775fcf3d3dccc7455c2f4190eef0606cc41d72042636297e05614dbf9a2"
+    },
+    "30-content/customers.md": {
+      "bytes": 2950,
+      "sha256": "e3d12199230dc70acc65be57c5628ea2229a31fe30c42fd8aea244118755c468"
+    },
+    "30-content/customers/aldous-wick.md": {
+      "bytes": 1177,
+      "sha256": "e81b76ab1c9e1a59b1b9020ce25e451144f6e0dddad0695630377254ccf4b2f9"
+    },
+    "30-content/customers/bram-hollander.md": {
+      "bytes": 1073,
+      "sha256": "672e23109e1657d3b98cf501397b0056a53f653905ae742aa64a65db31ec40ef"
+    },
+    "30-content/customers/casimir-bell.md": {
+      "bytes": 973,
+      "sha256": "b04500d27176229d05db8fe655fb813da3669f861a000222ff0955a1bdc10d38"
+    },
+    "30-content/customers/dex-marlowe.md": {
+      "bytes": 940,
+      "sha256": "2efcf6130d30d2d55bf3016d903de31011ddb9050792acb5420aed8e40cc9428"
+    },
+    "30-content/customers/emeric-snow.md": {
+      "bytes": 952,
+      "sha256": "dadd1f3484ff78115d7c217224f8e703db1a4e0cc3cd06bde18e1786a0b77591"
+    },
+    "30-content/customers/ines-calloway.md": {
+      "bytes": 973,
+      "sha256": "b57b11ed01bc2513c679a2538df7825884c3930da1e3ff3651694105ed2d1591"
+    },
+    "30-content/customers/june-aksoy.md": {
+      "bytes": 862,
+      "sha256": "232dae0d8b1ab95e847b72dbe3e954905781cf72680c34f9590d5ed26e50ac69"
+    },
+    "30-content/customers/juno-vex.md": {
+      "bytes": 736,
+      "sha256": "af48cb7988ab29db1d06509eec9ba799158361010b8920fc02035937b2681858"
+    },
+    "30-content/customers/noor-behzadi.md": {
+      "bytes": 929,
+      "sha256": "248f49b436011caa0059b6c0123eb17003f7d84a1a758531566f8e84cda1b95d"
+    },
+    "30-content/customers/sable-okonkwo.md": {
+      "bytes": 856,
+      "sha256": "dcf2e9db24067904ab0ad4d3cfc2f67ffb4e539cacd25a29ec39133cfa84cb51"
+    },
+    "30-content/customers/vera-stanek.md": {
+      "bytes": 999,
+      "sha256": "5849fb54c28e7d0fe661ff0631368d35d9ba5fadac50929c04b8f33f1e7c1b3a"
+    },
+    "30-content/customers/wren-tallis.md": {
+      "bytes": 873,
+      "sha256": "d9d4ec7dcb7cea76039bc81c6b2fe5da73abe82de0d220ef0ab7ea5347305f98"
+    },
+    "30-content/cutscenes-and-scenes.md": {
+      "bytes": 2413,
+      "sha256": "96d1036aea9a33ed15b1c1e06a517d65a254e82752ddf05215b2ccfd46ff0f6f"
+    },
+    "30-content/dad-log-archive.md": {
+      "bytes": 3288,
+      "sha256": "7b72621aed0b09d020e9f40f317447eca57a7a15fa503df32f173c4d6347e3f3"
+    },
+    "30-content/days/day-1.md": {
+      "bytes": 1236,
+      "sha256": "6b077dd2b93f66648ffffff2e59c2cdef3a6adf121a9a6d42dd5d9ebb0535379"
+    },
+    "30-content/days/day-10-the-finale.md": {
+      "bytes": 2128,
+      "sha256": "7cbc308dc14a45acddc7d0ccc3cd398def4a119f938e544addedcc1cdb4deca2"
+    },
+    "30-content/days/day-2.md": {
+      "bytes": 1106,
+      "sha256": "7ba998a2eface069269d596450d247b53a7ada9d1361e39150382e5966351664"
+    },
+    "30-content/days/day-3.md": {
+      "bytes": 1204,
+      "sha256": "79dab35c9b60c224de789f75dd95d9903198b850671bf29183ad770515ab57bf"
+    },
+    "30-content/days/day-4.md": {
+      "bytes": 996,
+      "sha256": "c2d883450c61e575b8c8526d796f30af6eb0fd9df62b76b1bf954b45317fb5b0"
+    },
+    "30-content/days/day-5.md": {
+      "bytes": 1201,
+      "sha256": "487ba0bc62f28591b9ce9b6e8e604e9f1641e82e985ffb49247ea30a0fdb6394"
+    },
+    "30-content/days/day-6.md": {
+      "bytes": 1240,
+      "sha256": "a701e4af1defc606b1b4f3eb23d430e49da547185611898ef34d13c569ffb804"
+    },
+    "30-content/days/day-7.md": {
+      "bytes": 1081,
+      "sha256": "32751b4b3f01bc1838c31574706cbbe29e915e9118068e78693c4d87a9c3faaa"
+    },
+    "30-content/days/day-8.md": {
+      "bytes": 1486,
+      "sha256": "25e1001e82e2a240011a3bc7a4deecdc9fbf960d4ff4bf1bb1f754763fc19020"
+    },
+    "30-content/days/day-9.md": {
+      "bytes": 1335,
+      "sha256": "365cfc0fada6a93e9b8d3aad7715b28fe7151231ed7d9c600840cb0157b43ef6"
+    },
+    "30-content/intrusions.md": {
+      "bytes": 1777,
+      "sha256": "4016848b706ea023d05d63c63ff738424e3cdc4369d3303882b10a390ad92b14"
+    },
+    "30-content/journal/entry-backroom.md": {
+      "bytes": 1096,
+      "sha256": "6ac8198fed8b2a07562d4b018f3ef1a9b176e50d55c85c6ce36b6b2831915f14"
+    },
+    "30-content/journal/entry-bills.md": {
+      "bytes": 1205,
+      "sha256": "3a4d183696c1989a12d96facb01bfa52991be411470d90551981242e687921da"
+    },
+    "30-content/journal/entry-diagnosis.md": {
+      "bytes": 1316,
+      "sha256": "4c8b2c9c7879a88f71a37d94aa10d05079410c36c2757d90e1a13563d5c0fe82"
+    },
+    "30-content/journal/entry-failed1.md": {
+      "bytes": 880,
+      "sha256": "46a0809c8533d91d41edb6f3da729a326bb4022cf3f50da10c3816568f9e0445"
+    },
+    "30-content/journal/entry-grading.md": {
+      "bytes": 1431,
+      "sha256": "5d020c9812aad96055b52b40f9ff8ed12cfeb7ba0d8680301aca2b40feeb6383"
+    },
+    "30-content/journal/entry-notickets.md": {
+      "bytes": 1119,
+      "sha256": "a42b15728f2dce58d12b023365b4a3b9240e454217732df4aa2c3d9349d1f15c"
+    },
+    "30-content/journal/entry-patch.md": {
+      "bytes": 1431,
+      "sha256": "13c2c3775b3635b8c7a8e33bf28cdc67b69dd0f0a73ec92f34e7d0917abd1557"
+    },
+    "30-content/journal/entry-receipts.md": {
+      "bytes": 1148,
+      "sha256": "ebcfcefb4fa76997d5bec5fafecb9b9ad7b5fa5c62f7fc2bfe7bbc807796cd88"
+    },
+    "30-content/journal/entry-solder.md": {
+      "bytes": 1077,
+      "sha256": "d271a1a53ec13feb84524e0fef0f195344ae504115332454fc3ad3742584a46d"
+    },
+    "30-content/journal/entry-will.md": {
+      "bytes": 990,
+      "sha256": "094cf32f54c11fb46f37eca6ea52184c364fd134878b5445ac2e9d2bfd3ce430"
+    },
+    "30-content/the-finale-encounter.md": {
+      "bytes": 2140,
+      "sha256": "92f0bcd32c108a43a678e22be909ab3dff3b88d13da41bfb4b1120df8fc8d206"
+    },
+    "30-content/the-shop.md": {
+      "bytes": 1711,
+      "sha256": "763c88d94b4909c302e039f602c72c25c9cdab1f114d0493a38163598c8f55b0"
+    },
+    "30-content/the-ten-day-arc.md": {
+      "bytes": 3133,
+      "sha256": "aa33db81722caa9009cfb476ef3b9100d79daea87185b90cc0c35b2e1000792d"
+    },
+    "30-content/world-overview.md": {
+      "bytes": 1456,
+      "sha256": "35c8b47bb2f2c827849392dc7d11183933d51c287a91d8e64b34c484b4e91701"
+    },
+    "40-presentation/40-presentation.md": {
+      "bytes": 1079,
+      "sha256": "131552d2b97e6fff3c24f5c5dde9f9b0cc85dd8ef27cd395fcdf309f64616d78"
+    },
+    "40-presentation/art-direction.md": {
+      "bytes": 2371,
+      "sha256": "14f6086e7eddc7a9e64de010e4e72df50b1d0feae32556fd24ece5e270198595"
+    },
+    "40-presentation/game-controls.md": {
+      "bytes": 2142,
+      "sha256": "0a13bd8afeabc4ca6057132277df67c8fd0c1af88f0275902e5d9d5159f95576"
+    },
+    "40-presentation/hud-and-ui-design.md": {
+      "bytes": 2486,
+      "sha256": "8db6c188fd3c6fba465710d44b9a830850cb4f8ed3b69828d086ee5bddd6a023"
+    },
+    "40-presentation/kp-os.md": {
+      "bytes": 2538,
+      "sha256": "db275f888b5a48642fbb5364e2b4c5fa2200cb82e90e8cadbb46f65cdc628e58"
+    },
+    "40-presentation/music-and-sound.md": {
+      "bytes": 2667,
+      "sha256": "610b4c20581443372b3e8c83035ccab30b43be8bd582aeea6bfbe8456fbeb6f5"
+    },
+    "40-presentation/player-options.md": {
+      "bytes": 1977,
+      "sha256": "3a98f5f8c2ad664b4e7901b79fb88f1de7fc03d1d77bb0c15c3ead98b68dd242"
+    },
+    "40-presentation/rulings/law-1-colour-is-roles.md": {
+      "bytes": 2824,
+      "sha256": "8d6a25bbc93dcf792a659e1b3039b760cace8b792453f12aa02e14bc1a78e550"
+    },
+    "40-presentation/rulings/law-10-verification.md": {
+      "bytes": 2111,
+      "sha256": "fdbfa1ff056ebda6b25da154c499a3dad57bddca3366142a1e240ebaa5e9d477"
+    },
+    "40-presentation/rulings/law-11-panel-queue.md": {
+      "bytes": 2181,
+      "sha256": "f7fcda155f985be1638fc3be4148ee01d711345d530b3e4759d7b956f2b534e7"
+    },
+    "40-presentation/rulings/law-2-hierarchy.md": {
+      "bytes": 1550,
+      "sha256": "fe1d7955ae4706cf1a002bf5ab765fbf321bdc07be5faae43a8214bdd1f455d1"
+    },
+    "40-presentation/rulings/law-3-fluid-and-the-height-ceiling.md": {
+      "bytes": 2150,
+      "sha256": "272994c900a30e0fe213ee45ef67602f0dbc7a24326ec5df82269eb039b07462"
+    },
+    "40-presentation/rulings/law-4-chrome-vocabulary.md": {
+      "bytes": 1825,
+      "sha256": "218278ebc162faa3cabbe9a87d5b538e8d24aba8e8684c240976e80d6f6ed0b9"
+    },
+    "40-presentation/rulings/law-5-imagery.md": {
+      "bytes": 1448,
+      "sha256": "c64afd71a9e2b4f004729f89c58da532180396e24fe147322d2734a5cb5d3b50"
+    },
+    "40-presentation/rulings/law-6-the-tube.md": {
+      "bytes": 1606,
+      "sha256": "ca0fc5d62016ed2f37812a2646c41697c1d5af0f6a65880930e992759d7327a6"
+    },
+    "40-presentation/rulings/law-7-motion.md": {
+      "bytes": 1717,
+      "sha256": "b74523f7d30f66f22a5520af3974fdd18bdda72f80a7570eed6fd28b0e045b21"
+    },
+    "40-presentation/rulings/law-8-the-cuts-discipline.md": {
+      "bytes": 1808,
+      "sha256": "9486feee3f3b396e66d8cbba56a9a84de6f0ef28e08e4db7498d60ada3d8bae3"
+    },
+    "40-presentation/rulings/law-9-build-recipe.md": {
+      "bytes": 2008,
+      "sha256": "f51e3fd3ef3ab7a85cb094d2d582011e34ed98fe3539deb47cad1f7355aaf5fe"
+    },
+    "40-presentation/title-and-start-screen.md": {
+      "bytes": 1620,
+      "sha256": "964074b9a0db1c3af9e50ea6705abc6c39a89bf5004e50fc3d39319135641da6"
+    },
+    "40-presentation/ui-rulings.md": {
+      "bytes": 2734,
+      "sha256": "f186f315f804041c26e917467a02c33c5a90d489a873818ca28b5078b602eacc"
+    },
+    "40-presentation/windows/backroom-lck.md": {
+      "bytes": 1353,
+      "sha256": "d8032b729b82e518ba4e2ace439b41c4caf44615dfdc028f6d115e0a22c2744a"
+    },
+    "40-presentation/windows/dad-log-window.md": {
+      "bytes": 1692,
+      "sha256": "d4af25e871a5c68661f8ad006954a0ed94facb1b190d404c089b9d650ffdbc5c"
+    },
+    "40-presentation/windows/darknet-lnk.md": {
+      "bytes": 1725,
+      "sha256": "44445089296cb2fdffdc85398c3375e10bba40ce66e946bb8144ab23fab5846b"
+    },
+    "40-presentation/windows/dive-exe.md": {
+      "bytes": 2196,
+      "sha256": "2bda6b70da688822fdea178e43fb572949752c11478339b07fc5a8fee6e53141"
+    },
+    "40-presentation/windows/inbox.md": {
+      "bytes": 1790,
+      "sha256": "2054748769e000bd40b2e27c3ca5df6e8b71175440b3ccf62b6af704f755c3e7"
+    },
+    "40-presentation/windows/ledger-log.md": {
+      "bytes": 1528,
+      "sha256": "bb190b26757260bd51747f636f2965dfb50e183523fa473bbef97ad3407bd090"
+    },
+    "40-presentation/windows/loadout-cfg.md": {
+      "bytes": 2055,
+      "sha256": "bf453b4edaac3df4e17f72d517083dec41b9c418358c867301192cb0a157af54"
+    },
+    "40-presentation/windows/manual-txt.md": {
+      "bytes": 1641,
+      "sha256": "487791aee79158bac17632ffd4f50dc14974938f43e6aed66e292f64ea93d6d4"
+    },
+    "40-presentation/windows/night-sys.md": {
+      "bytes": 1757,
+      "sha256": "210958a0eecb4cf1922d1e030257e71e7562280db90c659f9f899a7394e3b874"
+    },
+    "40-presentation/windows/repair-log.md": {
+      "bytes": 1780,
+      "sha256": "f550b331157ccf1427248b2ec50b0ad62004493d64aec6fd16f49beaf24b9ab2"
+    },
+    "40-presentation/windows/shopfront-exe.md": {
+      "bytes": 1620,
+      "sha256": "26412d4009ccf2d5acc5575d5ab80cfbaf908d6096d013f5422bef938c1a41d0"
+    },
+    "40-presentation/windows/solder-bay.md": {
+      "bytes": 1561,
+      "sha256": "b6cbf2acf3f388c20a4081438f3261692edbae223c02d914d9809423479bccba"
+    },
+    "50-tech/50-tech.md": {
+      "bytes": 627,
+      "sha256": "bc93467f12a85168f082e82f490c5c5bd0692328b47a98343389c0494a88265f"
+    },
+    "50-tech/determinism-and-seeds.md": {
+      "bytes": 2240,
+      "sha256": "54091046e1fb70d9eb49c843e5760a7ef5c29c5e341ffd09eee77ad1770061dc"
+    },
+    "50-tech/performance-budget.md": {
+      "bytes": 1871,
+      "sha256": "0aa8d32b778d22da209b3f6d05d37fe8ca1b3b0634e3ce3dc8fb0e12812f5b13"
+    },
+    "50-tech/save-and-load.md": {
+      "bytes": 2211,
+      "sha256": "14013406cc3e74cd2ab16559dedd17447f0d0a029a77a9adede8f56b0789c341"
+    },
+    "50-tech/simulation-harnesses.md": {
+      "bytes": 3169,
+      "sha256": "d9eea4c66f14892cb7b2c10bfa7f6ef75c20329dd7965b1830acb8a49b0a80b7"
+    },
+    "50-tech/technical-requirements.md": {
+      "bytes": 1818,
+      "sha256": "51b476156c504038e6c23d395d905f5a2019227689695528019e0c8ce73f9569"
+    },
+    "50-tech/technology-stack.md": {
+      "bytes": 2191,
+      "sha256": "daadaab1d3f3bdd5c187b797ecb92f6288b59fdeee6424a4b61f585aa94c570e"
+    },
+    "50-tech/verification-gate.md": {
+      "bytes": 2071,
+      "sha256": "fdc746dcb245b14c0d63ac678124e942a5a8969e661896510772949ffb23a4ff"
+    },
+    "60-story/60-story.md": {
+      "bytes": 1508,
+      "sha256": "5534fbb73956d9482879bc5c5685cc2bb149097d0bbb5acbebd844d4af0f9fb7"
+    },
+    "60-story/brands-and-glossary.md": {
+      "bytes": 2843,
+      "sha256": "557cb0ea1f25beeff1a80908bd7f2ec130298ff587ce3b8ccb7b229b8242872c"
+    },
+    "60-story/canon-rulings.md": {
+      "bytes": 2761,
+      "sha256": "27420b610776d09115bf0040d93a8a77b64c1eb18ed25f8551f8745b85626a98"
+    },
+    "60-story/characters/dad.md": {
+      "bytes": 2187,
+      "sha256": "ca0c1343a5cb30bc2a0ee44efcefa7be303d943845f38967cc80a69441f4d49d"
+    },
+    "60-story/characters/patch.md": {
+      "bytes": 2119,
+      "sha256": "11c93524537f085aed111f224e57f1e80097b0a9ce6920431bde1e3f3a615929"
+    },
+    "60-story/characters/rhea.md": {
+      "bytes": 2302,
+      "sha256": "5542779fd4a61fdc62b79511469cbb2c5f757c681a07d325a44980192bca82ce"
+    },
+    "60-story/characters/the-machine.md": {
+      "bytes": 1745,
+      "sha256": "b32846b2140bce1a06ba9c2c7521790b075605e4cfa83bbc30601694b8216caa"
+    },
+    "60-story/characters/the-player.md": {
+      "bytes": 1474,
+      "sha256": "55d29f16b2a880c0df11aff882dd5d8014c78746eb391e53bc99ae849976f859"
+    },
+    "60-story/ground-truth.md": {
+      "bytes": 3982,
+      "sha256": "37664f0abafa85aaadf7cbcb920bcd98485d5e343455a3f8205ee5769dcfe3dc"
+    },
+    "60-story/palette-generalization-conflict.md": {
+      "bytes": 2226,
+      "sha256": "5e9d89a3d27e61dbd56bb683c4a2897dda45cc41306b2b3c68d553af9541d491"
+    },
+    "60-story/reveal-schedule.md": {
+      "bytes": 4133,
+      "sha256": "f59312612e19526a1165ed463ae26341c9fef255a8d6c9e1ed54bb37b6be3b13"
+    },
+    "60-story/rulings/ruling-01-the-mother.md": {
+      "bytes": 613,
+      "sha256": "c747af92f7b50439faeeeb453be3e8beda3b8fdbf1de458d66377b7a8014dfaa"
+    },
+    "60-story/rulings/ruling-02-cover-story.md": {
+      "bytes": 554,
+      "sha256": "c143af36c0845d3bc0bc22d98454a9e4036565b3a1a5eb3384ffb305cc0db1ed"
+    },
+    "60-story/rulings/ruling-03-sectors-8-and-9.md": {
+      "bytes": 670,
+      "sha256": "dd65be9a4f2634581ec8a49f34d6d242a4da13467cbb2cee89632b91507daa14"
+    },
+    "60-story/rulings/ruling-04-finale-mechanism.md": {
+      "bytes": 717,
+      "sha256": "d6c93c0bfeba8767a31c633d518fa915dff4f757781d6dc681a3a85c2bcb6c59"
+    },
+    "60-story/rulings/ruling-05-nature-of-intrusions.md": {
+      "bytes": 854,
+      "sha256": "fe73054edba04b79a75bd70d0333621435f559481710d72581aa1b46f1c99dc8"
+    },
+    "60-story/rulings/ruling-06-meridian.md": {
+      "bytes": 553,
+      "sha256": "babd7c5b7ef210e20c7371e254cfb4241015a3dcffa1410c9e84391daa740add"
+    },
+    "60-story/rulings/ruling-07-timeline.md": {
+      "bytes": 736,
+      "sha256": "7bc3a25db0129925446bc0d7a5ab02bf13b2689dbf6a81c164cd7a5d6892f7b8"
+    },
+    "60-story/rulings/ruling-08-names.md": {
+      "bytes": 899,
+      "sha256": "b9c0f7ceeba9878b00f20e887f8e0d676bc51517fad3a9aee937436ce279ac25"
+    },
+    "60-story/rulings/ruling-09-darknet.md": {
+      "bytes": 1104,
+      "sha256": "99d1c81e08f1dfdc7fe537a8db19fdef47d1cf935aaacff5bdb993e1bc976f35"
+    },
+    "60-story/rulings/ruling-10-overtime-billing.md": {
+      "bytes": 1243,
+      "sha256": "ab4a0651d0abb931541d4aeadc74f82d9a25d4bc78a97e73266fecc2debcef2d"
+    },
+    "60-story/rulings/ruling-11-opponent-identity-tag.md": {
+      "bytes": 1277,
+      "sha256": "843817c82e7fef7d3c4311b34177f2fefb11a3370f4cfc1a4de69c31ae6d1903"
+    },
+    "60-story/rulings/ruling-12-dad-log-reframe.md": {
+      "bytes": 1650,
+      "sha256": "c0d36cdaa0253ca8007fb63b6b28c717ef895f820ff3a14d465797f43fe02c81"
+    },
+    "60-story/rulings/ruling-13-dad-vol-provenance.md": {
+      "bytes": 1524,
+      "sha256": "28b61e08dcf69d7848dfc6c9da960a00f69506b813b39ff0776404b9196f6653"
+    },
+    "60-story/rulings/ruling-14-loadout-palette.md": {
+      "bytes": 1925,
+      "sha256": "21a69e0d0f3a1f1f6d3031e7069b69972b7112ef29cb36e9eebf5513857d0b1b"
+    },
+    "60-story/story-overview.md": {
+      "bytes": 2078,
+      "sha256": "eece99c6f0e798a5219ebf72697fc2f9cf3673eddfcdd164cfd686c3f34b0b1a"
+    },
+    "60-story/voice-and-copy-laws.md": {
+      "bytes": 2063,
+      "sha256": "53f284e8014e6abc84f920b10001a0018b17794fd84572821ec4ea2b2532a39a"
+    },
+    "70-teaching/70-teaching.md": {
+      "bytes": 1472,
+      "sha256": "fc0ec3272ab2761fd610583821771f5d9a285a56f4b5315237fa43a676d11abd"
+    },
+    "70-teaching/coachmarks.md": {
+      "bytes": 2486,
+      "sha256": "6033cece8f1daf788b8dd98d11ceeb46736bd1a37bdc30aa7217f69246fbb29a"
+    },
+    "70-teaching/mechanic-coverage.md": {
+      "bytes": 3146,
+      "sha256": "01f7106f572394ecc482a781b0e76962c7e412c08c2055693990df820bfc34a9"
+    },
+    "70-teaching/placement-bias-order.md": {
+      "bytes": 2055,
+      "sha256": "23087d32989396f2fb850e2ba57148a2f8e67d9838ef2ccbe1e42c7ba0968a87"
+    },
+    "70-teaching/standing-lessons.md": {
+      "bytes": 2286,
+      "sha256": "9b6f36b021540a62e62f6da8c8dfa12b34b0b755a7e04fdf53b80570466357ac"
+    },
+    "70-teaching/teaching-system.md": {
+      "bytes": 2956,
+      "sha256": "e458522aaa1111304522f46b1636b9ad82d29968b826eefeb30e465de01e3ef6"
+    },
+    "70-teaching/teaching-tips.md": {
+      "bytes": 1738,
+      "sha256": "9951e8a09207fec02d8adcc027b83671d48cb30b0dac7e18f267bb03034c16ad"
+    },
+    "70-teaching/teaching-waivers.md": {
+      "bytes": 2280,
+      "sha256": "5a0484ce40f09c8e23271793f386adc5034e01cb12518bce92250a1b870cb6ff"
+    },
+    "70-teaching/the-tutorial.md": {
+      "bytes": 2311,
+      "sha256": "f9657b88f8cf6180cec32ce70183e42ce21678c35752b106c9b5b9e4c57568ed"
+    },
+    "70-teaching/tutorial-beats.md": {
+      "bytes": 2135,
+      "sha256": "8fb754cd9e317ca74765d5fb6dfc53ade18d81e888e34865e982bc816f9a4b1b"
+    },
+    "80-crew/80-crew.md": {
+      "bytes": 965,
+      "sha256": "8e450b5ccb9af698b63e54da7d37ff54a81df507fc8e659c781346f771eca67f"
+    },
+    "80-crew/agents/ability-agent.md": {
+      "bytes": 1162,
+      "sha256": "39846973fe86653762e66ed27220fbb08f8c91552dedad151934c6d83e362b0f"
+    },
+    "80-crew/agents/arc-composer.md": {
+      "bytes": 1185,
+      "sha256": "0f3b768c218f550482f88635365ffee26e0acce76b0bc5951508b043bd980c64"
+    },
+    "80-crew/agents/art-lead.md": {
+      "bytes": 1593,
+      "sha256": "ff349307c20f98c913d91155db0c3310b5e022f8a8c61aecfc5dd453ff3448e8"
+    },
+    "80-crew/agents/encounter-generator.md": {
+      "bytes": 1065,
+      "sha256": "2cbdd1bb6d298753c2042deda7911f7002dd32ca091c9bb6b9d966bfa3f2bb67"
+    },
+    "80-crew/agents/loremaster.md": {
+      "bytes": 1796,
+      "sha256": "3c7f13ade972eeeea0c0c7a243c517f6e31d78d0c046dcc063f089f8bc5a0571"
+    },
+    "80-crew/agents/narrative-director.md": {
+      "bytes": 1173,
+      "sha256": "e94e32655ec36a65de57c064977bd67ba2914c9c547180d536345f7f160781a6"
+    },
+    "80-crew/agents/orchestrator.md": {
+      "bytes": 1056,
+      "sha256": "1b408d200efe272769d8a3f0a0b27fde83aeb2ab687603c9c69122119bdc4bee"
+    },
+    "80-crew/agents/tutorial-agent.md": {
+      "bytes": 1741,
+      "sha256": "30feff818e664491b00b7ebd6ea2bb490d0ae2159fdefd83195601ed6d2338fb"
+    },
+    "80-crew/agents/ux-agent.md": {
+      "bytes": 1511,
+      "sha256": "f10b349f31231c8921c5a66c481d8eccf22672bc88d3f15de8cec905d4862784"
+    },
+    "80-crew/agents/validation.md": {
+      "bytes": 1022,
+      "sha256": "862bd304cec15459e0fb83aea843453b0bde1f21636996fd0afd0044a82f103d"
+    },
+    "80-crew/the-dev-crew.md": {
+      "bytes": 2242,
+      "sha256": "929ecbe2c79463643ad939807948e3dce10807967cc704ad78a125d580432c88"
+    },
+    "80-crew/the-gates.md": {
+      "bytes": 2394,
+      "sha256": "1fe0d129c8a85317e9b0fc95ebf6fa44253aae39d0fd29a3994acd0bb0a49ea7"
+    },
+    "80-crew/the-pipeline.md": {
+      "bytes": 1924,
+      "sha256": "f698c70b612d5ce47856327e85b9c6bee4576f044e66ac86a22a2c997eb04fb7"
+    },
+    "80-crew/the-plays.md": {
+      "bytes": 2097,
+      "sha256": "b49f2ecba709fce14248dda93959a93f98ac72b2c221dc6a2df1b7e04042eafd"
+    },
+    "80-crew/token-budget.md": {
+      "bytes": 1976,
+      "sha256": "ae2d24550c03b3f7fe4f4bae1925826a4edf53140301c6fee546e66b689d3698"
+    },
+    "90-business/90-business.md": {
+      "bytes": 806,
+      "sha256": "36a766577b36aeb89cc4c6c60d6df74c56c8c251c038f8b19c3f1c19925be8b1"
+    },
+    "90-business/clip-queue.md": {
+      "bytes": 1465,
+      "sha256": "d707fc0db7b71b72ab76cb775a129e58bbc0a89610ef6d2684daed85b8b6e117"
+    },
+    "90-business/marketing-plan.md": {
+      "bytes": 2179,
+      "sha256": "b89a8b4bfaa298523807ce42428f5ec2bd30018ef1df1262914db7db47e05b1d"
+    },
+    "90-business/monetization.md": {
+      "bytes": 1956,
+      "sha256": "b3432cf30f4b07cd21adb12aa43e256f4a7ebaa6399da83ca4995f816f4cf8a8"
+    },
+    "_templates/note-canon.md": {
+      "bytes": 298,
+      "sha256": "27ef774f633a2fe114004fdda22ae2e181d79df5a8a6082fa67e40b100a6fbaf"
+    },
+    "_templates/note-unwritten.md": {
+      "bytes": 322,
+      "sha256": "3c0c58fb49f8a6e4ea9e31b552643c9022accd3b1e32a344e8e0371a2a63d343"
+    }
+  },
+  "frozen": "2026-08-13",
+  "gdd_sha256": "f8cd1e66265ddb76fe0ba74fe46bf1daf03408e132a02f9521b568db30aa1188",
+  "note_count": 216,
+  "schema": "kp-gdd-manifest/1",
+  "source": "kernel-panic/vault (Obsidian design vault)"
+}

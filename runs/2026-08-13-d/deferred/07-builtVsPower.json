@@ -1,0 +1,23 @@
+{
+  "schema": "kp-generated/1",
+  "gap": "builtVsPower",
+  "action": "waiver",
+  "waiver": {
+    "id": "builtVsPower",
+    "text": "duel-board.tsx pushes a distinct dv-cut class the instant a built junction goes dark while staying built, so the permanence of built ground is shown as its own visual state on every render, not stated in words.",
+    "expiresIf": "duel-board.tsx stops pushing dv-cut for a built, unlit junction, or dv-cut is rendered the same as an unbuilt cell so the distinction stops being visible."
+  },
+  "label": {
+    "file": "src/game/content/teaching.ts",
+    "before": "    id: \"oneUndo\",\n    label: \"The one undo\",\n    firstContact: \"duel\",\n  },\n];",
+    "after": "    id: \"oneUndo\",\n    label: \"The one undo\",\n    firstContact: \"duel\",\n  },\n  {\n    id: \"builtVsPower\",\n    label: \"Built ground never un-makes\",\n    firstContact: \"duel\",\n    waiver: \"duel-board.tsx pushes a distinct dv-cut class the instant a built junction goes dark while staying built, so the permanence of built ground is shown as its own visual state on every render, not stated in words.\",\n  },\n];",
+    "why": "MECHANIC_INVENTORY has no row for builtVsPower at all (the silent-gap class), so the waiver above has nothing to attach to until this row exists. This label adds the row with the waiver text carried inline, since apply_patch's add_waiver helper can only attach a waiver to a row that already exists, never create one. Chained after 06-oneUndo.json's insertion so both land without colliding."
+  },
+  "claims": [
+    {
+      "text": "cell.built",
+      "symbol": "duel-types.ts:DuelCell",
+      "resolves": "DuelCell.built is a permanent flag, set once a node is ever lit; a later cut removes power but never clears built, which is what dv-cut renders as its own state."
+    }
+  ]
+}

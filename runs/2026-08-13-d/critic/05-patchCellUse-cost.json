@@ -1,0 +1,21 @@
+{
+  "schema": "kp-verdict/1",
+  "gap": "patchCellUse-cost",
+  "verdict": "APPROVE",
+  "claims": [
+    {
+      "text": "4",
+      "symbol": "patch-cells.ts:PLACE_COST",
+      "verdict": "TRUE",
+      "quote": "export const PLACE_COST = 4;"
+    },
+    {
+      "text": "the shipped patch-cell-use line is deleted so only the corrected panel can mount",
+      "symbol": "duel.tsx:DuelScreen",
+      "verdict": "TRUE",
+      "quote": "<Teach id=\"patch-cell-use\" signals={{ holdingCells: state.patchPouch.length > 0 }} />"
+    }
+  ],
+  "objection": null,
+  "required": null
+}

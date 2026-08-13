@@ -1,0 +1,15 @@
+{
+  "schema": "kp-verdict/1",
+  "gap": "cascade",
+  "verdict": "REVISE",
+  "claims": [
+    {
+      "text": "three or more nodes",
+      "symbol": "kit.ts:cascadeRam",
+      "verdict": "TRUE",
+      "quote": "  if (lit < 3) return 0;"
+    }
+  ],
+  "objection": null,
+  "required": null
+}

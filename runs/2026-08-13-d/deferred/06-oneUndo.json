@@ -1,0 +1,29 @@
+{
+  "schema": "kp-generated/1",
+  "gap": "oneUndo",
+  "action": "tip",
+  "tip": {
+    "id": "oneUndo",
+    "teaches": ["oneUndo"],
+    "control": "the UNDO button in the dive left rail",
+    "text": "Undo puts your junction back, but a trap it sprang stays sprung. Its drain is not refunded, so undo cannot probe for mines."
+  },
+  "mount": {
+    "file": "src/components/game/duel.tsx",
+    "anchorLine": "            {undoLabel === null ? \"UNDO (Z)\" : `UNDO ${undoLabel} (Z)`}",
+    "jsx": "            <TapTip text={tip(\"oneUndo\")}><i className=\"dv-key-meta\">TRAP STAYS SPRUNG</i></TapTip>"
+  },
+  "label": {
+    "file": "src/game/content/teaching.ts",
+    "before": "    waiverPremise: \"modeDescs\",\n  },\n];",
+    "after": "    waiverPremise: \"modeDescs\",\n  },\n  {\n    id: \"oneUndo\",\n    label: \"The one undo\",\n    firstContact: \"duel\",\n  },\n];",
+    "why": "MECHANIC_INVENTORY has no row for oneUndo at all (the silent-gap class), so the tip above has nothing to attach to until this row exists. This label adds the bare row; the tip's own teaches array is what covers it, so no waiver is embedded in the row itself."
+  },
+  "claims": [
+    {
+      "text": "a trap it sprang stays sprung",
+      "symbol": "duel-commands.ts:takeUndo",
+      "resolves": "takeUndo re-applies every trap the reverted move sprung and keeps the RAM drain on the player (drainNext += t.drain), so rolling the move back does not undo what the trap already cost."
+    }
+  ]
+}

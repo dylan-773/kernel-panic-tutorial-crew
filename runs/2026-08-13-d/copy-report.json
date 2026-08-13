@@ -1,0 +1,125 @@
+{
+  "schema": "kp-copy-report/1",
+  "items": [
+    {
+      "item": "01-ram-budget.json",
+      "gap": "ram-budget",
+      "resolutions": [
+        {
+          "symbol": "run-reducer.ts:BASE_RAM",
+          "found": true,
+          "file": "game/src/game/run-reducer.ts",
+          "line": 86,
+          "source": "export const BASE_RAM = 5;",
+          "claimed": "5",
+          "resolves": "BASE_RAM = 5, the per turn RAM budget before any night upgrade."
+        },
+        {
+          "symbol": "run-reducer.ts:MAX_RAM",
+          "found": true,
+          "file": "game/src/game/run-reducer.ts",
+          "line": 89,
+          "source": "export const MAX_RAM = 9;",
+          "claimed": "9",
+          "resolves": "MAX_RAM = 9, the ceiling a night RAM pick can raise ramPerTurn to."
+        },
+        {
+          "symbol": "duel-setup.ts:carryCap",
+          "found": true,
+          "file": "game/src/game/duel-setup.ts",
+          "line": 301,
+          "source": "  const carryCap = 2;",
+          "claimed": "2",
+          "resolves": "carryCap is set to 2 for the player's SideEcon when a duel is generated, the cap on unspent RAM carried into the next turn."
+        }
+      ]
+    },
+    {
+      "item": "02-reach2.json",
+      "gap": "reach2",
+      "resolutions": [
+        {
+          "symbol": "duel-power.ts:inReach",
+          "found": true,
+          "file": "game/src/game/duel-power.ts",
+          "line": 345,
+          "source": "export function inReach(b: Board, idx: number, reach: number): boolean {\n  const c0 = b.cells[idx];\n  if (!isJunction(c0) || c0.built) return false;\n  return withinReachWalk(b, idx, reach);\n}",
+          "claimed": "cells inReach returns true for",
+          "resolves": "inReach walks the working reach from built ground through unbuilt junctions and returns whether idx is reachable; it is only reached at all for a junction that is not built."
+        },
+        {
+          "symbol": "duel-power.ts:canRotate",
+          "found": true,
+          "file": "game/src/game/duel-power.ts",
+          "line": 388,
+          "source": "export function canRotate(s: DuelState, side: Side, idx: number): boolean {\n  const b = s.boards[side];\n  const c = b.cells[idx];\n  if (!c || !isJunction(c)) return false;\n  if (c.fused) return false;\n  if (c.lockedThroughRound >= s.round && c.lockedBy !== null && c.lockedBy !== side) return false;\n  if (c.built) return true;\n  return inReach(b, idx, reachOf(s, side));\n}",
+          "claimed": "always legal to rotate regardless of reach",
+          "resolves": "canRotate returns true for a built junction before it ever calls inReach (if (c.built) return true;), so built ground is exempt from the reach check entirely."
+        }
+      ]
+    },
+    {
+      "item": "03-cascade.json",
+      "gap": "cascade",
+      "resolutions": [
+        {
+          "symbol": "kit.ts:cascadeRam",
+          "found": true,
+          "file": "game/src/game/content/kit.ts",
+          "line": 64,
+          "source": "export function cascadeRam(lit: number): number {\n  if (lit < 3) return 0;\n  if (lit < 6) return 1;\n  if (lit < 10) return 2;\n  if (lit < 15) return 3;\n  return 4;\n}",
+          "claimed": "three",
+          "resolves": "cascadeRam returns 0 when lit < 3, so three built nodes in one settle is the first count that pays banked RAM."
+        },
+        {
+          "symbol": "kit.ts:surgeTierOf",
+          "found": true,
+          "file": "game/src/game/content/kit.ts",
+          "line": 83,
+          "source": "export function surgeTierOf(lit: number): SurgeTier {\n  if (lit >= 10) return \"break\";\n  if (lit >= 6) return \"surge\";\n  if (lit >= 3) return \"spark\";\n  return \"none\";\n}",
+          "claimed": "six",
+          "resolves": "surgeTierOf returns surge at lit >= 6; settleBoard uses that tier to shatter every enemy lock on the board."
+        },
+        {
+          "symbol": "kit.ts:surgeTierOf",
+          "found": true,
+          "file": "game/src/game/content/kit.ts",
+          "line": 83,
+          "source": "export function surgeTierOf(lit: number): SurgeTier {\n  if (lit >= 10) return \"break\";\n  if (lit >= 6) return \"surge\";\n  if (lit >= 3) return \"spark\";\n  return \"none\";\n}",
+          "claimed": "ten",
+          "resolves": "surgeTierOf returns break at lit >= 10; settleBoard uses that tier to also destroy one armed enemy trap."
+        }
+      ]
+    },
+    {
+      "item": "04-kitConfig.json",
+      "gap": "kitConfig",
+      "resolutions": [
+        {
+          "symbol": "content/kit.ts:AUGMENTS",
+          "found": true,
+          "file": "game/src/game/content/kit.ts",
+          "line": 188,
+          "source": "export const AUGMENTS: AugmentDef[] = [\n  {\n    id: \"cfgArmHalt\",\n    name: \"HALT DRIVER\",\n    kind: \"config\",\n    attackMode: \"armHalt\",\n    desc: \"ATTACK config: plant halt traps. A sprung trap costs the intrusion its whole next turn.\",\n  },",
+          "claimed": "config augment",
+          "resolves": "AUGMENTS lists each config (cfgArmHalt, cfgArmSiphon, cfgLock, cfgWard) that unlocks its matching ATTACK or DEFEND mode; owning one does not switch the kit to it, LOADOUT.CFG's mode buttons still gate the switch."
+        }
+      ]
+    },
+    {
+      "item": "05-patchCellUse-cost.json",
+      "gap": "patchCellUse-cost",
+      "resolutions": [
+        {
+          "symbol": "patch-cells.ts:PLACE_COST",
+          "found": true,
+          "file": "game/src/game/patch-cells.ts",
+          "line": 34,
+          "source": "export const PLACE_COST = 4;",
+          "claimed": "4",
+          "resolves": "PLACE_COST = 4, the RAM charged when a patch piece is fused into a slag block mid dive."
+        }
+      ]
+    }
+  ]
+}

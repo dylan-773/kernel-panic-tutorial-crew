@@ -1,0 +1,1186 @@
+{
+  "schema": "kp-features/1",
+  "run": "2026-08-13-d",
+  "agent": "gdd-reader",
+  "features": [
+    {
+      "id": "n/a",
+      "name": "Mechanics index",
+      "note": "20-mechanics/20-mechanics.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Table-of-contents note linking to every mechanics page (plus a Known Drift table of copy/code mismatches); it is not itself a feature, just the index.",
+      "evidence": "Everything the player does, read out of the engine rather than out of the old design doc."
+    },
+    {
+      "id": "modeEffects",
+      "name": "ARM: HALT trap",
+      "note": "20-mechanics/arm-halt.md",
+      "symbols": ["kit.ts:attackModeDesc"],
+      "playerFacing": true,
+      "mustUnderstand": "An ARM: HALT trap forfeits your entire next turn the instant your signal walks into it, so treat a halt-dominant opponent as a scan-first job before pushing forward blindly.",
+      "evidence": "Plant a halt trap on open junctions on the enemy board. When their signal claims the node, **they lose a full turn**."
+    },
+    {
+      "id": "modeEffects",
+      "name": "ARM: SIPHON trap",
+      "note": "20-mechanics/arm-siphon.md",
+      "symbols": ["kit.ts:attackModeDesc", "kit.ts:SIPHON_STEAL"],
+      "playerFacing": true,
+      "mustUnderstand": "An ARM: SIPHON trap does not cost you a turn, it steals 2 to 4 RAM from your next turn and hands it to whoever planted it, converting their lead directly into their resources.",
+      "evidence": "Plant a siphon trap on open junctions on the enemy board. When it fires, RAM **drains from their next turn into yours**."
+    },
+    {
+      "id": "attack",
+      "name": "ATTACK program",
+      "note": "20-mechanics/attack.md",
+      "symbols": ["kit.ts:ATTACK_WIDTH", "kit.ts:attackModeDesc"],
+      "playerFacing": true,
+      "mustUnderstand": "ATTACK is your only program that touches the enemy's board at all, costs 1 RAM, and can be cast once per turn, so it is the sole channel for interfering with the intrusion's progress.",
+      "evidence": "The only program that reaches the **enemy** board. 1 RAM, once per turn."
+    },
+    {
+      "id": "augmentDraft",
+      "name": "Augment drafts",
+      "note": "20-mechanics/augment-drafts.md",
+      "symbols": ["run-reducer.ts:rollDraft", "run-reducer.ts:pickAugment"],
+      "playerFacing": true,
+      "mustUnderstand": "Clearing a ticket offers a choice of three augments and a clean day can bank three picks, so which tickets you clear, and how cleanly, directly controls how fast you build your kit.",
+      "evidence": "One draft per **cleared ticket**. Three tickets a day, so a clean day banks three picks."
+    },
+    {
+      "id": "cheapShot",
+      "name": "CHEAP SHOT",
+      "note": "20-mechanics/augments/cheap-shot.md",
+      "symbols": ["content/kit.ts:AUGMENTS.cheapShot"],
+      "playerFacing": true,
+      "mustUnderstand": "Your first ATTACK cast each dive is free, so opening with a REDIRECT costs nothing and converts straight into extra rotations.",
+      "evidence": "Your first ATTACK each dive costs 0 RAM."
+    },
+    {
+      "id": "cfgLock",
+      "name": "CLAMP DRIVER",
+      "note": "20-mechanics/augments/clamp-driver.md",
+      "symbols": ["content/kit.ts:AUGMENTS.cfgLock"],
+      "playerFacing": true,
+      "mustUnderstand": "Drafting CLAMP DRIVER unlocks LOCK as a DEFEND mode, freezing chosen junctions against both rotation and redirect for two rounds, though you must still switch to it in LOADOUT.CFG to use it.",
+      "evidence": "DEFEND config: freeze junctions for 2 rounds against rotation and redirects."
+    },
+    {
+      "id": "cleanRun",
+      "name": "CLEAN RUN",
+      "note": "20-mechanics/augments/clean-run.md",
+      "symbols": ["content/kit.ts:AUGMENTS.cleanRun"],
+      "playerFacing": true,
+      "mustUnderstand": "Winning a dive without billing any Neural Strain banks a free random patch piece, and even a trap-free win that only misses by going to the round cap still pays a 15 credit consolation.",
+      "evidence": "Win a dive with zero strain billed and bank one random patch piece. A trap-free win that only misses at the round cap pays 15 credits instead."
+    },
+    {
+      "id": "darkDiscount",
+      "name": "DARKNET RATE",
+      "note": "20-mechanics/augments/darknet-rate.md",
+      "symbols": ["content/kit.ts:AUGMENTS.darkDiscount"],
+      "playerFacing": true,
+      "mustUnderstand": "DARKNET RATE cuts the price of a blind darknet pull by 15 percent, but the roll still stays blind and no other purchase gets cheaper.",
+      "evidence": "Dark web patch piece pulls cost 15 percent less. The vendor still only takes credits and the roll stays blind."
+    },
+    {
+      "id": "siphonPlus",
+      "name": "DEEP SIPHON",
+      "note": "20-mechanics/augments/deep-siphon.md",
+      "symbols": ["content/kit.ts:AUGMENTS.siphonPlus"],
+      "playerFacing": true,
+      "mustUnderstand": "DEEP SIPHON adds 1 extra RAM to every siphon trap you spring, stacking with your ATTACK tier so a tier 3 siphon can move 5 RAM at once.",
+      "evidence": "Your siphon traps steal 1 extra RAM."
+    },
+    {
+      "id": "echoTap",
+      "name": "ECHO TAP",
+      "note": "20-mechanics/augments/echo-tap.md",
+      "symbols": ["content/kit.ts:AUGMENTS.echoTap"],
+      "playerFacing": true,
+      "mustUnderstand": "ECHO TAP pays you 2 RAM on your next turn whenever any of your traps fires, turning a trap-heavy build from pure denial into a RAM engine.",
+      "evidence": "Whenever one of your traps fires, gain 2 RAM on your next turn."
+    },
+    {
+      "id": "firstFault",
+      "name": "FIRST FAULT",
+      "note": "20-mechanics/augments/first-fault.md",
+      "symbols": ["content/kit.ts:AUGMENTS.firstFault"],
+      "playerFacing": true,
+      "mustUnderstand": "FIRST FAULT forgives the Neural Strain bill for the first enemy trap that hits you each dive, but it never undoes the forfeited turn or drained RAM, only the strain cost.",
+      "evidence": "The first trap that fires on you each dive bills zero Neural Strain. Every trap after that costs full."
+    },
+    {
+      "id": "cfgArmHalt",
+      "name": "HALT DRIVER",
+      "note": "20-mechanics/augments/halt-driver.md",
+      "symbols": ["content/kit.ts:AUGMENTS.cfgArmHalt"],
+      "playerFacing": true,
+      "mustUnderstand": "Drafting HALT DRIVER unlocks ARM: HALT as a selectable ATTACK mode, but you still have to switch to it in LOADOUT.CFG before you can plant halt traps.",
+      "evidence": "ATTACK config: plant halt traps. A sprung trap costs the intrusion its whole next turn."
+    },
+    {
+      "id": "hotBoot",
+      "name": "HOT BOOT",
+      "note": "20-mechanics/augments/hot-boot.md",
+      "symbols": ["content/kit.ts:AUGMENTS.hotBoot"],
+      "playerFacing": true,
+      "mustUnderstand": "HOT BOOT gives you 1 extra RAM on the first turn of every dive, buying the same kind of opening tempo as a free first attack.",
+      "evidence": "Start every dive with +1 RAM on your first turn."
+    },
+    {
+      "id": "jamAnchor",
+      "name": "JAM ANCHOR",
+      "note": "20-mechanics/augments/jam-anchor.md",
+      "symbols": ["content/kit.ts:AUGMENTS.jamAnchor"],
+      "playerFacing": true,
+      "mustUnderstand": "JAM ANCHOR makes every REDIRECT you cast also freeze the junction it twists, so one 1 RAM cast both cuts their route and locks it, without spending a DEFEND.",
+      "evidence": "Your REDIRECT also freezes the junction it twists through the reply and into your next turn. Nothing rotates or redirects it back while it holds."
+    },
+    {
+      "id": "longArms",
+      "name": "LONG ARMS",
+      "note": "20-mechanics/augments/long-arms.md",
+      "symbols": ["content/kit.ts:AUGMENTS.longArms"],
+      "playerFacing": true,
+      "mustUnderstand": "LONG ARMS doubles your working reach from 2 to 4 steps ahead of your built ground for both rotating and placing pieces, letting you stage a longer chain before flipping it for a bigger cascade payout.",
+      "evidence": "Rotate open junctions up to 4 steps from your territory instead of 2, and place patch pieces just as far. Bigger setups, bigger cascades."
+    },
+    {
+      "id": "overtimeClause",
+      "name": "OVERTIME CLAUSE",
+      "note": "20-mechanics/augments/overtime-clause.md",
+      "symbols": ["content/kit.ts:AUGMENTS.overtimeClause"],
+      "playerFacing": true,
+      "mustUnderstand": "OVERTIME CLAUSE raises what a round-cap win pays from 50 percent of the ticket to 75 percent, so it is worth the most exactly when a run is already going badly.",
+      "evidence": "Cap wins pay 75 percent of the ticket instead of 50. The client eats every hour past the deadline, not half."
+    },
+    {
+      "id": "cfgArmSiphon",
+      "name": "SIPHON DRIVER",
+      "note": "20-mechanics/augments/siphon-driver.md",
+      "symbols": ["content/kit.ts:AUGMENTS.cfgArmSiphon"],
+      "playerFacing": true,
+      "mustUnderstand": "Drafting SIPHON DRIVER unlocks ARM: SIPHON as a selectable ATTACK mode, stealing more RAM as your ATTACK tier rises.",
+      "evidence": "ATTACK config: plant siphon traps. A sprung trap drains RAM from its next turn into yours, more at higher ATTACK tiers, and more again when you are the one springing it."
+    },
+    {
+      "id": "patchRefund",
+      "name": "SPLICE REFUND",
+      "note": "20-mechanics/augments/splice-refund.md",
+      "symbols": ["content/kit.ts:AUGMENTS.patchRefund"],
+      "playerFacing": true,
+      "mustUnderstand": "SPLICE REFUND gives back the full 4 RAM cost of placing a patch piece the instant it lands, though the piece itself still leaves your pouch, and the draft will not offer it if your pouch is currently empty.",
+      "evidence": "Placing a patch piece refunds its full RAM cost the instant it lands. The pouch still spends the piece itself."
+    },
+    {
+      "id": "sweepCredit",
+      "name": "SWEEP CREDIT",
+      "note": "20-mechanics/augments/sweep-credit.md",
+      "symbols": ["content/kit.ts:AUGMENTS.sweepCredit"],
+      "playerFacing": true,
+      "mustUnderstand": "SWEEP CREDIT refunds 1 RAM for every trap a single PURGE cast defuses, up to 3, which can make clearing a trap-heavy board RAM positive instead of a pure cost.",
+      "evidence": "PURGE refunds 1 RAM per trap it defuses, up to 3 per cast."
+    },
+    {
+      "id": "tapLine",
+      "name": "TAP LINE",
+      "note": "20-mechanics/augments/tap-line.md",
+      "symbols": ["content/kit.ts:AUGMENTS.tapLine"],
+      "playerFacing": true,
+      "mustUnderstand": "TAP LINE makes SCAN also reveal the intrusion's planned route to its goal for 2 rounds, telling you which junction to redirect for maximum damage instead of guessing.",
+      "evidence": "SCAN also traces the intrusion's planned route to the core, visible for 2 rounds."
+    },
+    {
+      "id": "tripwire",
+      "name": "TRIPWIRE",
+      "note": "20-mechanics/augments/tripwire.md",
+      "symbols": ["content/kit.ts:AUGMENTS.tripwire"],
+      "playerFacing": true,
+      "mustUnderstand": "TRIPWIRE adds a 3 RAM drain on top of the forfeited turn a halt trap already costs its victim, stacking a resource hit onto the tempo hit.",
+      "evidence": "Your halt traps also burn 3 RAM off the victim's next active turn."
+    },
+    {
+      "id": "cfgWard",
+      "name": "WARD DRIVER",
+      "note": "20-mechanics/augments/ward-driver.md",
+      "symbols": ["content/kit.ts:AUGMENTS.cfgWard"],
+      "playerFacing": true,
+      "mustUnderstand": "Drafting WARD DRIVER unlocks WARD as a DEFEND mode, the only defensive mode that prevents traps and redirects before they happen rather than answering them after.",
+      "evidence": "DEFEND config: ward an area so no new traps can land in it, and REDIRECT cannot touch anything inside it either, for the full duration on both sides."
+    },
+    {
+      "id": "augmentEffects",
+      "name": "Augments: configs vs boosts",
+      "note": "20-mechanics/augments.md",
+      "symbols": ["content/kit.ts:AUGMENTS", "content/kit.ts:AugmentDef", "content/kit.ts:AUGMENT_BY_ID"],
+      "playerFacing": true,
+      "mustUnderstand": "Augments split into configs, which unlock a new mode on ATTACK or DEFEND without switching you to it, and boosts, which quietly change a rule, and three boosts will not even be offered until you own the config they depend on.",
+      "evidence": "Two kinds. Configs unlock a mode on a program; boosts change a rule."
+    },
+    {
+      "id": "boostSlots",
+      "name": "Boost bays",
+      "note": "20-mechanics/boost-bays.md",
+      "symbols": ["run-reducer.ts:BOOST_SLOTS_BASE", "run-reducer.ts:BOOST_SLOTS_MAX", "run-reducer.ts:BOOST_SLOT_COSTS"],
+      "playerFacing": true,
+      "mustUnderstand": "You can only carry 3 boost augments at once, buyable up to 5 at night, but configs never count against that cap, so unlocking every mode never costs you a bay slot.",
+      "evidence": "Bays hold **boosts only**. Configs are exempt from the cap, so unlocking all four modes never costs you a bay."
+    },
+    {
+      "id": "builtVsPower",
+      "name": "Built ground never un-makes",
+      "note": "20-mechanics/built-and-power.md",
+      "symbols": ["duel-types.ts:DuelCell.built", "duel-power.ts:computePower", "duel-power.ts:settlePower"],
+      "playerFacing": true,
+      "mustUnderstand": "Once a node lights for the first time it stays permanently built and keeps your reach and cascade progress even after the enemy later cuts its power dark, so a redirect against you costs tempo, never your setup. Not in MECHANIC_INVENTORY under its own id; this is the silent-gap class.",
+      "evidence": "Progress is reversible in throughput and never in construction."
+    },
+    {
+      "id": "cascade",
+      "name": "Cascades and surge",
+      "note": "20-mechanics/cascades-and-surge.md",
+      "symbols": ["kit.ts:cascadeRam", "kit.ts:surgeTierOf", "duel-actions.ts:settleBoard"],
+      "playerFacing": true,
+      "mustUnderstand": "Lighting three or more nodes in one settle banks RAM into your next turn, six or more shatters every enemy lock on the board, and ten or more also destroys one armed enemy trap, so holding a long chain and releasing it together beats lighting nodes one at a time.",
+      "evidence": "Hold a long chain aligned behind one unturned junction, then flip that junction and light all of it at once."
+    },
+    {
+      "id": "credits",
+      "name": "Credits",
+      "note": "20-mechanics/credits.md",
+      "symbols": ["content/arc.ts:jobPay", "run-reducer.ts:jobPayFor", "run-reducer.ts:SALVAGE_PAY"],
+      "playerFacing": true,
+      "mustUnderstand": "Credits are earned only by clearing tickets and can only be spent at night on patches, boost bays or a darknet pull, and none of it carries over between runs.",
+      "evidence": "The run currency. Earned by clearing tickets, spent at night."
+    },
+    {
+      "id": "runReset",
+      "name": "Losing a dive is not losing the run",
+      "note": "20-mechanics/death-and-run-end.md",
+      "symbols": ["run-reducer.ts", "run-reducer.ts:runEnd", "save.ts:MetaState", "story.ts:runEndScene"],
+      "playerFacing": true,
+      "mustUnderstand": "Losing a single dive does not end the run by itself, it only costs that ticket's pay; the run only ends when Neural Strain hits zero, so a bad dive is recoverable but running your strain to zero is not.",
+      "evidence": "There is no life counter, no continues, no revives, and no mid-run checkpoint. A run either reaches day 10 or it ends."
+    },
+    {
+      "id": "defend",
+      "name": "DEFEND program",
+      "note": "20-mechanics/defend.md",
+      "symbols": ["kit.ts:DEFEND_WIDTH", "kit.ts:defendModeDesc"],
+      "playerFacing": true,
+      "mustUnderstand": "DEFEND only ever acts on your own board, costs 1 RAM, and can be cast once per turn, covering every way you answer an enemy trap, lock threat or ward gap.",
+      "evidence": "Acts on **your own** board. 1 RAM, once per turn."
+    },
+    {
+      "id": "n/a",
+      "name": "Difficulty dials",
+      "note": "20-mechanics/difficulty-dials.md",
+      "symbols": ["duel-types.ts:DuelConfig", "content/arc.ts:DayConfig", "content/arc.ts:DAY_CONFIGS", "content/arc.ts:oppKitFor"],
+      "playerFacing": false,
+      "mustUnderstand": "Internal AI tuning dials (horizon, focus, greed) that set opponent behaviour by day; the player never reads these numbers directly, only their downstream effect on how the machine plays.",
+      "evidence": "Three knobs govern how hard the machine is. Only two of them are load-bearing."
+    },
+    {
+      "id": "n/a",
+      "name": "Economy overview",
+      "note": "20-mechanics/economy.md",
+      "symbols": ["run-reducer.ts", "content/arc.ts:jobPay", "patch-cells.ts"],
+      "playerFacing": false,
+      "mustUnderstand": "Structural recap of RAM, credits and Neural Strain as three currencies on three clocks; each is already covered individually by its own note, this adds no new fact.",
+      "evidence": "Three currencies, on three different clocks."
+    },
+    {
+      "id": "turnCap",
+      "name": "Job pay and cap-win halving",
+      "note": "20-mechanics/job-pay-and-billing.md",
+      "symbols": ["content/arc.ts:jobPay", "run-reducer.ts:jobPayFor"],
+      "playerFacing": true,
+      "mustUnderstand": "Ticket pay rises with job tier, but a round-cap win halves that pay, so finishing messily is not just a strain cost, it is a pay cut too.",
+      "evidence": "40 + 25 * tier"
+    },
+    {
+      "id": "modeEffects",
+      "name": "LOCK mode",
+      "note": "20-mechanics/lock.md",
+      "symbols": ["kit.ts:LOCK_ROUNDS", "kit.ts:defendModeDesc"],
+      "playerFacing": true,
+      "mustUnderstand": "LOCK freezes chosen junctions against both rotation and redirect for 2 rounds, but it only blocks the other side, never your own, and a SURGE-tier cascade of 6 or more nodes shatters every enemy lock on that board at once.",
+      "evidence": "Freeze junctions for **2 rounds** (`LOCK_ROUNDS`). Nothing rotates or redirects them."
+    },
+    {
+      "id": "strainChip",
+      "name": "Neural Strain",
+      "note": "20-mechanics/neural-strain.md",
+      "symbols": ["run-reducer.ts:START_STRAIN", "run-reducer.ts:PATCH_HEAL", "run-reducer.ts:DAY_REST_REGEN", "duel-actions.ts:finishDuel"],
+      "playerFacing": true,
+      "mustUnderstand": "Neural Strain is the run's shared health bar, charged only on a win and only for how untidily it was won, so a perfectly clean dive bills exactly zero and a loss bills nothing at all.",
+      "evidence": "The run's health bar. It is the only thing that ends a run early."
+    },
+    {
+      "id": "n/a",
+      "name": "Opponent AI internals",
+      "note": "20-mechanics/opponent-ai.md",
+      "symbols": ["opponent.ts", "opponent.ts:routePlan"],
+      "playerFacing": false,
+      "mustUnderstand": "AI internals (the cutScore weighting formula, replan counts, stance selection) the player never sees directly; the player-visible half of this note, the one-beat telegraph, is covered separately under telegraph.",
+      "evidence": "The intrusion is a scripted opponent, not a search."
+    },
+    {
+      "id": "patchCellUse",
+      "name": "Patch pieces",
+      "note": "20-mechanics/patch-pieces.md",
+      "symbols": ["patch-cells.ts:PLACE_COST", "patch-cells.ts:CRAFT_COST", "patch-cells.ts:PATCH_ROLL_WEIGHTS", "patch-cells.ts:armUnionCraft", "patch-cells.ts:darkPatchCost"],
+      "playerFacing": true,
+      "mustUnderstand": "A patch piece fills a slag cell within reach for 4 RAM, once per turn, and its orientation is permanent the instant it is placed, so it can never be rotated later; fit it to the gap you actually need.",
+      "evidence": "Single-use shaped fills. A piece is a **4-bit arm mask with its orientation baked in**: it is never rotatable, in hand or on the board."
+    },
+    {
+      "id": "n/a",
+      "name": "Player character sheet",
+      "note": "20-mechanics/player-character.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Narrative character sheet whose mechanical table just restates strain, RAM, skills, inventory and credits, each already covered by its own note.",
+      "evidence": "The son. Unnamed, never pictured, never speaks in the third person."
+    },
+    {
+      "id": "n/a",
+      "name": "Player inventory overview",
+      "note": "20-mechanics/player-inventory.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Recap of the pouch, boost bays and kit as three capped containers; each is already covered individually by its own note.",
+      "evidence": "Three containers, all capped, all emptied at run end."
+    },
+    {
+      "id": "n/a",
+      "name": "Player metrics reference",
+      "note": "20-mechanics/player-metrics.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Reference table aggregating metrics (RAM, par, strain, etc.) that are each already covered by their own mechanic notes; no new fact of its own.",
+      "evidence": "Every number attached to the player, and where it lives."
+    },
+    {
+      "id": "n/a",
+      "name": "Player skills overview",
+      "note": "20-mechanics/player-skills.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Recap of programs, tiers and modes as the three axes of power; already covered individually by the-kit, program-tiers and augments.",
+      "evidence": "The skill system, such as it is. There are no skill trees, no XP and no levels."
+    },
+    {
+      "id": "programTiers",
+      "name": "Program tiers",
+      "note": "20-mechanics/program-tiers.md",
+      "symbols": ["kit.ts:SCAN_RANGE", "kit.ts:ATTACK_WIDTH", "kit.ts:DEFEND_WIDTH", "kit.ts:WARD_RADIUS", "kit.ts:SIPHON_STEAL"],
+      "playerFacing": true,
+      "mustUnderstand": "Each of your three programs tiers independently up to 3, bought one per night, and a higher tier buys more targets per cast (and more RAM stolen for siphon), so which program you tier first is a real build decision.",
+      "evidence": "Width is targets per cast: nodes redirected, traps planted, traps cleared, locks placed."
+    },
+    {
+      "id": "defend",
+      "name": "PURGE mode",
+      "note": "20-mechanics/purge.md",
+      "symbols": ["kit.ts:defendModeDesc"],
+      "playerFacing": true,
+      "mustUnderstand": "PURGE can only disarm traps that SCAN has already revealed, so scanning before you push into unscanned ground is the prerequisite half of the counter, not an optional extra.",
+      "evidence": "Disarm revealed traps on your own board. 1, 2 or 3 per cast by `DEFEND_WIDTH`."
+    },
+    {
+      "id": "ram",
+      "name": "RAM as the action budget",
+      "note": "20-mechanics/ram.md",
+      "symbols": ["run-reducer.ts:BASE_RAM", "run-reducer.ts:MAX_RAM", "duel-types.ts:SideEcon"],
+      "playerFacing": true,
+      "mustUnderstand": "RAM is a hard per-turn spending limit on rotations, casts and placements, starting at 5 and raisable to 9, so you cannot do everything you can see in one turn and have to choose.",
+      "evidence": "The per-turn action budget. RAM is what makes the duel a game of choices rather than a puzzle with one answer."
+    },
+    {
+      "id": "ramCarry",
+      "name": "RAM carry",
+      "note": "20-mechanics/ram.md",
+      "symbols": ["run-reducer.ts:BASE_RAM", "run-reducer.ts:MAX_RAM", "duel-types.ts:SideEcon"],
+      "playerFacing": true,
+      "mustUnderstand": "Up to 2 unspent RAM carries into your next turn rather than being lost, so ending a turn a little short is not automatically wasted, but the carry is capped.",
+      "evidence": "carryCap = 2"
+    },
+    {
+      "id": "reach2",
+      "name": "Reach and placement",
+      "note": "20-mechanics/reach-and-placement.md",
+      "symbols": ["duel-power.ts:reachOf", "duel-power.ts:inReach", "duel-power.ts:canPlace", "duel-power.ts:withinReachWalk", "duel-power.ts:isFrontier", "kit.ts:BASE_REACH"],
+      "playerFacing": true,
+      "mustUnderstand": "You may rotate or place a piece up to 2 steps beyond your built ground (4 with LONG ARMS) without lighting it, which is exactly what lets you stage a chain before flipping it for a cascade.",
+      "evidence": "Reach is how far ahead of your built ground you are allowed to work."
+    },
+    {
+      "id": "attack",
+      "name": "REDIRECT mode",
+      "note": "20-mechanics/redirect.md",
+      "symbols": ["kit.ts:attackModeDesc"],
+      "playerFacing": true,
+      "mustUnderstand": "REDIRECT costs you 1 RAM but can cost the enemy up to 3 RAM to undo on the common elbow and tee junctions, and it instantly resolves their board, so a well aimed twist is cheap leverage but a careless one can hand them the win.",
+      "evidence": "Twist enemy or open junctions a quarter turn, **anywhere on the board, no reach limit**. Cuts power to everything downstream."
+    },
+    {
+      "id": "rotate",
+      "name": "Rotation",
+      "note": "20-mechanics/rotation.md",
+      "symbols": ["duel-power.ts:rotCostFor", "duel-power.ts:repairCostOf", "duel-power.ts:canRotate", "types.ts"],
+      "playerFacing": true,
+      "mustUnderstand": "Rotation only ever turns one quarter-turn forward with no shortcut back, and undoing an elbow or tee the enemy twisted costs 3 RAM against the 1 RAM it cost them to twist, so a stray enemy redirect is expensive to fix.",
+      "evidence": "The only movement verb. You twist a junction a quarter turn so its arms line up and signal flows further."
+    },
+    {
+      "id": "par",
+      "name": "Route cost and par",
+      "note": "20-mechanics/route-cost-and-par.md",
+      "symbols": ["duel-power.ts:routePlan", "duel-power.ts:routeCost", "kit.ts:PAR_RATE", "kit.ts:PAR_FLAT", "kit.ts:PAR_STRAIN_PER", "duel-setup.ts"],
+      "playerFacing": true,
+      "mustUnderstand": "Par is a rotation budget fixed the moment the board is generated, and only your own manual rotations, not program twists or patch placements, count against it, with every rotation past par billing 2 Neural Strain on a win.",
+      "evidence": "One function prices the entire game."
+    },
+    {
+      "id": "scan",
+      "name": "SCAN program",
+      "note": "20-mechanics/scan.md",
+      "symbols": ["kit.ts:SCAN_RANGE", "kit.ts:scanDesc"],
+      "playerFacing": true,
+      "mustUnderstand": "SCAN reveals every armed trap within its range on your own board permanently for 1 RAM, and it is the only way to see a trap before PURGE can remove it.",
+      "evidence": "Information. 1 RAM, once per turn, acts on your own board."
+    },
+    {
+      "id": "n/a",
+      "name": "Scoring and lifetime stats",
+      "note": "20-mechanics/scoring-and-lifetime-stats.md",
+      "symbols": ["save.ts:MetaState.stats", "save.ts:LifetimeStats"],
+      "playerFacing": false,
+      "mustUnderstand": "Describes a persistent lifetime record window rather than a score; informational framing only, it does not change how to play any given dive.",
+      "evidence": "There is no score. Nothing ranks the player and nothing is optimized for points."
+    },
+    {
+      "id": "splitBoards",
+      "name": "Split boards",
+      "note": "20-mechanics/split-boards.md",
+      "symbols": ["duel-types.ts:DuelState.boards", "duel-power.ts"],
+      "playerFacing": true,
+      "mustUnderstand": "Each side plays on a completely separate grid, so the enemy can never physically occupy your board; only their traps and redirects reach across, which is why defending means answering interference rather than holding ground. Not in MECHANIC_INVENTORY under its own id; this is the silent-gap class.",
+      "evidence": "The enemy is never on your board."
+    },
+    {
+      "id": "n/a",
+      "name": "The board (generation)",
+      "note": "20-mechanics/the-board.md",
+      "symbols": ["duel-setup.ts:generateBoard", "duel-setup.ts:drawMask", "duel-setup.ts:mixSeed", "duel-types.ts:DuelCell"],
+      "playerFacing": false,
+      "mustUnderstand": "Board generation and fairness constants (rejection sampling, MAX_OPENING_BUILT, headStart compensation) are generator internals the player never reads, the same class as isFrontier; the visible cell kinds are self-evident from the board art.",
+      "evidence": "Each side's grid is generated from the run seed, then rejection-sampled until it is fair."
+    },
+    {
+      "id": "darkWebBuy",
+      "name": "The darknet",
+      "note": "20-mechanics/the-darknet.md",
+      "symbols": ["run-reducer.ts:buyDarkPatch", "run-reducer.ts:darkPullPrice", "patch-cells.ts:darkPatchCost"],
+      "playerFacing": true,
+      "mustUnderstand": "A darknet pull sells one patch piece of unknown shape, priced higher each day, so you pay before you know what you are getting.",
+      "evidence": "The gray market. One blind [[patch-pieces|patch piece]], priced by day."
+    },
+    {
+      "id": "n/a",
+      "name": "The duel overview",
+      "note": "20-mechanics/the-duel.md",
+      "symbols": ["duel-types.ts", "duel-setup.ts", "duel-power.ts", "duel-actions.ts", "duel-commands.ts", "opponent.ts"],
+      "playerFacing": false,
+      "mustUnderstand": "Top-level overview synthesizing mechanics that are each covered individually elsewhere (rotation, RAM, attack, defend, cascade, win conditions); useful framing, not a new fact.",
+      "evidence": "The duel is the combat system. Every dive into a customer's device is one duel against one intrusion."
+    },
+    {
+      "id": "theKit",
+      "name": "The kit's counter triangle",
+      "note": "20-mechanics/the-kit.md",
+      "symbols": ["content/kit.ts"],
+      "playerFacing": true,
+      "mustUnderstand": "The six modes form a closed counter loop rather than a power ladder: a big cascade shatters locks, scan then purge answers traps, and lock or ward stops redirect, so every telegraphed threat has a castable answer during its wind-up. Not in MECHANIC_INVENTORY under its own id; this is the silent-gap class.",
+      "evidence": "Modes answer each other rather than laddering:"
+    },
+    {
+      "id": "dayUpgrade",
+      "name": "The night shop",
+      "note": "20-mechanics/the-night-shop.md",
+      "symbols": ["run-reducer.ts:chooseUpgrade", "run-reducer.ts:closeNight", "run-reducer.ts:buyPatch", "run-reducer.ts:buySlot", "run-reducer.ts:buyDarkPatch", "run-reducer.ts:craftPatch", "run-reducer.ts:NIGHT_PICKS"],
+      "playerFacing": true,
+      "mustUnderstand": "Closing a day gives one free upgrade pick (RAM or a program tier) plus a shop where credits buy strain relief, a boost bay, or a darknet pull, and you can freely change your free pick while still shopping the rest.",
+      "evidence": "Day close. One free pick, plus anything you can afford."
+    },
+    {
+      "id": "patchShapes",
+      "name": "The pouch",
+      "note": "20-mechanics/the-pouch.md",
+      "symbols": ["patch-cells.ts:PATCH_POUCH_MAX", "duel-types.ts:DuelKit.patchPouch"],
+      "playerFacing": true,
+      "mustUnderstand": "Your pouch holds up to 5 patch pieces as fixed shapes, not a simple count, and because a piece can never be rotated to fit, which specific shapes you are carrying matters as much as how many you have.",
+      "evidence": "The pouch is a list of 4-bit arm masks, not a count. Which shapes you hold matters as much as how many, because a piece cannot be rotated to fit."
+    },
+    {
+      "id": "turnCap",
+      "name": "The round cap",
+      "note": "20-mechanics/the-round-cap.md",
+      "symbols": ["duel-types.ts:ROUND_CAP", "duel-actions.ts"],
+      "playerFacing": true,
+      "mustUnderstand": "If a dive runs past 25 rounds it ends on a route-cost tiebreak instead of a goal, and even winning that way costs an extra 10 Neural Strain and pays only half the ticket.",
+      "evidence": "A cap win is a **messy win**. It costs 10 extra [[neural-strain]] and pays half the ticket, or 75% with [[overtime-clause]]."
+    },
+    {
+      "id": "telegraph",
+      "name": "Traps and telegraphs",
+      "note": "20-mechanics/traps-and-telegraphs.md",
+      "symbols": ["duel-types.ts:DuelCell.trap", "duel-power.ts:settlePower", "duel-actions.ts:settleBoard"],
+      "playerFacing": true,
+      "mustUnderstand": "Every enemy move the machine is about to make is telegraphed one beat ahead and is always answerable in that window, so watching the highlighted aim before it lands is how you get a real chance to counter it.",
+      "evidence": "Interference comes in two forms: a mine you walk into later, and a move you can see coming one beat early."
+    },
+    {
+      "id": "oneUndo",
+      "name": "The one undo",
+      "note": "20-mechanics/turn-structure.md",
+      "symbols": ["duel-commands.ts", "duel-reducer.ts", "duel-actions.ts:beginTurnEconomy"],
+      "playerFacing": true,
+      "mustUnderstand": "You get exactly one undo per turn, armed by a rotation or a placement and spent by any cast, and taking it back does not un-spring a trap it triggered, so undo cannot be used to safely probe for mines. Not in MECHANIC_INVENTORY under its own id; this is the silent-gap class.",
+      "evidence": "Touch-move is the texture of the game. The undo is a fix for a misread, never a tool for exploring the board."
+    },
+    {
+      "id": "modeEffects",
+      "name": "WARD mode",
+      "note": "20-mechanics/ward.md",
+      "symbols": ["kit.ts:WARD_RADIUS", "kit.ts:WARD_ROUNDS", "kit.ts:defendModeDesc"],
+      "playerFacing": true,
+      "mustUnderstand": "WARD prevents new traps from landing and blocks REDIRECT entirely inside its radius for 2 rounds, making it the only defensive mode that acts before a threat exists rather than after.",
+      "evidence": "Ward a junction and everything within a Manhattan radius of it for **2 rounds** (`WARD_ROUNDS`)."
+    },
+    {
+      "id": "winConditions",
+      "name": "Win conditions",
+      "note": "20-mechanics/win-conditions.md",
+      "symbols": ["duel-types.ts:DuelEndKind", "duel-actions.ts:finishDuel"],
+      "playerFacing": true,
+      "mustUnderstand": "A dive can only end three ways: your live signal reaches a goal cell, the round cap hits and whoever is closer on route cost wins messily, or (tutorial only) the scripted seal, so a comfortable-looking lead can still be overtaken before you actually touch the goal. Not in MECHANIC_INVENTORY under its own id beyond the turnCap half; this is the silent-gap class.",
+      "evidence": "Three outcomes. That is the complete list."
+    },
+    {
+      "id": "n/a",
+      "name": "Content index",
+      "note": "30-content/30-content.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Index note pointing at the arc, roster, artifacts and scenes; not itself a feature.",
+      "evidence": "Everything authored: the arc, the roster, the artifacts, the scenes."
+    },
+    {
+      "id": "n/a",
+      "name": "Customer: Aldous Wick",
+      "note": "30-content/customers/aldous-wick.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Narrative NPC profile; a content instance of the already-covered analyzeTell/customers mechanic, not a new mechanic.",
+      "evidence": "The only customer spanning three tiers, so he recurs across the arc at rising difficulty."
+    },
+    {
+      "id": "n/a",
+      "name": "Customer: Bram Hollander",
+      "note": "30-content/customers/bram-hollander.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Narrative NPC profile; a content instance of the already-covered analyzeTell/customers mechanic, not a new mechanic.",
+      "evidence": "A clamp job. Junctions you need freeze solid for two rounds, which is the most frustrating denial in the game if you have no answer, and trivial if you do."
+    },
+    {
+      "id": "n/a",
+      "name": "Customer: Casimir Bell",
+      "note": "30-content/customers/casimir-bell.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Content not yet written for this customer; nothing to teach.",
+      "evidence": "Not yet ruled. **Invent nothing without a ruling.**"
+    },
+    {
+      "id": "n/a",
+      "name": "Customer: Dex Marlowe",
+      "note": "30-content/customers/dex-marlowe.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Narrative NPC profile; a content instance of the already-covered analyzeTell/customers mechanic, not a new mechanic.",
+      "evidence": "The mid-tier redirect job. Same routine as [[sable-okonkwo]] one band up, so it is a natural difficulty check"
+    },
+    {
+      "id": "n/a",
+      "name": "Customer: Emeric Snow",
+      "note": "30-content/customers/emeric-snow.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Content not yet written for this customer; nothing to teach.",
+      "evidence": "Not yet ruled. **Invent nothing without a ruling.**"
+    },
+    {
+      "id": "n/a",
+      "name": "Customer: Ines Calloway",
+      "note": "30-content/customers/ines-calloway.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Content not yet written for this customer; nothing to teach.",
+      "evidence": "Not yet ruled. **Invent nothing without a ruling.**"
+    },
+    {
+      "id": "n/a",
+      "name": "Customer: June Aksoy",
+      "note": "30-content/customers/june-aksoy.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Content not yet written for this customer; nothing to teach.",
+      "evidence": "Not yet ruled. **Invent nothing without a ruling.**"
+    },
+    {
+      "id": "n/a",
+      "name": "Customer: Juno Vex",
+      "note": "30-content/customers/juno-vex.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Narrative NPC profile; a content instance of the already-covered analyzeTell/customers mechanic, not a new mechanic.",
+      "evidence": "An early-tier siphon job, so it is often a player's first encounter with traps that steal [[ram]] rather than deny tempo."
+    },
+    {
+      "id": "n/a",
+      "name": "Customer: Noor Behzadi",
+      "note": "30-content/customers/noor-behzadi.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Content not yet written for this customer; nothing to teach.",
+      "evidence": "Not yet ruled. **Invent nothing without a ruling.**"
+    },
+    {
+      "id": "n/a",
+      "name": "Customer: Sable Okonkwo",
+      "note": "30-content/customers/sable-okonkwo.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Narrative NPC profile; a content instance of the already-covered analyzeTell/customers mechanic, not a new mechanic.",
+      "evidence": "A redirect job at low tier: the cleanest introduction to the interference economy, because the damage is visible (your chain goes dark) and the counter is obvious (twist it back, and notice what it cost)."
+    },
+    {
+      "id": "n/a",
+      "name": "Customer: Vera Stanek",
+      "note": "30-content/customers/vera-stanek.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Content not yet written for this customer; nothing to teach.",
+      "evidence": "Not yet ruled. **Invent nothing without a ruling.**"
+    },
+    {
+      "id": "n/a",
+      "name": "Customer: Wren Tallis",
+      "note": "30-content/customers/wren-tallis.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Narrative NPC profile; a content instance of the already-covered analyzeTell/customers mechanic, not a new mechanic.",
+      "evidence": "A low-tier ward job, which is unusual: warding is prevention, so the intrusion is not attacking so much as refusing to be attacked."
+    },
+    {
+      "id": "analyzeTell",
+      "name": "Customers and the honest tell",
+      "note": "30-content/customers.md",
+      "symbols": ["content/customers.ts:CUSTOMERS", "content/customers.ts:CustomerProfile"],
+      "playerFacing": true,
+      "mustUnderstand": "Every customer's diagnostic 'dominant' mode is the one the intrusion is guaranteed to use early and it is never a bluff, so reading the ticket before you dive is a real decision, not flavour text.",
+      "evidence": "`dominant` is the mode the Analyze diagnostic reports, and the machine is guaranteed to use it early. **The tell is always honest.**"
+    },
+    {
+      "id": "n/a",
+      "name": "Cutscenes and scenes",
+      "note": "30-content/cutscenes-and-scenes.md",
+      "symbols": ["content/story.ts"],
+      "playerFacing": false,
+      "mustUnderstand": "Story-scene data structure (speaker, beats); a narrative presentation system, not a gameplay mechanic.",
+      "evidence": "StoryBeat { speaker: \"sister\"|\"father\"|\"system\"|\"companion\","
+    },
+    {
+      "id": "n/a",
+      "name": "Dad log archive content",
+      "note": "30-content/dad-log-archive.md",
+      "symbols": ["content/journal.ts:JOURNAL_ENTRIES", "content/journal.ts:DADLOG_CHROME"],
+      "playerFacing": false,
+      "mustUnderstand": "Narrative archive content and its run-gated unlock schedule; a story reveal system, not a mechanic that changes how to play.",
+      "evidence": "{ id, unlockAtRun, requiresOpened?, kind: \"note\"|\"bill\"|\"memo\","
+    },
+    {
+      "id": "n/a",
+      "name": "Day 1 balance table",
+      "note": "30-content/days/day-1.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Per-day difficulty-dial table (grid, horizon, parFlat, slag, patchDrop) plus flavour text; a tuning reference the player never reads directly in-game.",
+      "evidence": "The gentlest configuration in the game. **horizon 0** means the machine does no cut scoring at all: it simply races its own board and never reaches across to interfere."
+    },
+    {
+      "id": "finaleGate",
+      "name": "Day 10: the finale",
+      "note": "30-content/days/day-10-the-finale.md",
+      "symbols": ["content/arc.ts:finaleConfig", "content/arc.ts:finalePre"],
+      "playerFacing": true,
+      "mustUnderstand": "Day 10 replaces the job board entirely with one back-room door, and the finale dive is the only one where the machine takes the first turn because it was already inside.",
+      "evidence": "No job board. The back room settles up."
+    },
+    {
+      "id": "n/a",
+      "name": "Day 2 balance table",
+      "note": "30-content/days/day-2.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Per-day difficulty-dial table plus flavour text; the 'strain carries over' fact it states is already covered under strainChip, and the rest is tuning the player never reads directly.",
+      "evidence": "DAY 2. Three tickets waiting. Strain carries over."
+    },
+    {
+      "id": "n/a",
+      "name": "Day 3 balance table",
+      "note": "30-content/days/day-3.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Per-day difficulty-dial table (grid, headStart, patchDrop) plus flavour text; a tuning reference the player never reads directly in-game.",
+      "evidence": "DAY 3. Word is getting around. The tickets are getting stranger."
+    },
+    {
+      "id": "n/a",
+      "name": "Day 4 balance table",
+      "note": "30-content/days/day-4.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Per-day difficulty-dial table plus flavour text; the cut-scoring detail it names is AI-internal, the same class as opponent-ai.",
+      "evidence": "DAY 4. The intrusions are pacing themselves now. Watch for it."
+    },
+    {
+      "id": "n/a",
+      "name": "Day 5 balance table",
+      "note": "30-content/days/day-5.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Per-day difficulty-dial table (minPd floor) plus flavour text; a generator constraint the player never reads directly.",
+      "evidence": "DAY 5. Halfway. The back room has been quiet. Just quiet."
+    },
+    {
+      "id": "n/a",
+      "name": "Day 6 balance table",
+      "note": "30-content/days/day-6.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Per-day difficulty-dial table plus flavour text; the augment-pool-dry observation is a balance note, not a mechanic to teach.",
+      "evidence": "DAY 6. Rhea left coffee on the bench. Three tickets, no excuses."
+    },
+    {
+      "id": "n/a",
+      "name": "Day 7 balance table",
+      "note": "30-content/days/day-7.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Per-day difficulty-dial table plus flavour text; a tuning reference the player never reads directly in-game.",
+      "evidence": "DAY 7. The hard cases are finding you. Take them anyway."
+    },
+    {
+      "id": "n/a",
+      "name": "Day 8 balance table",
+      "note": "30-content/days/day-8.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Per-day difficulty-dial table plus flavour text; the horizon 3 AI behaviour it describes is internal, the same class as opponent-ai.",
+      "evidence": "DAY 8. Strain is a budget. Spend it like rent is due."
+    },
+    {
+      "id": "n/a",
+      "name": "Day 9 balance table",
+      "note": "30-content/days/day-9.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Per-day difficulty-dial table plus flavour text; a tuning reference the player never reads directly in-game.",
+      "evidence": "DAY 9. Last day of paying work. Tomorrow the back room settles up."
+    },
+    {
+      "id": "n/a",
+      "name": "Intrusions framing",
+      "note": "30-content/intrusions.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Narrative framing of what an intrusion is; restates the-duel and customers fictionally, no new mechanic.",
+      "evidence": "Clearing one is not deleting static code. It fights back."
+    },
+    {
+      "id": "n/a",
+      "name": "Journal: entry-backroom",
+      "note": "30-content/journal/entry-backroom.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Pure narrative journal content (backstory), no gameplay mechanic to teach.",
+      "evidence": "The player queried the shop's ticketing system for the tower and found nothing:"
+    },
+    {
+      "id": "n/a",
+      "name": "Journal: entry-bills",
+      "note": "30-content/journal/entry-bills.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Pure narrative journal content (backstory), no gameplay mechanic to teach.",
+      "evidence": "Meridian Neurocare, unpaid, one of **eleven**."
+    },
+    {
+      "id": "n/a",
+      "name": "Journal: entry-diagnosis",
+      "note": "30-content/journal/entry-diagnosis.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Pure narrative journal content (backstory), no gameplay mechanic to teach.",
+      "evidence": "NF-3 neurofilament degradation, **stage three**. 9,000+ logged dive hours."
+    },
+    {
+      "id": "n/a",
+      "name": "Journal: entry-failed1",
+      "note": "30-content/journal/entry-failed1.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Pure narrative journal content (backstory), no gameplay mechanic to teach.",
+      "evidence": "The tower's own record of the opening dive. The machine did not fight. **It graded him and shut the door.**"
+    },
+    {
+      "id": "n/a",
+      "name": "Journal: entry-grading",
+      "note": "30-content/journal/entry-grading.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Pure narrative journal content (backstory), no gameplay mechanic to teach.",
+      "evidence": "Eight dives of the tower's own telemetry, aggregated."
+    },
+    {
+      "id": "n/a",
+      "name": "Journal: entry-notickets",
+      "note": "30-content/journal/entry-notickets.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Pure narrative journal content (backstory), no gameplay mechanic to teach.",
+      "evidence": "Cross-referenced against the shop's ledger: **no client ever existed**."
+    },
+    {
+      "id": "n/a",
+      "name": "Journal: entry-patch",
+      "note": "30-content/journal/entry-patch.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Pure narrative journal content (backstory), no gameplay mechanic to teach.",
+      "evidence": "The name, the reason for it, and the whole truth."
+    },
+    {
+      "id": "n/a",
+      "name": "Journal: entry-receipts",
+      "note": "30-content/journal/entry-receipts.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Pure narrative journal content (backstory), no gameplay mechanic to teach.",
+      "evidence": "Strain suppressants. Weekly. Cash. **Six years.** Climbing dosage."
+    },
+    {
+      "id": "n/a",
+      "name": "Journal: entry-solder",
+      "note": "30-content/journal/entry-solder.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Pure narrative journal content (backstory), no gameplay mechanic to teach.",
+      "evidence": "The soldering lesson. [[dad]] at the bench with a child."
+    },
+    {
+      "id": "n/a",
+      "name": "Journal: entry-will",
+      "note": "30-content/journal/entry-will.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Pure narrative journal content (backstory), no gameplay mechanic to teach.",
+      "evidence": "The inheritance, and the division of the shop: counter to [[rhea]], bench to [[the-player]]."
+    },
+    {
+      "id": "finaleOppOpens",
+      "name": "The finale encounter",
+      "note": "30-content/the-finale-encounter.md",
+      "symbols": [],
+      "playerFacing": true,
+      "mustUnderstand": "The finale has no new mechanic and no phases, only one special rule: the machine takes the first turn because it was already inside, which is why a kit with no configs, wards, locks or purges cannot answer it.",
+      "evidence": "It is an ordinary duel at maximum difficulty"
+    },
+    {
+      "id": "n/a",
+      "name": "The shop setting",
+      "note": "30-content/the-shop.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Setting and narrative framing for the repair shop; no gameplay mechanic.",
+      "evidence": "A family computer repair shop, inherited jointly by the two kids on [[dad]]'s death, per the will taped inside the register."
+    },
+    {
+      "id": "n/a",
+      "name": "The ten-day arc table",
+      "note": "30-content/the-ten-day-arc.md",
+      "symbols": ["content/arc.ts:DAY_CONFIGS", "content/arc.ts:finaleConfig"],
+      "playerFacing": false,
+      "mustUnderstand": "Aggregated difficulty-dial table across all ten days (grid, horizon, focus, parFlat, slag...); the same tuning reference as the individual day pages, not itself player-visible in-game.",
+      "evidence": "Nine working days of three tickets each, then day 10."
+    },
+    {
+      "id": "n/a",
+      "name": "World overview",
+      "note": "30-content/world-overview.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Setting and narrative framing for the game's city and premise; no gameplay mechanic.",
+      "evidence": "Near-future cyberpunk city, **seen entirely from inside one repair shop**."
+    },
+    {
+      "id": "n/a",
+      "name": "Game controls reference",
+      "note": "40-presentation/game-controls.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Control-scheme reference for mechanics already covered elsewhere (rotate, cast, place); the one genuinely new fact here, the single per-turn undo, is captured under oneUndo instead.",
+      "evidence": "**Mouse-driven throughout.** There is no keyboard control scheme, no gamepad support, and no documented shortcut set."
+    },
+    {
+      "id": "n/a",
+      "name": "KP/OS shell",
+      "note": "40-presentation/kp-os.md",
+      "symbols": ["components/os/shop-os.tsx", "wm.tsx", "desk.tsx", "boot.tsx", "login.tsx", "icons.tsx", "kp-ui.tsx"],
+      "playerFacing": false,
+      "mustUnderstand": "Interface/art-direction shell (windows, CRT glass, themes); presentation design, not a mechanic to learn.",
+      "evidence": "The shop terminal's retro pixel desktop. **The game does not have an interface. The interface is the game.**"
+    },
+    {
+      "id": "n/a",
+      "name": "Music and sound design",
+      "note": "40-presentation/music-and-sound.md",
+      "symbols": ["game/audio.ts", "game/sfxr.ts"],
+      "playerFacing": false,
+      "mustUnderstand": "Audio engine and sound design (sfxr palette, buses, stingers); not a gameplay mechanic.",
+      "evidence": "An **sfxr preset palette rendered to buffers on demand**, plus a small additive synth for stingers, plus a music manager for the generated beds."
+    },
+    {
+      "id": "n/a",
+      "name": "Player options menu",
+      "note": "40-presentation/player-options.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Settings menu (audio, appearance, accessibility); does not affect how to play a dive.",
+      "evidence": "A short list, deliberately. Everything here is either accessibility or taste."
+    },
+    {
+      "id": "saveSlots",
+      "name": "Title, boot and save slots",
+      "note": "40-presentation/title-and-start-screen.md",
+      "symbols": ["components/os/boot.tsx", "login.tsx", "game/version.ts"],
+      "playerFacing": true,
+      "mustUnderstand": "There is no title screen, only a boot sequence into login with three deletable save slots, and each slot tracks its own teaching progress, so a fresh slot is taught everything again from scratch.",
+      "evidence": "Three save slots. Each is a separate save; each can be **deleted** from the login screen."
+    },
+    {
+      "id": "finaleGate",
+      "name": "BACKROOM.LCK",
+      "note": "40-presentation/windows/backroom-lck.md",
+      "symbols": [],
+      "playerFacing": true,
+      "mustUnderstand": "Day 10 replaces the whole job board with one screen and one button, no tickets and no shop, so the interface itself announces that the finale day works differently before any copy explains it.",
+      "evidence": "One screen, one button. No tickets, no shop, no choice about what to do next."
+    },
+    {
+      "id": "n/a",
+      "name": "DAD.LOG window",
+      "note": "40-presentation/windows/dad-log-window.md",
+      "symbols": ["windows/dadlog.tsx"],
+      "playerFacing": false,
+      "mustUnderstand": "Presentation of the narrative archive reader (tabs, recovery meter, damaged segments); no gameplay mechanic.",
+      "evidence": "The read-only archive reader over DAD.VOL. Integrated 2026-07-29."
+    },
+    {
+      "id": "n/a",
+      "name": "DARKNET.LNK window",
+      "note": "40-presentation/windows/darknet-lnk.md",
+      "symbols": ["windows/darknet.tsx"],
+      "playerFacing": true,
+      "mustUnderstand": "Buying a dark pull is a four-step ritual, dial, price, buy, blind reveal, and none of those steps let you see the shape before you commit the credits.",
+      "evidence": "The gray-market CLI. Night phase only."
+    },
+    {
+      "id": "n/a",
+      "name": "DIVE.EXE HUD",
+      "note": "40-presentation/windows/dive-exe.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "HUD layout for the duel screen (RAM, par, round, telegraph); the elements it lists are mechanics already covered by their own entries.",
+      "evidence": "Full-screen"
+    },
+    {
+      "id": "jobBoard",
+      "name": "INBOX / job board",
+      "note": "40-presentation/windows/inbox.md",
+      "symbols": ["windows/inbox.tsx"],
+      "playerFacing": true,
+      "mustUnderstand": "Three tickets sit on the board at once, takeable in any order, each showing a threat tier and an honest dominant-mode tell, so which ticket you take first is a real decision made before any RAM or strain is spent.",
+      "evidence": "**Three tickets**, takeable in any order."
+    },
+    {
+      "id": "n/a",
+      "name": "LEDGER.LOG window",
+      "note": "40-presentation/windows/ledger-log.md",
+      "symbols": ["windows/ledger.tsx"],
+      "playerFacing": false,
+      "mustUnderstand": "Presentation of the lifetime stats record as an accounting terminal; already rejected as informational only under scoring-and-lifetime-stats.",
+      "evidence": "The accounting terminal. There is no score; there are books."
+    },
+    {
+      "id": "kitConfig",
+      "name": "LOADOUT.CFG window",
+      "note": "40-presentation/windows/loadout-cfg.md",
+      "symbols": ["windows/loadout.tsx"],
+      "playerFacing": true,
+      "mustUnderstand": "LOADOUT.CFG is where you actually switch a program's active mode and see live tier numbers before a dive, and it floats free of the job board with its own DIVE button, so configuring is optional and never blocks diving.",
+      "evidence": "**Attack and defend mode buttons**, locked until the matching config [[augments|augment]] is drafted."
+    },
+    {
+      "id": "manualRef",
+      "name": "MANUAL.TXT window",
+      "note": "40-presentation/windows/manual-txt.md",
+      "symbols": ["windows/manual.tsx"],
+      "playerFacing": true,
+      "mustUnderstand": "MANUAL.TXT is a five-tab reference generated live from the same constants the game reducers read, so it can be opened any time a rule or a specific augment's effect needs looking up.",
+      "evidence": "The reference. Five tabs, page-flip navigation: **DIVE · KIT · PATCHES · AUGMENTS · BAYS**."
+    },
+    {
+      "id": "dayUpgrade",
+      "name": "NIGHT.SYS window",
+      "note": "40-presentation/windows/night-sys.md",
+      "symbols": [],
+      "playerFacing": true,
+      "mustUnderstand": "Choosing your free night pick does not end the night, so you can keep shopping and even change the pick, because the pick and the purchases trade against each other and you should see both before committing.",
+      "evidence": "`chooseUpgrade` sets the pick **without ending the night**; `closeNight` commits and refuses without a pick."
+    },
+    {
+      "id": "strainChip",
+      "name": "REPAIR.LOG window",
+      "note": "40-presentation/windows/repair-log.md",
+      "symbols": ["windows/report.tsx"],
+      "playerFacing": true,
+      "mustUnderstand": "The post-dive result reads as a transaction, credited, billed, recovered, and it also carries the augment draft and any boost swap, so this one screen is where you learn why a win cost what it cost and pick your next upgrade.",
+      "evidence": "**CREDITED · BILLED · RECOVERED.** Money in, [[neural-strain|strain]] out, [[patch-pieces|pieces]] recovered."
+    },
+    {
+      "id": "n/a",
+      "name": "SHOPFRONT.EXE window",
+      "note": "40-presentation/windows/shopfront-exe.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Explains why one retitling window serves five different story screens; a UI/window-management decision, not a gameplay mechanic.",
+      "evidence": "**The flow window.** The only window whose title changes with its contents, via `windowTitle()`."
+    },
+    {
+      "id": "patchCraft",
+      "name": "SOLDER.BAY window",
+      "note": "40-presentation/windows/solder-bay.md",
+      "symbols": ["windows/solder.tsx"],
+      "playerFacing": true,
+      "mustUnderstand": "Welding two patch pieces makes their union, legal only when the result is strictly bigger than both inputs, and the bench shows this by making illegal partners physically undraggable rather than letting you try and fail.",
+      "evidence": "PICK A PARTNER. THE WELD MUST OUTGROW BOTH."
+    },
+    {
+      "id": "n/a",
+      "name": "Teaching index",
+      "note": "70-teaching/70-teaching.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Index of the teaching system's own documentation; describes how the game teaches, not something the player must understand to play.",
+      "evidence": "How the player learns the game. Owned by the [[tutorial-agent]], enforced by a build-failing test."
+    },
+    {
+      "id": "n/a",
+      "name": "Coachmarks (the mechanism)",
+      "note": "70-teaching/coachmarks.md",
+      "symbols": ["content/teaching.ts:TEACHING"],
+      "playerFacing": false,
+      "mustUnderstand": "Describes the coachmark delivery mechanism itself (order, triggers, limits); dev-facing teaching infrastructure, not a player mechanic. The mechanics it lists as taught are already covered under their own entries.",
+      "evidence": "One-time callouts. **A coachmark is a rule you need once.**"
+    },
+    {
+      "id": "n/a",
+      "name": "Mechanic coverage bookkeeping",
+      "note": "70-teaching/mechanic-coverage.md",
+      "symbols": ["content/teaching.ts:MECHANIC_INVENTORY"],
+      "playerFacing": false,
+      "mustUnderstand": "The inventory and its coverage bookkeeping (taught/waived/planned/retired); meta-documentation about teaching, not a mechanic itself.",
+      "evidence": "The inventory of everything a player must understand, and how each one is covered."
+    },
+    {
+      "id": "n/a",
+      "name": "Placement bias order",
+      "note": "70-teaching/placement-bias-order.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Craft rule for choosing how to teach something (UI over tip over coachmark over manual over scene); process guidance for building the teaching system, not a player mechanic.",
+      "evidence": "The most reusable thing the teaching ledger contains. **Five tiers, and you take the lowest one that works.**"
+    },
+    {
+      "id": "n/a",
+      "name": "Standing lessons",
+      "note": "70-teaching/standing-lessons.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Process lessons extracted from cycle retrospectives for whoever builds the teaching system; not player-facing.",
+      "evidence": "Craft rules extracted from thirteen dated cycle retrospectives in `tutorial/ledger.md`."
+    },
+    {
+      "id": "n/a",
+      "name": "Teaching system rules",
+      "note": "70-teaching/teaching-system.md",
+      "symbols": ["content/teaching.ts", "components/game/teach.tsx", "dev/teach-sim.ts"],
+      "playerFacing": false,
+      "mustUnderstand": "The teaching engine's own rules (eligibility, anchoring, single-winner precedence, limits); infrastructure that decides how mechanics get explained, not a mechanic itself.",
+      "evidence": "Every mechanic resolves to a moment or a written waiver."
+    },
+    {
+      "id": "n/a",
+      "name": "Teaching tips (the mechanism)",
+      "note": "70-teaching/teaching-tips.md",
+      "symbols": ["content/teaching.ts:TEACH_TIPS"],
+      "playerFacing": false,
+      "mustUnderstand": "Catalogs the persistent-hover-tip delivery mechanism; the mechanics the tips explain (par, strain, ram, threat tier, boost bays) are already covered under their own entries.",
+      "evidence": "Persistent hover explainers. **A tip is reference you want again.**"
+    },
+    {
+      "id": "n/a",
+      "name": "Teaching waivers bookkeeping",
+      "note": "70-teaching/teaching-waivers.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Bookkeeping for which inventory rows are deliberately untaught and why; documents the teaching system's own decisions, not a mechanic.",
+      "evidence": "A waiver is a **written decision not to teach something**, with a reason."
+    },
+    {
+      "id": "n/a",
+      "name": "The tutorial (design intent)",
+      "note": "70-teaching/the-tutorial.md",
+      "symbols": [],
+      "playerFacing": false,
+      "mustUnderstand": "Describes the tutorial's own design intent and build gate (unwinnable by construction, 0-of-200 sim requirement); the four verbs it teaches are already covered individually under rotate, scan, defend and attack.",
+      "evidence": "The opening dive. **Unwinnable by construction**, and it must prove it 200 times before any deploy."
+    },
+    {
+      "id": "n/a",
+      "name": "Tutorial beats (the mechanism)",
+      "note": "70-teaching/tutorial-beats.md",
+      "symbols": ["content/teaching.ts:TUTORIAL_BEATS"],
+      "playerFacing": false,
+      "mustUnderstand": "Catalogs the scripted opening-dive beat ladder and its ordering rule; the verbs it teaches are already covered elsewhere, and the beat mechanism itself is dev-facing.",
+      "evidence": "Beats are how the tutorial teaches, because coachmarks are gated off day 0 by `notBeforeDay: 1`."
+    }
+  ]
+}

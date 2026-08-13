@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+fixtures/.tmp/
+
+# Nothing else is ignored on purpose.
+# gdd/, game/, gaps/, runs/ and out/ are all committed:
+# the submission has to run and be readable without regenerating anything,
+# and the before state has to be reproducible from the repo alone.

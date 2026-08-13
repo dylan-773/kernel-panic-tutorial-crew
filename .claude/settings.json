@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 tools/gdd_extract.py:*)",
+      "Bash(python3 tools/make_gap.py:*)",
+      "Bash(python3 tools/freeze.py:*)",
+      "Bash(python3 tools/verify_teaching.py:*)",
+      "Bash(python3 tools/verify_copy.py:*)",
+      "Bash(python3 tools/verify_blind.py:*)",
+      "Bash(python3 tools/apply_patch.py:*)",
+      "Bash(python3 tools/run_fixtures.py:*)",
+      "Bash(python3 tools/selftest.py:*)",
+      "Bash(python3 tools/build_demo.py:*)",
+      "Bash(python3 tools/verify_submission.py:*)",
+      "Bash(bun tools/code_scan.ts:*)",
+      "Bash(bun game/src/game/dev/teach-sim.ts:*)"
+    ],
+    "deny": [
+      "Read(gaps/**)",
+      "Bash(cat gaps/**)",
+      "Bash(grep:*gaps/*)"
+    ]
+  }
+}

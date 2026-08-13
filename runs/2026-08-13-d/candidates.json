@@ -1,0 +1,3147 @@
+{
+  "schema": "kp-gdd-candidates/1",
+  "candidates": [
+    {
+      "note": "20-mechanics/20-mechanics.md",
+      "area": "20-mechanics",
+      "title": "Mechanics",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Everything the player does, read out of the engine rather than out of the old design doc.",
+      "links": [
+        "arm-halt",
+        "arm-siphon",
+        "attack",
+        "augment-drafts",
+        "augments",
+        "boost-bays",
+        "built-and-power",
+        "cascades-and-surge",
+        "credits",
+        "death-and-run-end",
+        "defend",
+        "difficulty-dials",
+        "economy",
+        "job-pay-and-billing",
+        "loadout-cfg",
+        "lock",
+        "long-arms",
+        "manual-txt",
+        "meta-progression",
+        "neural-strain",
+        "opponent-ai",
+        "patch-pieces",
+        "player-character",
+        "player-inventory",
+        "player-metrics",
+        "player-skills",
+        "program-tiers",
+        "purge",
+        "ram",
+        "reach-and-placement",
+        "redirect",
+        "rotation",
+        "route-cost-and-par",
+        "scan",
+        "scoring-and-lifetime-stats",
+        "split-boards",
+        "territory-and-claiming",
+        "the-board",
+        "the-darknet",
+        "the-duel",
+        "the-kit",
+        "the-night-shop",
+        "the-pouch",
+        "the-round-cap",
+        "traps-and-telegraphs",
+        "turn-structure",
+        "ward",
+        "win-conditions"
+      ],
+      "bytes": 3326
+    },
+    {
+      "note": "20-mechanics/arm-halt.md",
+      "area": "20-mechanics",
+      "title": "ARM - HALT",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "kit.ts:attackModeDesc"
+      ],
+      "thesis": "Plant a halt trap on open junctions on the enemy board. When their signal claims the node, **they lose a full turn**.",
+      "links": [
+        "arm-siphon",
+        "cascades-and-surge",
+        "halt-driver",
+        "purge",
+        "scan",
+        "tripwire",
+        "ward"
+      ],
+      "bytes": 1333
+    },
+    {
+      "note": "20-mechanics/arm-siphon.md",
+      "area": "20-mechanics",
+      "title": "ARM - SIPHON",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "kit.ts:attackModeDesc",
+        "kit.ts:SIPHON_STEAL"
+      ],
+      "thesis": "Plant a siphon trap on open junctions on the enemy board. When it fires, RAM **drains from their next turn into yours**.",
+      "links": [
+        "arm-halt",
+        "deep-siphon",
+        "echo-tap",
+        "siphon-driver",
+        "traps-and-telegraphs",
+        "turn-structure"
+      ],
+      "bytes": 1278
+    },
+    {
+      "note": "20-mechanics/attack.md",
+      "area": "20-mechanics",
+      "title": "ATTACK",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "kit.ts:ATTACK_WIDTH",
+        "kit.ts:attackModeDesc"
+      ],
+      "thesis": "The only program that reaches the **enemy** board. 1 RAM, once per turn.",
+      "links": [
+        "arm-halt",
+        "arm-siphon",
+        "cheap-shot",
+        "halt-driver",
+        "program-tiers",
+        "redirect",
+        "route-cost-and-par",
+        "siphon-driver",
+        "split-boards",
+        "the-kit",
+        "traps-and-telegraphs"
+      ],
+      "bytes": 1349
+    },
+    {
+      "note": "20-mechanics/augment-drafts.md",
+      "area": "20-mechanics",
+      "title": "Augment drafts",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "run-reducer.ts:rollDraft",
+        "run-reducer.ts:pickAugment"
+      ],
+      "thesis": "One draft per **cleared ticket**. Three tickets a day, so a clean day banks three picks.",
+      "links": [
+        "augments",
+        "boost-bays",
+        "coachmarks",
+        "repair-log"
+      ],
+      "bytes": 1790
+    },
+    {
+      "note": "20-mechanics/augments/cheap-shot.md",
+      "area": "20-mechanics",
+      "title": "CHEAP SHOT",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.cheapShot"
+      ],
+      "thesis": "Reads `econ.attacksCast`. Worth exactly 1 RAM per dive, which sounds small and is not: an opening turn with a free [[redirect]] converts directly into rotations, and opening tempo is what the [[the-board]] generator is calibrated around.",
+      "links": [
+        "redirect",
+        "the-board"
+      ],
+      "bytes": 466,
+      "augment": {
+        "kind": "Boost",
+        "codeId": "cheapShot"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/clamp-driver.md",
+      "area": "20-mechanics",
+      "title": "CLAMP DRIVER",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.cfgLock"
+      ],
+      "thesis": "The description string is built from `LOCK_ROUNDS`, so the copy cannot drift from the constant.",
+      "links": [
+        "cascades-and-surge",
+        "defend",
+        "lock"
+      ],
+      "bytes": 563,
+      "augment": {
+        "kind": "Config",
+        "codeId": "cfgLock"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/clean-run.md",
+      "area": "20-mechanics",
+      "title": "CLEAN RUN",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.cleanRun"
+      ],
+      "thesis": "Two payouts, both rewarding precision:",
+      "links": [
+        "patch-pieces",
+        "route-cost-and-par",
+        "the-round-cap"
+      ],
+      "bytes": 782,
+      "augment": {
+        "kind": "Boost",
+        "codeId": "cleanRun"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/darknet-rate.md",
+      "area": "20-mechanics",
+      "title": "DARKNET RATE",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.darkDiscount"
+      ],
+      "thesis": "The copy is careful to say what the discount does **not** buy: it does not make the roll visible and it does not open any other payment. [[ruling-09-darknet]] keeps the dealer permanently anonymous, so a relationship discount is as far as the fiction allows.",
+      "links": [
+        "ruling-09-darknet",
+        "the-darknet"
+      ],
+      "bytes": 676,
+      "augment": {
+        "kind": "Boost",
+        "codeId": "darkDiscount"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/deep-siphon.md",
+      "area": "20-mechanics",
+      "title": "DEEP SIPHON",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.siphonPlus"
+      ],
+      "thesis": "Stacks on `SIPHON_STEAL`, so at ATTACK tier 3 a siphon moves 5 RAM.",
+      "links": [
+        "siphon-driver"
+      ],
+      "bytes": 458,
+      "augment": {
+        "kind": "Boost",
+        "codeId": "siphonPlus"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/echo-tap.md",
+      "area": "20-mechanics",
+      "title": "ECHO TAP",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.echoTap"
+      ],
+      "thesis": "Fires for either trap kind, so it works with [[arm-halt]] and [[arm-siphon]] both. Arrives through `drainNext` as a negative, like [[cascades-and-surge|cascade RAM]].",
+      "links": [
+        "arm-halt",
+        "arm-siphon",
+        "cascades-and-surge"
+      ],
+      "bytes": 483,
+      "augment": {
+        "kind": "Boost",
+        "codeId": "echoTap"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/first-fault.md",
+      "area": "20-mechanics",
+      "title": "FIRST FAULT",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.firstFault"
+      ],
+      "thesis": "In `finishDuel`:",
+      "links": [],
+      "bytes": 726,
+      "augment": {
+        "kind": "Boost",
+        "codeId": "firstFault"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/halt-driver.md",
+      "area": "20-mechanics",
+      "title": "HALT DRIVER",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.cfgArmHalt"
+      ],
+      "thesis": "Unlocks the mode; does not switch to it. Select it in [[loadout-cfg]].",
+      "links": [
+        "arm-halt",
+        "attack",
+        "loadout-cfg",
+        "tripwire"
+      ],
+      "bytes": 435,
+      "augment": {
+        "kind": "Config",
+        "codeId": "cfgArmHalt"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/hot-boot.md",
+      "area": "20-mechanics",
+      "title": "HOT BOOT",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.hotBoot"
+      ],
+      "thesis": "Like [[cheap-shot]], a one-RAM effect that buys opening tempo. The `minPd` floor in [[difficulty-dials|DayConfig]] exists partly because boosts like this can otherwise let an opening burst close a short board outright.",
+      "links": [
+        "cheap-shot",
+        "difficulty-dials",
+        "simulation-harnesses"
+      ],
+      "bytes": 560,
+      "augment": {
+        "kind": "Boost",
+        "codeId": "hotBoot"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/jam-anchor.md",
+      "area": "20-mechanics",
+      "title": "JAM ANCHOR",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.jamAnchor"
+      ],
+      "thesis": "A lock effect without spending [[defend]]. The twist and the clamp in one 1 RAM cast, which is the strongest single tempo play available to a REDIRECT build.",
+      "links": [
+        "cascades-and-surge",
+        "defend",
+        "lock"
+      ],
+      "bytes": 593,
+      "augment": {
+        "kind": "Boost",
+        "codeId": "jamAnchor"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/long-arms.md",
+      "area": "20-mechanics",
+      "title": "LONG ARMS",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.longArms"
+      ],
+      "thesis": "The cascade-scaling boost. Reach 2 lets you hold a chain; reach 4 lets you hold a much longer one, which moves you up the `cascadeRam` curve. See [[reach-and-placement]].",
+      "links": [
+        "patch-pieces",
+        "reach-and-placement"
+      ],
+      "bytes": 675,
+      "augment": {
+        "kind": "Boost",
+        "codeId": "longArms"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/overtime-clause.md",
+      "area": "20-mechanics",
+      "title": "OVERTIME CLAUSE",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.overtimeClause"
+      ],
+      "thesis": "The fiction is billing, and it is canon: [[ruling-10-overtime-billing]] settled that the shop can bill overtime, which is what makes this an in-world contract term rather than an arbitrary number.",
+      "links": [
+        "ruling-10-overtime-billing",
+        "the-round-cap"
+      ],
+      "bytes": 767,
+      "augment": {
+        "kind": "Boost",
+        "codeId": "overtimeClause"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/siphon-driver.md",
+      "area": "20-mechanics",
+      "title": "SIPHON DRIVER",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.cfgArmSiphon"
+      ],
+      "thesis": "Steal scales with ATTACK tier: 2, 3, 4 RAM. See [[program-tiers]].",
+      "links": [
+        "arm-siphon",
+        "attack",
+        "deep-siphon",
+        "program-tiers"
+      ],
+      "bytes": 529,
+      "augment": {
+        "kind": "Config",
+        "codeId": "cfgArmSiphon"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/splice-refund.md",
+      "area": "20-mechanics",
+      "title": "SPLICE REFUND",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.patchRefund"
+      ],
+      "thesis": "Gated by `{ kind: \"pouch\" }`, the only non-augment requirement in the system: the pouch must hold at least one piece **at roll time**. So the draft will not offer it to a player with an empty pouch, even though they might fill it later.",
+      "links": [
+        "the-pouch"
+      ],
+      "bytes": 686,
+      "augment": {
+        "kind": "Boost",
+        "codeId": "patchRefund"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/sweep-credit.md",
+      "area": "20-mechanics",
+      "title": "SWEEP CREDIT",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.sweepCredit"
+      ],
+      "thesis": "At DEFEND tier 3 against a trap-heavy board, a purge that clears 3 traps refunds 3 RAM against a 1 RAM cast, so it is RAM positive.",
+      "links": [
+        "purge",
+        "scan"
+      ],
+      "bytes": 538,
+      "augment": {
+        "kind": "Boost",
+        "codeId": "sweepCredit"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/tap-line.md",
+      "area": "20-mechanics",
+      "title": "TAP LINE",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.tapLine"
+      ],
+      "thesis": "Stored as `DuelState.routeTrace: { round, cells }`, cleared each round.",
+      "links": [
+        "difficulty-dials",
+        "redirect"
+      ],
+      "bytes": 688,
+      "augment": {
+        "kind": "Boost",
+        "codeId": "tapLine"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/tripwire.md",
+      "area": "20-mechanics",
+      "title": "TRIPWIRE",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.tripwire"
+      ],
+      "thesis": "The forfeited turn plus a drain on the turn after it. This is the `drain` field on the trap record. See [[traps-and-telegraphs]].",
+      "links": [
+        "halt-driver",
+        "traps-and-telegraphs"
+      ],
+      "bytes": 467,
+      "augment": {
+        "kind": "Boost",
+        "codeId": "tripwire"
+      }
+    },
+    {
+      "note": "20-mechanics/augments/ward-driver.md",
+      "area": "20-mechanics",
+      "title": "WARD DRIVER",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS.cfgWard"
+      ],
+      "thesis": "Radius scales with DEFEND tier: 1, 2, 3. See [[program-tiers]].",
+      "links": [
+        "defend",
+        "program-tiers",
+        "ward"
+      ],
+      "bytes": 515,
+      "augment": {
+        "kind": "Config",
+        "codeId": "cfgWard"
+      }
+    },
+    {
+      "note": "20-mechanics/augments.md",
+      "area": "20-mechanics",
+      "title": "Augments",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts:AUGMENTS",
+        "content/kit.ts:AugmentDef",
+        "content/kit.ts:AUGMENT_BY_ID"
+      ],
+      "thesis": "Two kinds. Configs unlock a mode on a program; boosts change a rule.",
+      "links": [
+        "ability-agent",
+        "arm-halt",
+        "arm-siphon",
+        "augment-drafts",
+        "boost-bays",
+        "cheap-shot",
+        "clamp-driver",
+        "clean-run",
+        "credits",
+        "darknet-rate",
+        "deep-siphon",
+        "echo-tap",
+        "first-fault",
+        "halt-driver",
+        "hot-boot",
+        "jam-anchor",
+        "loadout-cfg",
+        "lock",
+        "long-arms",
+        "manual-txt",
+        "overtime-clause",
+        "siphon-driver",
+        "splice-refund",
+        "sweep-credit",
+        "tap-line",
+        "the-pouch",
+        "tripwire",
+        "ward",
+        "ward-driver"
+      ],
+      "bytes": 3168
+    },
+    {
+      "note": "20-mechanics/boost-bays.md",
+      "area": "20-mechanics",
+      "title": "Boost bays",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "run-reducer.ts:BOOST_SLOTS_BASE",
+        "run-reducer.ts:BOOST_SLOTS_MAX",
+        "run-reducer.ts:BOOST_SLOT_COSTS"
+      ],
+      "thesis": "BOOST_SLOTS_BASE = 3",
+      "links": [
+        "augment-drafts",
+        "augments",
+        "economy",
+        "neural-strain",
+        "the-darknet",
+        "the-night-shop"
+      ],
+      "bytes": 1325
+    },
+    {
+      "note": "20-mechanics/built-and-power.md",
+      "area": "20-mechanics",
+      "title": "Built and power",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "duel-types.ts:DuelCell.built",
+        "duel-power.ts:computePower",
+        "duel-power.ts:settlePower"
+      ],
+      "thesis": "Two layers per board. Keeping them apart is the whole design.",
+      "links": [
+        "cascades-and-surge",
+        "reach-and-placement",
+        "redirect",
+        "the-board",
+        "traps-and-telegraphs",
+        "turn-structure"
+      ],
+      "bytes": 3319
+    },
+    {
+      "note": "20-mechanics/cascades-and-surge.md",
+      "area": "20-mechanics",
+      "title": "Cascades and surge",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "kit.ts:cascadeRam",
+        "kit.ts:surgeTierOf",
+        "duel-actions.ts:settleBoard"
+      ],
+      "thesis": "The signature moment. Hold a long chain aligned behind one unturned junction, then flip that junction and light all of it at once.",
+      "links": [
+        "built-and-power",
+        "lock",
+        "long-arms",
+        "reach-and-placement",
+        "teaching-system",
+        "the-board",
+        "traps-and-telegraphs"
+      ],
+      "bytes": 3524
+    },
+    {
+      "note": "20-mechanics/credits.md",
+      "area": "20-mechanics",
+      "title": "Credits",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/arc.ts:jobPay",
+        "run-reducer.ts:jobPayFor",
+        "run-reducer.ts:SALVAGE_PAY"
+      ],
+      "thesis": "The run currency. Earned by clearing tickets, spent at night.",
+      "links": [
+        "augment-drafts",
+        "boost-bays",
+        "clean-run",
+        "darknet-rate",
+        "economy",
+        "entry-bills",
+        "meta-progression",
+        "neural-strain",
+        "overtime-clause",
+        "patch-pieces",
+        "scoring-and-lifetime-stats",
+        "the-darknet",
+        "the-shop"
+      ],
+      "bytes": 1612
+    },
+    {
+      "note": "20-mechanics/death-and-run-end.md",
+      "area": "20-mechanics",
+      "title": "Death, lives and run end",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "run-reducer.ts",
+        "run-reducer.ts:runEnd",
+        "save.ts:MetaState",
+        "story.ts:runEndScene"
+      ],
+      "thesis": "Deliberately. There is no life counter, no continues, no revives, and no mid-run checkpoint. A run either reaches day 10 or it ends.",
+      "links": [
+        "dad-log-archive",
+        "game-progression",
+        "neural-strain",
+        "reveal-schedule",
+        "rhea",
+        "save-and-load",
+        "scoring-and-lifetime-stats",
+        "story-overview",
+        "the-ten-day-arc"
+      ],
+      "bytes": 2107
+    },
+    {
+      "note": "20-mechanics/defend.md",
+      "area": "20-mechanics",
+      "title": "DEFEND",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "kit.ts:DEFEND_WIDTH",
+        "kit.ts:defendModeDesc"
+      ],
+      "thesis": "Acts on **your own** board. 1 RAM, once per turn.",
+      "links": [
+        "clamp-driver",
+        "lock",
+        "program-tiers",
+        "purge",
+        "scan",
+        "split-boards",
+        "territory-and-claiming",
+        "the-kit",
+        "traps-and-telegraphs",
+        "ward",
+        "ward-driver"
+      ],
+      "bytes": 1243
+    },
+    {
+      "note": "20-mechanics/difficulty-dials.md",
+      "area": "20-mechanics",
+      "title": "Difficulty dials",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "duel-types.ts:DuelConfig",
+        "content/arc.ts:DayConfig",
+        "content/arc.ts:DAY_CONFIGS",
+        "content/arc.ts:oppKitFor"
+      ],
+      "thesis": "Three knobs govern how hard the machine is. Only two of them are load-bearing.",
+      "links": [
+        "arc-composer",
+        "cascades-and-surge",
+        "opponent-ai",
+        "patch-pieces",
+        "program-tiers",
+        "rotation",
+        "simulation-harnesses",
+        "the-plays",
+        "the-ten-day-arc"
+      ],
+      "bytes": 4163
+    },
+    {
+      "note": "20-mechanics/economy.md",
+      "area": "20-mechanics",
+      "title": "Economy",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "run-reducer.ts",
+        "content/arc.ts:jobPay",
+        "patch-cells.ts"
+      ],
+      "thesis": "Three currencies, on three different clocks.",
+      "links": [
+        "augment-drafts",
+        "boost-bays",
+        "credits",
+        "job-pay-and-billing",
+        "meta-progression",
+        "neural-strain",
+        "patch-pieces",
+        "ram",
+        "scoring-and-lifetime-stats",
+        "the-darknet",
+        "the-ten-day-arc"
+      ],
+      "bytes": 1899
+    },
+    {
+      "note": "20-mechanics/job-pay-and-billing.md",
+      "area": "20-mechanics",
+      "title": "Job pay and billing",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/arc.ts:jobPay",
+        "run-reducer.ts:jobPayFor"
+      ],
+      "thesis": "jobPay(tier)          = 40 + 25 * tier",
+      "links": [
+        "clean-run",
+        "economy",
+        "overtime-clause",
+        "repair-log",
+        "ruling-10-overtime-billing",
+        "the-round-cap",
+        "the-ten-day-arc"
+      ],
+      "bytes": 1397
+    },
+    {
+      "note": "20-mechanics/lock.md",
+      "area": "20-mechanics",
+      "title": "LOCK",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "kit.ts:LOCK_ROUNDS",
+        "kit.ts:defendModeDesc"
+      ],
+      "thesis": "Freeze junctions for **2 rounds** (`LOCK_ROUNDS`). Nothing rotates or redirects them.",
+      "links": [
+        "cascades-and-surge",
+        "clamp-driver",
+        "jam-anchor",
+        "purge",
+        "redirect",
+        "ward"
+      ],
+      "bytes": 1171
+    },
+    {
+      "note": "20-mechanics/neural-strain.md",
+      "area": "20-mechanics",
+      "title": "Neural Strain",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "run-reducer.ts:START_STRAIN",
+        "run-reducer.ts:PATCH_HEAL",
+        "run-reducer.ts:DAY_REST_REGEN",
+        "duel-actions.ts:finishDuel"
+      ],
+      "thesis": "The run's health bar. It is the only thing that ends a run early.",
+      "links": [
+        "dad",
+        "death-and-run-end",
+        "economy",
+        "ground-truth",
+        "repair-log",
+        "route-cost-and-par",
+        "teaching-system",
+        "the-night-shop"
+      ],
+      "bytes": 2121
+    },
+    {
+      "note": "20-mechanics/opponent-ai.md",
+      "area": "20-mechanics",
+      "title": "Opponent AI",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "opponent.ts",
+        "opponent.ts:routePlan"
+      ],
+      "thesis": "The intrusion is a scripted opponent, not a search. It runs the same Dijkstra you do, on its own board, and decides each turn whether to race or to interfere.",
+      "links": [
+        "difficulty-dials",
+        "rotation",
+        "route-cost-and-par",
+        "simulation-harnesses",
+        "the-ten-day-arc",
+        "the-tutorial",
+        "traps-and-telegraphs"
+      ],
+      "bytes": 3369
+    },
+    {
+      "note": "20-mechanics/patch-pieces.md",
+      "area": "20-mechanics",
+      "title": "Patch pieces",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "patch-cells.ts:PLACE_COST",
+        "patch-cells.ts:CRAFT_COST",
+        "patch-cells.ts:PATCH_ROLL_WEIGHTS",
+        "patch-cells.ts:armUnionCraft",
+        "patch-cells.ts:darkPatchCost"
+      ],
+      "thesis": "Single-use shaped fills. A piece is a **4-bit arm mask with its orientation baked in**: it is never rotatable, in hand or on the board.",
+      "links": [
+        "20-mechanics",
+        "clean-run",
+        "reach-and-placement",
+        "redirect",
+        "route-cost-and-par",
+        "solder-bay",
+        "splice-refund",
+        "split-boards",
+        "the-darknet",
+        "the-pouch"
+      ],
+      "bytes": 2499
+    },
+    {
+      "note": "20-mechanics/player-character.md",
+      "area": "20-mechanics",
+      "title": "Player character",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The son. Unnamed, never pictured, never speaks in the third person.",
+      "links": [
+        "attack",
+        "credits",
+        "defend",
+        "game-controls",
+        "kp-os",
+        "neural-strain",
+        "player-inventory",
+        "player-skills",
+        "ram",
+        "rotation",
+        "scan",
+        "the-player",
+        "the-tutorial"
+      ],
+      "bytes": 1566
+    },
+    {
+      "note": "20-mechanics/player-inventory.md",
+      "area": "20-mechanics",
+      "title": "Player inventory",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Three containers, all capped, all emptied at run end.",
+      "links": [
+        "augments",
+        "boost-bays",
+        "law-3-fluid-and-the-height-ceiling",
+        "loadout-cfg",
+        "meta-progression",
+        "patch-pieces",
+        "player-skills",
+        "solder-bay",
+        "the-pouch"
+      ],
+      "bytes": 1335
+    },
+    {
+      "note": "20-mechanics/player-metrics.md",
+      "area": "20-mechanics",
+      "title": "Player metrics",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Every number attached to the player, and where it lives.",
+      "links": [
+        "boost-bays",
+        "credits",
+        "ledger-log",
+        "long-arms",
+        "neural-strain",
+        "patch-pieces",
+        "player-inventory",
+        "player-skills",
+        "ram",
+        "reach-and-placement",
+        "repair-log",
+        "route-cost-and-par",
+        "scoring-and-lifetime-stats",
+        "teaching-tips",
+        "traps-and-telegraphs"
+      ],
+      "bytes": 1736
+    },
+    {
+      "note": "20-mechanics/player-skills.md",
+      "area": "20-mechanics",
+      "title": "Player skills",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The skill system, such as it is. There are no skill trees, no XP and no levels.",
+      "links": [
+        "arm-halt",
+        "arm-siphon",
+        "attack",
+        "augments",
+        "cascades-and-surge",
+        "defend",
+        "loadout-cfg",
+        "lock",
+        "program-tiers",
+        "purge",
+        "redirect",
+        "route-cost-and-par",
+        "scan",
+        "the-kit",
+        "ward"
+      ],
+      "bytes": 1793
+    },
+    {
+      "note": "20-mechanics/program-tiers.md",
+      "area": "20-mechanics",
+      "title": "Program tiers",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "kit.ts:SCAN_RANGE",
+        "kit.ts:ATTACK_WIDTH",
+        "kit.ts:DEFEND_WIDTH",
+        "kit.ts:WARD_RADIUS",
+        "kit.ts:SIPHON_STEAL"
+      ],
+      "thesis": "Width is targets per cast: nodes redirected, traps planted, traps cleared, locks placed.",
+      "links": [
+        "difficulty-dials",
+        "the-kit",
+        "the-night-shop"
+      ],
+      "bytes": 1095
+    },
+    {
+      "note": "20-mechanics/purge.md",
+      "area": "20-mechanics",
+      "title": "PURGE",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "kit.ts:defendModeDesc"
+      ],
+      "thesis": "Disarm revealed traps on your own board. 1, 2 or 3 per cast by `DEFEND_WIDTH`.",
+      "links": [
+        "arm-halt",
+        "arm-siphon",
+        "cascades-and-surge",
+        "lock",
+        "redirect",
+        "scan",
+        "sweep-credit",
+        "ward"
+      ],
+      "bytes": 1202
+    },
+    {
+      "note": "20-mechanics/ram.md",
+      "area": "20-mechanics",
+      "title": "RAM",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "run-reducer.ts:BASE_RAM",
+        "run-reducer.ts:MAX_RAM",
+        "duel-types.ts:SideEcon"
+      ],
+      "thesis": "The per-turn action budget. RAM is what makes the duel a game of choices rather than a puzzle with one answer.",
+      "links": [
+        "arm-halt",
+        "arm-siphon",
+        "cascades-and-surge",
+        "cheap-shot",
+        "deep-siphon",
+        "echo-tap",
+        "hot-boot",
+        "patch-pieces",
+        "rotation",
+        "splice-refund",
+        "sweep-credit",
+        "the-night-shop",
+        "tripwire",
+        "turn-structure"
+      ],
+      "bytes": 1962
+    },
+    {
+      "note": "20-mechanics/reach-and-placement.md",
+      "area": "20-mechanics",
+      "title": "Reach and placement",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "duel-power.ts:reachOf",
+        "duel-power.ts:inReach",
+        "duel-power.ts:canPlace",
+        "duel-power.ts:withinReachWalk",
+        "duel-power.ts:isFrontier",
+        "kit.ts:BASE_REACH"
+      ],
+      "thesis": "Reach is how far ahead of your built ground you are allowed to work.",
+      "links": [
+        "built-and-power",
+        "cascades-and-surge",
+        "long-arms",
+        "patch-pieces",
+        "rotation",
+        "route-cost-and-par",
+        "splice-refund",
+        "the-board"
+      ],
+      "bytes": 2602
+    },
+    {
+      "note": "20-mechanics/redirect.md",
+      "area": "20-mechanics",
+      "title": "REDIRECT",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "kit.ts:attackModeDesc"
+      ],
+      "thesis": "Twist enemy or open junctions a quarter turn, **anywhere on the board, no reach limit**. Cuts power to everything downstream.",
+      "links": [
+        "attack",
+        "jam-anchor",
+        "lock",
+        "neural-strain",
+        "patch-pieces",
+        "rotation",
+        "traps-and-telegraphs",
+        "ward"
+      ],
+      "bytes": 1547
+    },
+    {
+      "note": "20-mechanics/rotation.md",
+      "area": "20-mechanics",
+      "title": "Rotation",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "duel-power.ts:rotCostFor",
+        "duel-power.ts:repairCostOf",
+        "duel-power.ts:canRotate",
+        "types.ts"
+      ],
+      "thesis": "The only movement verb. You twist a junction a quarter turn so its arms line up and signal flows further.",
+      "links": [
+        "built-and-power",
+        "difficulty-dials",
+        "lock",
+        "patch-pieces",
+        "ram",
+        "reach-and-placement",
+        "redirect",
+        "route-cost-and-par",
+        "the-board",
+        "turn-structure"
+      ],
+      "bytes": 3366
+    },
+    {
+      "note": "20-mechanics/route-cost-and-par.md",
+      "area": "20-mechanics",
+      "title": "Route cost and par",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "duel-power.ts:routePlan",
+        "duel-power.ts:routeCost",
+        "kit.ts:PAR_RATE",
+        "kit.ts:PAR_FLAT",
+        "kit.ts:PAR_STRAIN_PER",
+        "duel-setup.ts"
+      ],
+      "thesis": "One function prices the entire game.",
+      "links": [
+        "neural-strain",
+        "opponent-ai",
+        "patch-pieces",
+        "redirect",
+        "simulation-harnesses",
+        "split-boards",
+        "the-board",
+        "the-round-cap",
+        "the-ten-day-arc"
+      ],
+      "bytes": 4074
+    },
+    {
+      "note": "20-mechanics/scan.md",
+      "area": "20-mechanics",
+      "title": "SCAN",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "kit.ts:SCAN_RANGE",
+        "kit.ts:scanDesc"
+      ],
+      "thesis": "Information. 1 RAM, once per turn, acts on your own board.",
+      "links": [
+        "program-tiers",
+        "purge",
+        "tap-line",
+        "the-kit",
+        "traps-and-telegraphs"
+      ],
+      "bytes": 1161
+    },
+    {
+      "note": "20-mechanics/scoring-and-lifetime-stats.md",
+      "area": "20-mechanics",
+      "title": "Scoring and lifetime stats",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "save.ts:MetaState.stats",
+        "save.ts:LifetimeStats"
+      ],
+      "thesis": "There is no score. Nothing ranks the player and nothing is optimized for points.",
+      "links": [
+        "customers",
+        "death-and-run-end",
+        "ledger-log",
+        "repair-log"
+      ],
+      "bytes": 1332
+    },
+    {
+      "note": "20-mechanics/split-boards.md",
+      "area": "20-mechanics",
+      "title": "Split boards",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "duel-types.ts:DuelState.boards",
+        "duel-power.ts"
+      ],
+      "thesis": "Each side owns a grid. `DuelState.boards` is a `Record<Side, Board>` where `Side = \"player\" | \"opp\"`. Yours is `boards.player`, the intrusion's is `boards.opp`.",
+      "links": [
+        "20-mechanics",
+        "attack",
+        "built-and-power",
+        "defend",
+        "patch-pieces",
+        "reach-and-placement",
+        "territory-and-claiming",
+        "the-board",
+        "win-conditions"
+      ],
+      "bytes": 3247
+    },
+    {
+      "note": "20-mechanics/the-board.md",
+      "area": "20-mechanics",
+      "title": "The board",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "duel-setup.ts:generateBoard",
+        "duel-setup.ts:drawMask",
+        "duel-setup.ts:mixSeed",
+        "duel-types.ts:DuelCell"
+      ],
+      "thesis": "Each side's grid is generated from the run seed, then rejection-sampled until it is fair.",
+      "links": [
+        "day-10-the-finale",
+        "determinism-and-seeds",
+        "difficulty-dials",
+        "patch-pieces",
+        "rotation",
+        "route-cost-and-par",
+        "the-ten-day-arc",
+        "tutorial-beats"
+      ],
+      "bytes": 3711
+    },
+    {
+      "note": "20-mechanics/the-darknet.md",
+      "area": "20-mechanics",
+      "title": "The darknet",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "run-reducer.ts:buyDarkPatch",
+        "run-reducer.ts:darkPullPrice",
+        "patch-cells.ts:darkPatchCost"
+      ],
+      "thesis": "The gray market. One blind [[patch-pieces|patch piece]], priced by day.",
+      "links": [
+        "darknet-lnk",
+        "darknet-rate",
+        "economy",
+        "patch-pieces",
+        "ruling-09-darknet",
+        "the-night-shop"
+      ],
+      "bytes": 1455
+    },
+    {
+      "note": "20-mechanics/the-duel.md",
+      "area": "20-mechanics",
+      "title": "The duel",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "duel-types.ts",
+        "duel-setup.ts",
+        "duel-power.ts",
+        "duel-actions.ts",
+        "duel-commands.ts",
+        "opponent.ts"
+      ],
+      "thesis": "The duel is the combat system. Every dive into a customer's device is one duel against one intrusion. It is turn-based, deterministic from a seed, and it is a race rather than a fight: nobody has hit points.",
+      "links": [
+        "attack",
+        "built-and-power",
+        "cascades-and-surge",
+        "defend",
+        "difficulty-dials",
+        "neural-strain",
+        "opponent-ai",
+        "patch-pieces",
+        "ram",
+        "reach-and-placement",
+        "rotation",
+        "route-cost-and-par",
+        "territory-and-claiming",
+        "the-kit",
+        "the-ten-day-arc",
+        "the-tutorial",
+        "traps-and-telegraphs",
+        "turn-structure",
+        "win-conditions"
+      ],
+      "bytes": 3364
+    },
+    {
+      "note": "20-mechanics/the-kit.md",
+      "area": "20-mechanics",
+      "title": "The kit",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/kit.ts"
+      ],
+      "thesis": "Every diver, and every intrusion, carries exactly three programs.",
+      "links": [
+        "arm-halt",
+        "arm-siphon",
+        "attack",
+        "augments",
+        "cascades-and-surge",
+        "defend",
+        "difficulty-dials",
+        "lock",
+        "program-tiers",
+        "purge",
+        "redirect",
+        "route-cost-and-par",
+        "scan",
+        "the-night-shop",
+        "traps-and-telegraphs",
+        "ward"
+      ],
+      "bytes": 2006
+    },
+    {
+      "note": "20-mechanics/the-night-shop.md",
+      "area": "20-mechanics",
+      "title": "The night shop",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "run-reducer.ts:chooseUpgrade",
+        "run-reducer.ts:closeNight",
+        "run-reducer.ts:buyPatch",
+        "run-reducer.ts:buySlot",
+        "run-reducer.ts:buyDarkPatch",
+        "run-reducer.ts:craftPatch",
+        "run-reducer.ts:NIGHT_PICKS"
+      ],
+      "thesis": "Day close. One free pick, plus anything you can afford.",
+      "links": [
+        "boost-bays",
+        "coachmarks",
+        "dad",
+        "economy",
+        "ground-truth",
+        "neural-strain",
+        "night-sys",
+        "patch-pieces",
+        "program-tiers",
+        "the-darknet"
+      ],
+      "bytes": 1921
+    },
+    {
+      "note": "20-mechanics/the-pouch.md",
+      "area": "20-mechanics",
+      "title": "The pouch",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "patch-cells.ts:PATCH_POUCH_MAX",
+        "duel-types.ts:DuelKit.patchPouch"
+      ],
+      "thesis": "Where [[patch-pieces]] are carried. `PATCH_POUCH_MAX = 5`.",
+      "links": [
+        "augments",
+        "patch-pieces",
+        "player-inventory",
+        "solder-bay",
+        "splice-refund",
+        "the-darknet"
+      ],
+      "bytes": 1162
+    },
+    {
+      "note": "20-mechanics/the-round-cap.md",
+      "area": "20-mechanics",
+      "title": "The round cap",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "duel-types.ts:ROUND_CAP",
+        "duel-actions.ts"
+      ],
+      "thesis": "ROUND_CAP = 25",
+      "links": [
+        "clean-run",
+        "difficulty-dials",
+        "neural-strain",
+        "overtime-clause",
+        "route-cost-and-par",
+        "ruling-10-overtime-billing",
+        "simulation-harnesses"
+      ],
+      "bytes": 2358
+    },
+    {
+      "note": "20-mechanics/traps-and-telegraphs.md",
+      "area": "20-mechanics",
+      "title": "Traps and telegraphs",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "duel-types.ts:DuelCell.trap",
+        "duel-power.ts:settlePower",
+        "duel-actions.ts:settleBoard"
+      ],
+      "thesis": "Interference comes in two forms: a mine you walk into later, and a move you can see coming one beat early.",
+      "links": [
+        "arm-halt",
+        "arm-siphon",
+        "attack",
+        "cascades-and-surge",
+        "customers",
+        "first-fault",
+        "opponent-ai",
+        "purge",
+        "scan",
+        "the-kit",
+        "tripwire",
+        "ward"
+      ],
+      "bytes": 3310
+    },
+    {
+      "note": "20-mechanics/turn-structure.md",
+      "area": "20-mechanics",
+      "title": "Turn structure",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "duel-commands.ts",
+        "duel-reducer.ts",
+        "duel-actions.ts:beginTurnEconomy"
+      ],
+      "thesis": "One round is one player turn then one opponent turn. `round` is 1-based.",
+      "links": [
+        "augments",
+        "cascades-and-surge",
+        "opponent-ai",
+        "patch-pieces",
+        "ram",
+        "rotation",
+        "simulation-harnesses",
+        "split-boards",
+        "traps-and-telegraphs"
+      ],
+      "bytes": 3763
+    },
+    {
+      "note": "20-mechanics/ward.md",
+      "area": "20-mechanics",
+      "title": "WARD",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "kit.ts:WARD_RADIUS",
+        "kit.ts:WARD_ROUNDS",
+        "kit.ts:defendModeDesc"
+      ],
+      "thesis": "Ward a junction and everything within a Manhattan radius of it for **2 rounds** (`WARD_ROUNDS`).",
+      "links": [
+        "lock",
+        "purge",
+        "redirect",
+        "scan",
+        "ward-driver"
+      ],
+      "bytes": 1340
+    },
+    {
+      "note": "20-mechanics/win-conditions.md",
+      "area": "20-mechanics",
+      "title": "Win conditions",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "duel-types.ts:DuelEndKind",
+        "duel-actions.ts:finishDuel"
+      ],
+      "thesis": "Three outcomes. That is the complete list.",
+      "links": [
+        "built-and-power",
+        "death-and-run-end",
+        "job-pay-and-billing",
+        "neural-strain",
+        "overtime-clause",
+        "repair-log",
+        "route-cost-and-par",
+        "the-round-cap",
+        "the-tutorial"
+      ],
+      "bytes": 2515
+    },
+    {
+      "note": "30-content/30-content.md",
+      "area": "30-content",
+      "title": "Content",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Everything authored: the arc, the roster, the artifacts, the scenes.",
+      "links": [
+        "customers",
+        "cutscenes-and-scenes",
+        "dad-log-archive",
+        "day-1",
+        "day-10-the-finale",
+        "day-2",
+        "day-3",
+        "day-4",
+        "day-5",
+        "day-6",
+        "day-7",
+        "day-8",
+        "day-9",
+        "encounter-generator",
+        "intrusions",
+        "reveal-schedule",
+        "the-finale-encounter",
+        "the-shop",
+        "the-ten-day-arc",
+        "world-overview"
+      ],
+      "bytes": 1169
+    },
+    {
+      "note": "30-content/customers/aldous-wick.md",
+      "area": "30-content",
+      "title": "Aldous Wick",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The only customer spanning three tiers, so he recurs across the arc at rising difficulty. A halt-trap job: the heaviest tempo punishment in the game, and the strongest argument for [[scan]] first.",
+      "links": [
+        "arm-halt",
+        "cust-card-aldous-device.png",
+        "cust-card-aldous-portrait.png",
+        "customers",
+        "dad",
+        "entry-bills",
+        "ruling-06-meridian",
+        "ruling-08-names",
+        "scan"
+      ],
+      "bytes": 1173
+    },
+    {
+      "note": "30-content/customers/bram-hollander.md",
+      "area": "30-content",
+      "title": "Bram Hollander",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "A clamp job. Junctions you need freeze solid for two rounds, which is the most frustrating denial in the game if you have no answer, and trivial if you do.",
+      "links": [
+        "cascades-and-surge",
+        "customers",
+        "lock",
+        "repairlog-figure-bram.png"
+      ],
+      "bytes": 1069
+    },
+    {
+      "note": "30-content/customers/casimir-bell.md",
+      "area": "30-content",
+      "title": "Casimir Bell",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Not yet ruled. **Invent nothing without a ruling.**",
+      "links": [
+        "backroom-lck",
+        "cascades-and-surge",
+        "customers",
+        "lock",
+        "the-machine"
+      ],
+      "bytes": 968
+    },
+    {
+      "note": "30-content/customers/dex-marlowe.md",
+      "area": "30-content",
+      "title": "Dex Marlowe",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The mid-tier redirect job. Same routine as [[sable-okonkwo]] one band up, so it is a natural difficulty check: the player who cleared Sable comfortably meets the same verb against a wider cast.",
+      "links": [
+        "customers",
+        "redirect",
+        "sable-okonkwo"
+      ],
+      "bytes": 936
+    },
+    {
+      "note": "30-content/customers/emeric-snow.md",
+      "area": "30-content",
+      "title": "Emeric Snow",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Not yet ruled. **Invent nothing without a ruling.**",
+      "links": [
+        "arm-halt",
+        "arm-siphon",
+        "customers",
+        "difficulty-dials",
+        "patch",
+        "purge",
+        "redirect",
+        "the-machine"
+      ],
+      "bytes": 948
+    },
+    {
+      "note": "30-content/customers/ines-calloway.md",
+      "area": "30-content",
+      "title": "Ines Calloway",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Not yet ruled. **Invent nothing without a ruling.**",
+      "links": [
+        "arm-halt",
+        "customers",
+        "reveal-schedule",
+        "the-machine",
+        "traps-and-telegraphs"
+      ],
+      "bytes": 969
+    },
+    {
+      "note": "30-content/customers/june-aksoy.md",
+      "area": "30-content",
+      "title": "June Aksoy",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Not yet ruled. **Invent nothing without a ruling.**",
+      "links": [
+        "customers",
+        "ward"
+      ],
+      "bytes": 858
+    },
+    {
+      "note": "30-content/customers/juno-vex.md",
+      "area": "30-content",
+      "title": "Juno Vex",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "An early-tier siphon job, so it is often a player's first encounter with traps that steal [[ram]] rather than deny tempo. The Analyze tell will say so: \"It wants your RAM more than your route. Scan early.\"",
+      "links": [
+        "arm-siphon",
+        "cust-card-juno-device.png",
+        "cust-card-juno-portrait.png",
+        "customers",
+        "day-1",
+        "ram"
+      ],
+      "bytes": 732
+    },
+    {
+      "note": "30-content/customers/noor-behzadi.md",
+      "area": "30-content",
+      "title": "Noor Behzadi",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Not yet ruled. **Invent nothing without a ruling.**",
+      "links": [
+        "customers",
+        "emeric-snow",
+        "patch",
+        "purge",
+        "redirect"
+      ],
+      "bytes": 925
+    },
+    {
+      "note": "30-content/customers/sable-okonkwo.md",
+      "area": "30-content",
+      "title": "Sable Okonkwo",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "A redirect job at low tier: the cleanest introduction to the interference economy, because the damage is visible (your chain goes dark) and the counter is obvious (twist it back, and notice what it cost).",
+      "links": [
+        "cust-card-sable-device.png",
+        "cust-card-sable-portrait.png",
+        "customers",
+        "redirect",
+        "rotation"
+      ],
+      "bytes": 852
+    },
+    {
+      "note": "30-content/customers/vera-stanek.md",
+      "area": "30-content",
+      "title": "Vera Stanek",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Not yet ruled. **Invent nothing without a ruling.**",
+      "links": [
+        "arm-siphon",
+        "customers",
+        "dad",
+        "entry-receipts",
+        "neural-strain",
+        "ram"
+      ],
+      "bytes": 995
+    },
+    {
+      "note": "30-content/customers/wren-tallis.md",
+      "area": "30-content",
+      "title": "Wren Tallis",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "A low-tier ward job, which is unusual: warding is prevention, so the intrusion is not attacking so much as refusing to be attacked. Your traps will not land and your redirects will bounce inside the bubble.",
+      "links": [
+        "cust-card-wren-device.png",
+        "customers",
+        "defend",
+        "repairlog-figure-wren.png",
+        "ward"
+      ],
+      "bytes": 869
+    },
+    {
+      "note": "30-content/customers.md",
+      "area": "30-content",
+      "title": "Customers",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/customers.ts:CUSTOMERS",
+        "content/customers.ts:CustomerProfile"
+      ],
+      "thesis": "Twelve regulars. Every job is an intrusion in a machine somebody loves.",
+      "links": [
+        "aldous-wick",
+        "arm-halt\\",
+        "arm-siphon\\",
+        "bram-hollander",
+        "casimir-bell",
+        "dex-marlowe",
+        "emeric-snow",
+        "encounter-generator",
+        "inbox",
+        "ines-calloway",
+        "june-aksoy",
+        "juno-vex",
+        "ledger-log",
+        "lock",
+        "noor-behzadi",
+        "purge",
+        "redirect",
+        "sable-okonkwo",
+        "scoring-and-lifetime-stats",
+        "the-finale-encounter",
+        "traps-and-telegraphs",
+        "vera-stanek",
+        "voice-and-copy-laws",
+        "ward",
+        "wren-tallis"
+      ],
+      "bytes": 2949
+    },
+    {
+      "note": "30-content/cutscenes-and-scenes.md",
+      "area": "30-content",
+      "title": "Cutscenes and scenes",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/story.ts"
+      ],
+      "thesis": "StoryBeat { speaker: \"sister\"|\"father\"|\"system\"|\"companion\",",
+      "links": [
+        "dad",
+        "dad-log-archive",
+        "day-1",
+        "loremaster",
+        "narrative-director",
+        "patch",
+        "reveal-schedule",
+        "rhea",
+        "shopfront-exe"
+      ],
+      "bytes": 2413
+    },
+    {
+      "note": "30-content/dad-log-archive.md",
+      "area": "30-content",
+      "title": "DAD.LOG archive",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/journal.ts:JOURNAL_ENTRIES",
+        "content/journal.ts:DADLOG_CHROME"
+      ],
+      "thesis": "{ id, unlockAtRun, requiresOpened?, kind: \"note\"|\"bill\"|\"memo\",",
+      "links": [
+        "dad",
+        "dad-log-window",
+        "entry-backroom\\",
+        "entry-bills\\",
+        "entry-diagnosis\\",
+        "entry-failed1\\",
+        "entry-grading\\",
+        "entry-notickets\\",
+        "entry-patch\\",
+        "entry-receipts\\",
+        "entry-solder\\",
+        "entry-will\\",
+        "reveal-schedule",
+        "ruling-12-dad-log-reframe",
+        "ruling-13-dad-vol-provenance"
+      ],
+      "bytes": 3288
+    },
+    {
+      "note": "30-content/days/day-1.md",
+      "area": "30-content",
+      "title": "Day 1",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The gentlest configuration in the game. **horizon 0** means the machine does no cut scoring at all: it simply races its own board and never reaches across to interfere. The player meets the race before they meet the duel.",
+      "links": [
+        "day-2",
+        "neural-strain",
+        "patch-pieces",
+        "the-ten-day-arc",
+        "the-tutorial"
+      ],
+      "bytes": 1235
+    },
+    {
+      "note": "30-content/days/day-10-the-finale.md",
+      "area": "30-content",
+      "title": "Day 10 - the finale",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/arc.ts:finaleConfig",
+        "content/arc.ts:finalePre"
+      ],
+      "thesis": "No job board. The back room settles up.",
+      "links": [
+        "backroom-lck",
+        "day-9",
+        "entry-patch",
+        "law-3-fluid-and-the-height-ceiling",
+        "reveal-schedule",
+        "the-finale-encounter",
+        "the-machine"
+      ],
+      "bytes": 2127
+    },
+    {
+      "note": "30-content/days/day-2.md",
+      "area": "30-content",
+      "title": "Day 2",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The day line does the teaching the interface does not: **strain carries over**. It is the first statement that the run is a resource arc rather than a series of independent jobs.",
+      "links": [
+        "day-3",
+        "neural-strain",
+        "route-cost-and-par"
+      ],
+      "bytes": 1105
+    },
+    {
+      "note": "30-content/days/day-3.md",
+      "area": "30-content",
+      "title": "Day 3",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Three things change together: the grid grows, `headStart` arrives, and the patch drop rate falls by a third.",
+      "links": [
+        "augments",
+        "day-4",
+        "the-board"
+      ],
+      "bytes": 1203
+    },
+    {
+      "note": "30-content/days/day-4.md",
+      "area": "30-content",
+      "title": "Day 4",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The machine now also scores by **how much of the player's live grid goes dark**. Cuts stop being about route cost alone and start being about tempo damage.",
+      "links": [
+        "day-5",
+        "difficulty-dials",
+        "the-machine"
+      ],
+      "bytes": 995
+    },
+    {
+      "note": "30-content/days/day-5.md",
+      "area": "30-content",
+      "title": "Day 5",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The first day with a floor on the player's opening route cost. By day 5 a kitted player has enough boosts, banked [[cascades-and-surge|cascade]] RAM and [[patch-pieces|pieces]] that an opening burst could otherwise close a short board outright. `minPd` stops the generator handing out a board that can be solved on turn one.",
+      "links": [
+        "cascades-and-surge",
+        "day-6",
+        "entry-diagnosis",
+        "patch-pieces",
+        "reveal-schedule",
+        "the-board"
+      ],
+      "bytes": 1200
+    },
+    {
+      "note": "30-content/days/day-6.md",
+      "area": "30-content",
+      "title": "Day 6",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "First day where all three tickets are tier 3.",
+      "links": [
+        "augment-drafts",
+        "augments",
+        "credits",
+        "day-7"
+      ],
+      "bytes": 1239
+    },
+    {
+      "note": "30-content/days/day-7.md",
+      "area": "30-content",
+      "title": "Day 7",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "First tier 4 ticket, which means an opponent carrying two attack modes and two defend modes, casting two targets wide.",
+      "links": [
+        "augments",
+        "day-8",
+        "neural-strain",
+        "rhea",
+        "route-cost-and-par"
+      ],
+      "bytes": 1080
+    },
+    {
+      "note": "30-content/days/day-8.md",
+      "area": "30-content",
+      "title": "Day 8",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The machine reaches full intelligence. It now:",
+      "links": [
+        "augments",
+        "day-9",
+        "entry-grading",
+        "neural-strain",
+        "opponent-ai",
+        "rhea"
+      ],
+      "bytes": 1485
+    },
+    {
+      "note": "30-content/days/day-9.md",
+      "area": "30-content",
+      "title": "Day 9",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Every curve is at its working-day extreme: the largest head start, the tightest par margin, the most slag, the fewest drops, and the first **tier 5** ticket.",
+      "links": [
+        "day-10-the-finale",
+        "difficulty-dials",
+        "neural-strain"
+      ],
+      "bytes": 1335
+    },
+    {
+      "note": "30-content/intrusions.md",
+      "area": "30-content",
+      "title": "Intrusions",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Clearing one is not deleting static code. It fights back. That is why every repair is a dive, and why every shop ticket is an intrusion job.",
+      "links": [
+        "customers",
+        "dad",
+        "dive-exe",
+        "opponent-ai",
+        "patch",
+        "rhea",
+        "ruling-02-cover-story",
+        "ruling-05-nature-of-intrusions",
+        "ruling-11-opponent-identity-tag",
+        "traps-and-telegraphs"
+      ],
+      "bytes": 1777
+    },
+    {
+      "note": "30-content/journal/entry-backroom.md",
+      "area": "30-content",
+      "title": "THE BACK ROOM",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The player queried the shop's ticketing system for the tower and found nothing:",
+      "links": [
+        "entry-notickets",
+        "ruling-13-dad-vol-provenance"
+      ],
+      "bytes": 1093
+    },
+    {
+      "note": "30-content/journal/entry-bills.md",
+      "area": "30-content",
+      "title": "FINAL NOTICE",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Meridian Neurocare, unpaid, one of **eleven**. The father had medical debt bigger than a year of shop income, and hid it.",
+      "links": [
+        "entry-diagnosis",
+        "entry-receipts",
+        "reveal-schedule",
+        "ruling-06-meridian",
+        "ruling-08-names"
+      ],
+      "bytes": 1200
+    },
+    {
+      "note": "30-content/journal/entry-diagnosis.md",
+      "area": "30-content",
+      "title": "THE DIAGNOSIS",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "NF-3 neurofilament degradation, **stage three**. 9,000+ logged dive hours.",
+      "links": [
+        "dad",
+        "entry-receipts",
+        "ground-truth",
+        "neural-strain",
+        "reveal-schedule"
+      ],
+      "bytes": 1311
+    },
+    {
+      "note": "30-content/journal/entry-failed1.md",
+      "area": "30-content",
+      "title": "ANOTHER FAILED RUN",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The tower's own record of the opening dive. The machine did not fight. **It graded him and shut the door.**",
+      "links": [
+        "entry-grading",
+        "ruling-12-dad-log-reframe",
+        "the-tutorial"
+      ],
+      "bytes": 877
+    },
+    {
+      "note": "30-content/journal/entry-grading.md",
+      "area": "30-content",
+      "title": "IT IS GRADING ME",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Eight dives of the tower's own telemetry, aggregated. The pattern is unmistakable: it went easy when he was weak, and it hardened exactly as fast as he improved.",
+      "links": [
+        "day-8",
+        "difficulty-dials",
+        "entry-patch",
+        "patch",
+        "reveal-schedule",
+        "the-machine"
+      ],
+      "bytes": 1427
+    },
+    {
+      "note": "30-content/journal/entry-notickets.md",
+      "area": "30-content",
+      "title": "NO TICKETS",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Cross-referenced against the shop's ledger: **no client ever existed**. The hours, the strain and the death were for something he was building in secret, on an installment plan.",
+      "links": [
+        "entry-backroom",
+        "entry-grading",
+        "reveal-schedule",
+        "rhea"
+      ],
+      "bytes": 1115
+    },
+    {
+      "note": "30-content/journal/entry-patch.md",
+      "area": "30-content",
+      "title": "PATCH",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The name, the reason for it, and the whole truth.",
+      "links": [
+        "brands-and-glossary",
+        "ground-truth",
+        "patch",
+        "the-finale-encounter"
+      ],
+      "bytes": 1426
+    },
+    {
+      "note": "30-content/journal/entry-receipts.md",
+      "area": "30-content",
+      "title": "RECEIPTS",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Strain suppressants. Weekly. Cash. **Six years.** Climbing dosage.",
+      "links": [
+        "entry-diagnosis",
+        "reveal-schedule",
+        "ruling-12-dad-log-reframe",
+        "vera-stanek"
+      ],
+      "bytes": 1144
+    },
+    {
+      "note": "30-content/journal/entry-solder.md",
+      "area": "30-content",
+      "title": "SOLDER SMOKE",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The soldering lesson. [[dad]] at the bench with a child.",
+      "links": [
+        "cascades-and-surge",
+        "dad",
+        "death-and-run-end",
+        "entry-diagnosis",
+        "voice-and-copy-laws"
+      ],
+      "bytes": 1073
+    },
+    {
+      "note": "30-content/journal/entry-will.md",
+      "area": "30-content",
+      "title": "THE WILL",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The inheritance, and the division of the shop: counter to [[rhea]], bench to [[the-player]].",
+      "links": [
+        "entry-backroom",
+        "rhea",
+        "ruling-08-names",
+        "the-player",
+        "the-shop"
+      ],
+      "bytes": 986
+    },
+    {
+      "note": "30-content/the-finale-encounter.md",
+      "area": "30-content",
+      "title": "The finale encounter",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The game's only boss, and it is deliberately not a boss.",
+      "links": [
+        "backroom-lck",
+        "cutscenes-and-scenes",
+        "day-10-the-finale",
+        "death-and-run-end",
+        "entry-patch",
+        "patch",
+        "reveal-schedule",
+        "ruling-11-opponent-identity-tag",
+        "the-machine"
+      ],
+      "bytes": 2138
+    },
+    {
+      "note": "30-content/the-shop.md",
+      "area": "30-content",
+      "title": "The shop",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "A family computer repair shop, inherited jointly by the two kids on [[dad]]'s death, per the will taped inside the register.",
+      "links": [
+        "dad",
+        "ledger-log",
+        "patch",
+        "rhea",
+        "ruling-06-meridian",
+        "ruling-07-timeline",
+        "shopfront-exe",
+        "the-machine",
+        "the-player",
+        "the-ten-day-arc",
+        "world-overview"
+      ],
+      "bytes": 1710
+    },
+    {
+      "note": "30-content/the-ten-day-arc.md",
+      "area": "30-content",
+      "title": "The ten-day arc",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "content/arc.ts:DAY_CONFIGS",
+        "content/arc.ts:finaleConfig"
+      ],
+      "thesis": "Nine working days of three tickets each, then day 10.",
+      "links": [
+        "arc-composer",
+        "augment-drafts",
+        "day-1",
+        "day-10-the-finale",
+        "day-2",
+        "day-3",
+        "day-4",
+        "day-5",
+        "day-6",
+        "day-7",
+        "day-8",
+        "day-9",
+        "difficulty-dials",
+        "economy",
+        "game-progression",
+        "neural-strain",
+        "simulation-harnesses",
+        "the-tutorial"
+      ],
+      "bytes": 3132
+    },
+    {
+      "note": "30-content/world-overview.md",
+      "area": "30-content",
+      "title": "World overview",
+      "status": "canon",
+      "source": "lore",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Near-future cyberpunk city, **seen entirely from inside one repair shop**.",
+      "links": [
+        "brands-and-glossary",
+        "credits",
+        "intrusions",
+        "kp-os",
+        "ruling-05-nature-of-intrusions",
+        "story-overview",
+        "the-duel",
+        "the-shop"
+      ],
+      "bytes": 1455
+    },
+    {
+      "note": "40-presentation/game-controls.md",
+      "area": "40-presentation",
+      "title": "Game controls",
+      "status": "derived",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Targeting is click-to-select, and `badTargetCount` and `illegalTarget` are refusal reasons the command gate returns, so partial target selection is a real state. See [[turn-structure]].",
+      "links": [
+        "hud-and-ui-design",
+        "law-1-colour-is-roles",
+        "law-7-motion",
+        "loadout-cfg",
+        "patch-pieces",
+        "patch-pieces\\",
+        "player-options",
+        "solder-bay",
+        "technical-requirements",
+        "turn-structure"
+      ],
+      "bytes": 2141
+    },
+    {
+      "note": "40-presentation/kp-os.md",
+      "area": "40-presentation",
+      "title": "KP/OS",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "components/os/shop-os.tsx",
+        "wm.tsx",
+        "desk.tsx",
+        "boot.tsx",
+        "login.tsx",
+        "icons.tsx",
+        "kp-ui.tsx"
+      ],
+      "thesis": "The shop terminal's retro pixel desktop. **The game does not have an interface. The interface is the game.**",
+      "links": [
+        "design-pillars",
+        "dive-exe",
+        "hud-and-ui-design",
+        "law-1-colour-is-roles",
+        "law-3-fluid-and-the-height-ceiling",
+        "law-6-the-tube",
+        "player-options",
+        "save-and-load",
+        "ui-rulings"
+      ],
+      "bytes": 2537
+    },
+    {
+      "note": "40-presentation/music-and-sound.md",
+      "area": "40-presentation",
+      "title": "Music and sound",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "game/audio.ts",
+        "game/sfxr.ts"
+      ],
+      "thesis": "An **sfxr preset palette rendered to buffers on demand**, plus a small additive synth for stingers, plus a music manager for the generated beds.",
+      "links": [
+        "art-direction",
+        "cascades-and-surge",
+        "player-options",
+        "route-cost-and-par",
+        "traps-and-telegraphs",
+        "ux-agent"
+      ],
+      "bytes": 2666
+    },
+    {
+      "note": "40-presentation/player-options.md",
+      "area": "40-presentation",
+      "title": "Player options",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "A short list, deliberately. Everything here is either accessibility or taste.",
+      "links": [
+        "game-controls",
+        "law-1-colour-is-roles",
+        "law-3-fluid-and-the-height-ceiling",
+        "law-6-the-tube",
+        "music-and-sound",
+        "the-ten-day-arc",
+        "title-and-start-screen"
+      ],
+      "bytes": 1976
+    },
+    {
+      "note": "40-presentation/title-and-start-screen.md",
+      "area": "40-presentation",
+      "title": "Title and start screen",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "components/os/boot.tsx",
+        "login.tsx",
+        "game/version.ts"
+      ],
+      "thesis": "There is no title screen. There is a **boot sequence**.",
+      "links": [
+        "game-flowchart",
+        "kp-os",
+        "player-options",
+        "ruling-08-names",
+        "save-and-load",
+        "technical-requirements"
+      ],
+      "bytes": 1619
+    },
+    {
+      "note": "40-presentation/windows/backroom-lck.md",
+      "area": "40-presentation",
+      "title": "BACKROOM.LCK",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The `finalePre` screen of [[shopfront-exe]]",
+      "links": [
+        "day-10-the-finale",
+        "entry-patch",
+        "patch",
+        "shopfront-exe",
+        "the-finale-encounter",
+        "the-machine"
+      ],
+      "bytes": 1351
+    },
+    {
+      "note": "40-presentation/windows/dad-log-window.md",
+      "area": "40-presentation",
+      "title": "DAD.LOG (the window)",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "windows/dadlog.tsx"
+      ],
+      "thesis": "The read-only archive reader over DAD.VOL. Integrated 2026-07-29.",
+      "links": [
+        "dad",
+        "dad-log-archive",
+        "law-8-the-cuts-discipline",
+        "reveal-schedule",
+        "ruling-12-dad-log-reframe"
+      ],
+      "bytes": 1689,
+      "window": {
+        "screenId": "journal",
+        "file": "windows/dadlog.tsx"
+      }
+    },
+    {
+      "note": "40-presentation/windows/darknet-lnk.md",
+      "area": "40-presentation",
+      "title": "DARKNET.LNK",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "windows/darknet.tsx"
+      ],
+      "thesis": "The gray-market CLI. Night phase only. `notched: true` chrome.",
+      "links": [
+        "law-1-colour-is-roles",
+        "night-sys",
+        "patch-pieces",
+        "ruling-09-darknet",
+        "ruling-14-loadout-palette",
+        "the-darknet"
+      ],
+      "bytes": 1722,
+      "window": {
+        "screenId": "darknet",
+        "file": "windows/darknet.tsx"
+      }
+    },
+    {
+      "note": "40-presentation/windows/dive-exe.md",
+      "area": "40-presentation",
+      "title": "DIVE.EXE",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Full-screen \u00b7 `components/game/duel.tsx`",
+      "links": [
+        "coachmarks",
+        "day-10-the-finale",
+        "design-pillars",
+        "law-11-panel-queue",
+        "patch",
+        "ram",
+        "route-cost-and-par",
+        "ruling-11-opponent-identity-tag",
+        "the-board",
+        "the-duel",
+        "the-pouch",
+        "the-tutorial",
+        "traps-and-telegraphs",
+        "turn-structure"
+      ],
+      "bytes": 2193
+    },
+    {
+      "note": "40-presentation/windows/inbox.md",
+      "area": "40-presentation",
+      "title": "INBOX",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "windows/inbox.tsx"
+      ],
+      "thesis": "The job board and the CUSTOMER.REC card. Fronts the day loop and launches the dive.",
+      "links": [
+        "coachmarks",
+        "core-loop",
+        "customers",
+        "difficulty-dials",
+        "law-2-hierarchy",
+        "neural-strain",
+        "ram",
+        "traps-and-telegraphs"
+      ],
+      "bytes": 1787,
+      "window": {
+        "screenId": "inbox",
+        "file": "windows/inbox.tsx"
+      }
+    },
+    {
+      "note": "40-presentation/windows/ledger-log.md",
+      "area": "40-presentation",
+      "title": "LEDGER.LOG",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "windows/ledger.tsx"
+      ],
+      "thesis": "The accounting terminal. There is no score; there are books.",
+      "links": [
+        "credits",
+        "customers",
+        "economy",
+        "law-11-panel-queue",
+        "repair-log",
+        "scoring-and-lifetime-stats",
+        "the-shop"
+      ],
+      "bytes": 1526,
+      "window": {
+        "screenId": "ledger",
+        "file": "windows/ledger.tsx"
+      }
+    },
+    {
+      "note": "40-presentation/windows/loadout-cfg.md",
+      "area": "40-presentation",
+      "title": "LOADOUT.CFG",
+      "status": "canon",
+      "source": "code",
+      "owner": "ux-agent",
+      "excluded": null,
+      "symbols": [
+        "windows/loadout.tsx"
+      ],
+      "thesis": "The kit. **The v3 reference implementation**, and the panel every other surface is built against.",
+      "links": [
+        "augments",
+        "boost-bays",
+        "law-1-colour-is-roles",
+        "law-2-hierarchy",
+        "law-3-fluid-and-the-height-ceiling",
+        "law-9-build-recipe",
+        "palette-generalization-conflict",
+        "player-skills",
+        "ruling-14-loadout-palette",
+        "the-kit",
+        "the-pouch",
+        "ui-rulings"
+      ],
+      "bytes": 2052,
+      "window": {
+        "screenId": "loadout",
+        "file": "windows/loadout.tsx"
+      }
+    },
+    {
+      "note": "40-presentation/windows/manual-txt.md",
+      "area": "40-presentation",
+      "title": "MANUAL.TXT",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "windows/manual.tsx"
+      ],
+      "thesis": "The reference. Five tabs, page-flip navigation: **DIVE \u00b7 KIT \u00b7 PATCHES \u00b7 AUGMENTS \u00b7 BAYS**.",
+      "links": [
+        "augments",
+        "law-11-panel-queue",
+        "law-8-the-cuts-discipline",
+        "mechanic-coverage",
+        "placement-bias-order",
+        "teaching-tips",
+        "the-kit"
+      ],
+      "bytes": 1634,
+      "window": {
+        "screenId": "manual",
+        "file": "windows/manual.tsx"
+      }
+    },
+    {
+      "note": "40-presentation/windows/night-sys.md",
+      "area": "40-presentation",
+      "title": "NIGHT.SYS",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The `upgrade` screen of [[shopfront-exe]] \u00b7 `windows/night.tsx`",
+      "links": [
+        "boost-bays",
+        "coachmarks",
+        "economy",
+        "law-11-panel-queue",
+        "neural-strain",
+        "program-tiers",
+        "shopfront-exe",
+        "the-darknet",
+        "the-night-shop"
+      ],
+      "bytes": 1755
+    },
+    {
+      "note": "40-presentation/windows/repair-log.md",
+      "area": "40-presentation",
+      "title": "REPAIR.LOG",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "windows/report.tsx"
+      ],
+      "thesis": "The post-dive result, **read as a transaction**.",
+      "links": [
+        "augment-drafts",
+        "job-pay-and-billing",
+        "law-11-panel-queue",
+        "ledger-log",
+        "neural-strain",
+        "patch-pieces",
+        "route-cost-and-par",
+        "teaching-system",
+        "win-conditions"
+      ],
+      "bytes": 1776,
+      "window": {
+        "screenId": "report",
+        "file": "windows/report.tsx"
+      }
+    },
+    {
+      "note": "40-presentation/windows/shopfront-exe.md",
+      "area": "40-presentation",
+      "title": "SHOPFRONT.EXE",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Because they are the same object at different times of day: the story surface. A separate window per story state would put five icons on the desktop for one thing that is never open twice at once.",
+      "links": [
+        "backroom-lck",
+        "cutscenes-and-scenes",
+        "kp-os",
+        "night-sys",
+        "reveal-schedule",
+        "rhea"
+      ],
+      "bytes": 1617
+    },
+    {
+      "note": "40-presentation/windows/solder-bay.md",
+      "area": "40-presentation",
+      "title": "SOLDER.BAY",
+      "status": "canon",
+      "source": "code",
+      "owner": "orchestrator",
+      "excluded": null,
+      "symbols": [
+        "windows/solder.tsx"
+      ],
+      "thesis": "The patch-piece bench. Crafting lives here and nowhere else.",
+      "links": [
+        "law-11-panel-queue",
+        "law-7-motion",
+        "patch-pieces",
+        "placement-bias-order",
+        "teaching-system",
+        "the-darknet",
+        "the-night-shop"
+      ],
+      "bytes": 1558,
+      "window": {
+        "screenId": "solder",
+        "file": "windows/solder.tsx"
+      }
+    },
+    {
+      "note": "70-teaching/70-teaching.md",
+      "area": "70-teaching",
+      "title": "Teaching",
+      "status": "canon",
+      "source": "code",
+      "owner": "tutorial-agent",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "How the player learns the game. Owned by the [[tutorial-agent]], enforced by a build-failing test.",
+      "links": [
+        "coachmarks",
+        "mechanic-coverage",
+        "placement-bias-order",
+        "standing-lessons",
+        "teaching-system",
+        "teaching-tips",
+        "teaching-waivers",
+        "the-gates",
+        "the-tutorial",
+        "tutorial-agent",
+        "tutorial-beats",
+        "verification-gate"
+      ],
+      "bytes": 1472
+    },
+    {
+      "note": "70-teaching/coachmarks.md",
+      "area": "70-teaching",
+      "title": "Coachmarks",
+      "status": "canon",
+      "source": "code",
+      "owner": "tutorial-agent",
+      "excluded": null,
+      "symbols": [
+        "content/teaching.ts:TEACHING"
+      ],
+      "thesis": "One-time callouts. **A coachmark is a rule you need once.**",
+      "links": [
+        "dive-exe\\",
+        "inbox\\",
+        "mechanic-coverage",
+        "night-sys\\",
+        "placement-bias-order",
+        "repair-log\\",
+        "solder-bay",
+        "teaching-tips"
+      ],
+      "bytes": 2485
+    },
+    {
+      "note": "70-teaching/mechanic-coverage.md",
+      "area": "70-teaching",
+      "title": "Mechanic coverage",
+      "status": "canon",
+      "source": "code",
+      "owner": "tutorial-agent",
+      "excluded": null,
+      "symbols": [
+        "content/teaching.ts:MECHANIC_INVENTORY"
+      ],
+      "thesis": "The inventory of everything a player must understand, and how each one is covered.",
+      "links": [
+        "split-boards",
+        "standing-lessons",
+        "teaching-waivers",
+        "territory-and-claiming"
+      ],
+      "bytes": 3105
+    },
+    {
+      "note": "70-teaching/placement-bias-order.md",
+      "area": "70-teaching",
+      "title": "Placement bias order",
+      "status": "canon",
+      "source": "lore",
+      "owner": "tutorial-agent",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The most reusable thing the teaching ledger contains. **Five tiers, and you take the lowest one that works.**",
+      "links": [
+        "hud-and-ui-design",
+        "manual-txt",
+        "narrative-director",
+        "route-cost-and-par",
+        "solder-bay",
+        "teaching-system",
+        "teaching-tips",
+        "tutorial-agent",
+        "ux-agent"
+      ],
+      "bytes": 2054
+    },
+    {
+      "note": "70-teaching/standing-lessons.md",
+      "area": "70-teaching",
+      "title": "Standing lessons",
+      "status": "canon",
+      "source": "lore",
+      "owner": "tutorial-agent",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "Craft rules extracted from thirteen dated cycle retrospectives in `tutorial/ledger.md`. The retrospectives stay there; the lessons belong here, because they are reusable and their dates are not.",
+      "links": [
+        "70-teaching",
+        "canon-rulings",
+        "mechanic-coverage",
+        "placement-bias-order",
+        "teaching-system",
+        "the-gates",
+        "tutorial-beats",
+        "ux-agent"
+      ],
+      "bytes": 2285
+    },
+    {
+      "note": "70-teaching/teaching-system.md",
+      "area": "70-teaching",
+      "title": "Teaching system",
+      "status": "canon",
+      "source": "code",
+      "owner": "tutorial-agent",
+      "excluded": null,
+      "symbols": [
+        "content/teaching.ts",
+        "components/game/teach.tsx",
+        "dev/teach-sim.ts"
+      ],
+      "thesis": "1. **Every mechanic resolves to a moment or a written waiver.** Enforced by `teach-sim.ts`, which exits 1 and names the gap.",
+      "links": [
+        "placement-bias-order",
+        "teaching-waivers"
+      ],
+      "bytes": 2955
+    },
+    {
+      "note": "70-teaching/teaching-tips.md",
+      "area": "70-teaching",
+      "title": "Teaching tips",
+      "status": "canon",
+      "source": "code",
+      "owner": "tutorial-agent",
+      "excluded": null,
+      "symbols": [
+        "content/teaching.ts:TEACH_TIPS"
+      ],
+      "thesis": "Persistent hover explainers. **A tip is reference you want again.**",
+      "links": [
+        "augments",
+        "boost-bays",
+        "clamp-driver",
+        "coachmarks",
+        "manual-txt",
+        "mechanic-coverage",
+        "neural-strain",
+        "route-cost-and-par"
+      ],
+      "bytes": 1737
+    },
+    {
+      "note": "70-teaching/teaching-waivers.md",
+      "area": "70-teaching",
+      "title": "Teaching waivers",
+      "status": "canon",
+      "source": "code",
+      "owner": "tutorial-agent",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "A waiver is a **written decision not to teach something**, with a reason. **14 of the 39** inventory entries carry one, against 25 taught (`teach-sim.ts`, 2026-08-05).",
+      "links": [
+        "coachmarks",
+        "manual-txt",
+        "mechanic-coverage",
+        "placement-bias-order",
+        "teaching-system"
+      ],
+      "bytes": 2269
+    },
+    {
+      "note": "70-teaching/the-tutorial.md",
+      "area": "70-teaching",
+      "title": "The tutorial",
+      "status": "canon",
+      "source": "code",
+      "owner": "tutorial-agent",
+      "excluded": null,
+      "symbols": [],
+      "thesis": "The opening dive. **Unwinnable by construction**, and it must prove it 200 times before any deploy.",
+      "links": [
+        "entry-failed1",
+        "game-flowchart",
+        "the-machine",
+        "tutorial-beats",
+        "verification-gate"
+      ],
+      "bytes": 2310
+    },
+    {
+      "note": "70-teaching/tutorial-beats.md",
+      "area": "70-teaching",
+      "title": "Tutorial beats",
+      "status": "canon",
+      "source": "code",
+      "owner": "tutorial-agent",
+      "excluded": null,
+      "symbols": [
+        "content/teaching.ts:TUTORIAL_BEATS"
+      ],
+      "thesis": "Beats are how the tutorial teaches, because coachmarks are gated off day 0 by `notBeforeDay: 1`. See [[teaching-system]].",
+      "links": [
+        "mechanic-coverage",
+        "teaching-system",
+        "the-board",
+        "the-tutorial"
+      ],
+      "bytes": 2134
+    }
+  ]
+}

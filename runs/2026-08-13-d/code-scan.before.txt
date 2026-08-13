@@ -1,0 +1,17 @@
+39 mechanics: 21 covered, 13 waived, 5 UNCOVERED
+8 moments, 5 tips, 10 beats, 8 mounts
+
+uncovered:
+  cascade          Cascade banking  (first contact: duel)
+  kitConfig        Swapping program modes  (first contact: loadout)
+  ram              RAM per turn as the action budget  (first contact: tutorial)
+  ramCarry         Unspent RAM carries into the next turn, capped  (first contact: duel)
+  reach2           Rotating within two steps of your territory  (first contact: tutorial)
+
+per surface (cap 2 firstSight, 4 total):
+  analyze    1/4 moments, 1/2 firstSight
+  duel       2/4 moments, 0/2 firstSight
+  result     3/4 moments, 1/2 firstSight
+  upgrade    2/4 moments, 2/2 firstSight  AT FIRSTSIGHT CAP
+
+free orders: 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22

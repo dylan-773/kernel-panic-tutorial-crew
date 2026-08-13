@@ -1,0 +1,28 @@
+{
+  "schema": "kp-generated/1",
+  "gap": "winConditions",
+  "action": "waiver",
+  "waiver": {
+    "id": "winConditions",
+    "text": "A goal win prints its own end of dive sentence naming the goal, a cap win is already covered by the turnCap waiver's payout row, and the seal ending only exists inside the opening dive where the bench narrates it directly, so all three outcomes are stated on the screen where they happen.",
+    "expiresIf": "duel-types.ts:DuelEndKind gains a fourth outcome, or any of the three existing endings stops printing its own end of dive line on the screen it occurs on."
+  },
+  "label": {
+    "file": "src/game/content/teaching.ts",
+    "before": "    id: \"splitBoards\",\n    label: \"Split boards\",\n    firstContact: \"duel\",\n    waiver: \"The two sides render as separate board panels the player switches between, and duel.tsx's own legal-cell computation returns no legal cells at all for rotating or placing unless the player is viewing their own board, so cross-board manipulation is impossible by construction, not just unlabeled.\",\n  },\n];",
+    "after": "    id: \"splitBoards\",\n    label: \"Split boards\",\n    firstContact: \"duel\",\n    waiver: \"The two sides render as separate board panels the player switches between, and duel.tsx's own legal-cell computation returns no legal cells at all for rotating or placing unless the player is viewing their own board, so cross-board manipulation is impossible by construction, not just unlabeled.\",\n  },\n  {\n    id: \"winConditions\",\n    label: \"Win conditions\",\n    firstContact: \"result\",\n    waiver: \"A goal win prints its own end of dive sentence naming the goal, a cap win is already covered by the turnCap waiver's payout row, and the seal ending only exists inside the opening dive where the bench narrates it directly, so all three outcomes are stated on the screen where they happen.\",\n  },\n];",
+    "why": "MECHANIC_INVENTORY has no row for winConditions at all (the silent-gap class), so the waiver above has nothing to attach to until this row exists. Chained after 08-splitBoards.json's insertion so all four new rows land without colliding."
+  },
+  "claims": [
+    {
+      "text": "reached the goal first",
+      "symbol": "duel-types.ts:DuelEndKind",
+      "resolves": "DuelEndKind is the closed set \"goal\" | \"cap\" | \"seal\"; the goal case renders the fallback line \"Your signal reached the goal first. The intrusion collapses.\" on the dive screen the instant it happens."
+    },
+    {
+      "text": "all three outcomes",
+      "symbol": "duel-types.ts:DuelEndKind",
+      "resolves": "DuelEndKind has exactly three members, goal, cap and seal, so there is no fourth ending to state."
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+OK: 39 mechanics, 25 taught, 14 waived, 10 coachmarks, 7 tips, 10 tutorial beats
+OK: surfaces reached by the run walk: analyze, day, dayOpen, duel, finalePre, finaleWin, opener, result, runEnd, tutIntro, tutOutro, tutorial, upgrade
+OK: teaching coverage complete

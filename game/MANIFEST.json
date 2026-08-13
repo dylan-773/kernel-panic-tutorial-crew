@@ -1,0 +1,739 @@
+{
+  "file_count": 145,
+  "files": {
+    "src/components/AGENTS.md": {
+      "bytes": 9980,
+      "frozen": true,
+      "sha256": "53f8e996ad0e0f9e3ac445684fc19719b1601900af5911455b05668d55e8fc6e"
+    },
+    "src/components/StructuredData.tsx": {
+      "bytes": 345,
+      "frozen": true,
+      "sha256": "c11da32e71ca9c64517f74caf02eb22d9bf569706db8a2229b0bce2f3691a78a"
+    },
+    "src/components/asset-library.tsx": {
+      "bytes": 8983,
+      "frozen": true,
+      "sha256": "25f12d664dd3b3abbebf592d90f2073b0be2f5131c28651e4f5fcdaf003f8ede"
+    },
+    "src/components/before-after-compare/before-after-compare.tsx": {
+      "bytes": 7005,
+      "frozen": true,
+      "sha256": "cd5ab9e0b0d3e7b97df91ef22ef83b262bfd68d0806e8d7d02d5f98e332e693d"
+    },
+    "src/components/before-after-compare/index.ts": {
+      "bytes": 138,
+      "frozen": true,
+      "sha256": "d31a949856625620a04a8594b7f57949a24908796fd8c9b91594a636dfb30dd2"
+    },
+    "src/components/composer/composer.css": {
+      "bytes": 3094,
+      "frozen": true,
+      "sha256": "8cc624000349b8a266dfa78e6ea50af86e0d20fbd1630eda0336279ebcb94718"
+    },
+    "src/components/composer/composer.tsx": {
+      "bytes": 3716,
+      "frozen": true,
+      "sha256": "a4ce04d6ed8dc3b93dc5b69db4649180336d54011f992d6ff02f9aceddb28570"
+    },
+    "src/components/composer/index.ts": {
+      "bytes": 115,
+      "frozen": true,
+      "sha256": "3df70984d322d3f72faf93a1c481d1f017e9377d5de58b7b53ef57e330554f5a"
+    },
+    "src/components/dropzone/dropzone-preview.tsx": {
+      "bytes": 2385,
+      "frozen": true,
+      "sha256": "f7ccec1d22bde8ef1ac9b519e4b714d1844969f7708ecb7cf83fe481e1ce223d"
+    },
+    "src/components/dropzone/dropzone.tsx": {
+      "bytes": 3854,
+      "frozen": true,
+      "sha256": "fb2f042ce01b7118c477c1d9a3e099bfc4cb6054fe3738a36e646e02f087c437"
+    },
+    "src/components/dropzone/index.ts": {
+      "bytes": 234,
+      "frozen": true,
+      "sha256": "b4c0940ddf09577357c25a479680a065d9458c8d850e3a50e60a7dd21033d55b"
+    },
+    "src/components/gallery/demo-data.ts": {
+      "bytes": 7112,
+      "frozen": true,
+      "sha256": "83d46de119df42d18da304d5219cdb105a0d8e8f980b2976a9f6b04b95db4b6e"
+    },
+    "src/components/gallery/density-control.tsx": {
+      "bytes": 1471,
+      "frozen": true,
+      "sha256": "76a1cf3188a4aa9154ee01157f38181067fbc6b18ecc4c2ce58b5a448e2e7f52"
+    },
+    "src/components/gallery/gallery-tile.tsx": {
+      "bytes": 6298,
+      "frozen": true,
+      "sha256": "76170405457ccacd42b77a4bd1b627a58dd5ffee7d6a44220196804cd7da2331"
+    },
+    "src/components/gallery/gallery.css": {
+      "bytes": 2477,
+      "frozen": true,
+      "sha256": "9c76b5e2376a48d8d337c03bd999d994aa796b03f7794ad8a04f212c4d38b133"
+    },
+    "src/components/gallery/index.ts": {
+      "bytes": 441,
+      "frozen": true,
+      "sha256": "67080753ea2f47e237d0575b38ceaff1297b89fb405dace884e48c4312b04b07"
+    },
+    "src/components/gallery/justified-engine.ts": {
+      "bytes": 10476,
+      "frozen": true,
+      "sha256": "8d6467c53363c49af9094666508ab6bdb695b349aa5daf225f366e3ed963577d"
+    },
+    "src/components/gallery/justified-gallery.tsx": {
+      "bytes": 3944,
+      "frozen": true,
+      "sha256": "62470e2b584eb49227032be4b2ff4c5a3c1644ee57d854397446575617e322b7"
+    },
+    "src/components/gallery/types.ts": {
+      "bytes": 1748,
+      "frozen": true,
+      "sha256": "1adbcebbf0870a12988702512f48bad1621184fbd1174ebae17a5ced7e531e25"
+    },
+    "src/components/gallery/use-justified-gallery.ts": {
+      "bytes": 7671,
+      "frozen": true,
+      "sha256": "a5eef27f65fae01c5fc06f6b97f373a9e173286be3d80b29fb31976ccfc247e1"
+    },
+    "src/components/gallery/use-reduced-motion.ts": {
+      "bytes": 664,
+      "frozen": true,
+      "sha256": "d5c744a20b7efe177ca798dfc5d97390efd055f297f027face839d8f99023610"
+    },
+    "src/components/game/duel-board.tsx": {
+      "bytes": 13398,
+      "frozen": true,
+      "sha256": "aa5951bdb55878231490712fcfe9e530999280db16cc211ed20f090bb1115653"
+    },
+    "src/components/game/duel.tsx": {
+      "bytes": 57894,
+      "frozen": false,
+      "sha256": "3bb2839c4c005d5e9c813dce41cf02aa7a0c7d70cb7c066ee7a700d9a01bf05d"
+    },
+    "src/components/game/patch-glyph.tsx": {
+      "bytes": 1469,
+      "frozen": true,
+      "sha256": "3288bd5c9f85a52bc23f3173fb70df8ae0976ab74f4294781cfdae649c62605f"
+    },
+    "src/components/game/screens.tsx": {
+      "bytes": 11564,
+      "frozen": true,
+      "sha256": "a7ac40c1a2de97ccf1b811eaed224aef33beec922a295aa1878062e7c760cf5f"
+    },
+    "src/components/game/tap-tip.tsx": {
+      "bytes": 4727,
+      "frozen": true,
+      "sha256": "d4d6f49a19b92c48d1797e8e3d5b7e3b6b84d4d35f653f7c505a6a928851527a"
+    },
+    "src/components/game/teach.tsx": {
+      "bytes": 3009,
+      "frozen": true,
+      "sha256": "08fd05a134b90a35155686766a98311c2f8bc3a2888d89d6bf8a41c2c5a5a83c"
+    },
+    "src/components/generation-card/generation-card.css": {
+      "bytes": 3357,
+      "frozen": true,
+      "sha256": "ca1a59f91354da93fc2cefceab91c1cda3528b607d8c32061cb27a5ef5bf8baf"
+    },
+    "src/components/generation-card/generation-card.tsx": {
+      "bytes": 4644,
+      "frozen": true,
+      "sha256": "bb170d8ff9d7848638571e51dfc5d5e5eb1fb3c2dadc061a377dfc6463425200"
+    },
+    "src/components/generation-card/index.ts": {
+      "bytes": 141,
+      "frozen": true,
+      "sha256": "4e28c32b9018ed618424848fcf33867df2f9509a599b6c34b86c06cfdb6463cb"
+    },
+    "src/components/generation-detail.tsx": {
+      "bytes": 14580,
+      "frozen": true,
+      "sha256": "a664ded1cac4c428413f2c84bfe7c4734326e431160b90a1b19ff4ab18a5aa1e"
+    },
+    "src/components/history-grid.tsx": {
+      "bytes": 1144,
+      "frozen": true,
+      "sha256": "11d88baf1ae27b36f5392c6c03a5f1411ac29b58ee910a25bfefedf15e201c37"
+    },
+    "src/components/icon-tile/icon-tile.css": {
+      "bytes": 2096,
+      "frozen": true,
+      "sha256": "1a3a10d416246d90cbb94066079c3cd7157e0e1921ac075c3c7cbc6d9492fffc"
+    },
+    "src/components/icon-tile/icon-tile.tsx": {
+      "bytes": 2729,
+      "frozen": true,
+      "sha256": "90a664007e72daa786bc35388285b19613d82c0fe3a436b7279e11895aec1add"
+    },
+    "src/components/icon-tile/index.ts": {
+      "bytes": 134,
+      "frozen": true,
+      "sha256": "3544fdb4a7ec6130c78df70f3ce8833b2e610869fa85f48dc903a49fb8a143df"
+    },
+    "src/components/media-card/index.ts": {
+      "bytes": 170,
+      "frozen": true,
+      "sha256": "0565c9b71f3e92f8b4c0e6d4809ce0610044297c0d3cabd3ddb958d463c4abf8"
+    },
+    "src/components/media-card/media-card.css": {
+      "bytes": 3800,
+      "frozen": true,
+      "sha256": "e25226e082c56eab1907fba5e27cda3ec2d209ce41a132fd1f9c28261aad33b7"
+    },
+    "src/components/media-card/media-card.tsx": {
+      "bytes": 5906,
+      "frozen": true,
+      "sha256": "c3e62b0dab5171410e601fc75aff3b16762f512215d2a2e378558f3c40d68fce"
+    },
+    "src/components/os/boot.tsx": {
+      "bytes": 1482,
+      "frozen": true,
+      "sha256": "5666fa50f9958312ec853462a758265b4facf466d8a829caaa2d5a0eb44dac5a"
+    },
+    "src/components/os/desk.tsx": {
+      "bytes": 5975,
+      "frozen": true,
+      "sha256": "7cb2e8909d0fd1b20528d87579637b917eff6d9bedb130aefb46b63680925282"
+    },
+    "src/components/os/icons.tsx": {
+      "bytes": 2948,
+      "frozen": true,
+      "sha256": "c05138dfb2ae36d8a0708931f271965f4693a5c910109b9a46a03038dfd03c25"
+    },
+    "src/components/os/kp-ui.tsx": {
+      "bytes": 15989,
+      "frozen": true,
+      "sha256": "6cc67c07c3d16f515c7eac57bdac5c7897721cec0fdc0a834870b050b2bfbe79"
+    },
+    "src/components/os/login.tsx": {
+      "bytes": 6848,
+      "frozen": true,
+      "sha256": "0660986e4defd38ef99ec2d6ec678e01353510debef9226c3db4f158b487cd2e"
+    },
+    "src/components/os/roster-art.ts": {
+      "bytes": 4657,
+      "frozen": true,
+      "sha256": "6fd7a10b500b704e2dd2dd0b964977b45738472497680288558993cd4bdcfde3"
+    },
+    "src/components/os/shop-os.tsx": {
+      "bytes": 26683,
+      "frozen": true,
+      "sha256": "f967415876336af94b841eb1eaa306aba66572ddccc1b21765cc414c2eeb8eb8"
+    },
+    "src/components/os/windows/dadlog.tsx": {
+      "bytes": 19572,
+      "frozen": true,
+      "sha256": "7a5f9786ea91c331c5415d191d779013ec124c37a110b3f887c77d598959135b"
+    },
+    "src/components/os/windows/darknet.tsx": {
+      "bytes": 30834,
+      "frozen": true,
+      "sha256": "f4771c430319dc04c0d90719651f7915c1a623b6b8be3d4e9300743166f1c664"
+    },
+    "src/components/os/windows/inbox.tsx": {
+      "bytes": 21144,
+      "frozen": true,
+      "sha256": "687a4419c8c9f8b429f8df429730abd54624c29659a4c7d376241c4b5dddfc10"
+    },
+    "src/components/os/windows/ledger.tsx": {
+      "bytes": 6543,
+      "frozen": true,
+      "sha256": "e2863a2207754bc7752c196862dcea1b35411ea77c7ad311d94f3446baf7ccf5"
+    },
+    "src/components/os/windows/loadout.tsx": {
+      "bytes": 20772,
+      "frozen": true,
+      "sha256": "9c7560aa1f8ad809abb3c9bea6eae42be36ce0cc12ae120a1e2d23449b32bf22"
+    },
+    "src/components/os/windows/manual.tsx": {
+      "bytes": 7001,
+      "frozen": true,
+      "sha256": "f1eff9d9da9a0de92f25be90e0fb16e0e7b2577dcabff08b161bf3fd1ca8a843"
+    },
+    "src/components/os/windows/night.tsx": {
+      "bytes": 13591,
+      "frozen": true,
+      "sha256": "d002fe0dc733966547f0e57fda8d5eba5d244d4d3d9d02bfab8defe5ec823fbd"
+    },
+    "src/components/os/windows/report.tsx": {
+      "bytes": 28082,
+      "frozen": true,
+      "sha256": "a2735b979a6205f3249a567e58b3fcfe11d1e999f19188ea31936a46cb739921"
+    },
+    "src/components/os/windows/solder.tsx": {
+      "bytes": 23186,
+      "frozen": true,
+      "sha256": "0ac174947f9466af0eea98c1018140bbe194ccbe961e07f6160879fa234510c7"
+    },
+    "src/components/os/wm.css": {
+      "bytes": 6372,
+      "frozen": true,
+      "sha256": "948ce5fbdd149a00314cab12fe9e166a7067f7fa02c70a19f50a5acb4e9b9490"
+    },
+    "src/components/os/wm.tsx": {
+      "bytes": 11717,
+      "frozen": true,
+      "sha256": "1f40c4d730664c4eba3ef9548e314200dfd47cacffd1813f491e1320263aa96c"
+    },
+    "src/components/prompt-box/index.ts": {
+      "bytes": 317,
+      "frozen": true,
+      "sha256": "2e456a4741081b48d621c0d0cc6eaeaea47a7f774d73fba46aa2f02a3a520027"
+    },
+    "src/components/prompt-box/prompt-box.css": {
+      "bytes": 11479,
+      "frozen": true,
+      "sha256": "6598c3c10199bae8c124eab9727f7d1cab0431a0df9410009c0e0410e88bb6a2"
+    },
+    "src/components/prompt-box/prompt-box.tsx": {
+      "bytes": 13479,
+      "frozen": true,
+      "sha256": "9449172219a9d4b2d9733c21cdd7612c461c6c51d91d56ed405fa5c56820d589"
+    },
+    "src/components/rail-footer/index.ts": {
+      "bytes": 104,
+      "frozen": true,
+      "sha256": "d0e93f293fc6ca7bb409bdb2d428032eee2e8273717d4fab29f87e23483aed6b"
+    },
+    "src/components/rail-footer/rail-footer.tsx": {
+      "bytes": 2107,
+      "frozen": true,
+      "sha256": "1c5374daa19e4cd86885419549a5a74a2a88dd1bd475b805f5b1373dc45d4f7f"
+    },
+    "src/components/setting-trigger/index.ts": {
+      "bytes": 120,
+      "frozen": true,
+      "sha256": "f0d9c9044809b9c14aa6c84855497b630bb36415b4dab0fc02a8e611d887a0c2"
+    },
+    "src/components/setting-trigger/setting-trigger.css": {
+      "bytes": 3164,
+      "frozen": true,
+      "sha256": "231428334f01b02bd6a3acec79117a824331682e91eef96f1fb159035d038860"
+    },
+    "src/components/setting-trigger/setting-trigger.tsx": {
+      "bytes": 3815,
+      "frozen": true,
+      "sha256": "bb2e706dbc3c7f1db693a9ab409ee5502d37dcfa4af1ffa6b9b7630ed5a58c50"
+    },
+    "src/components/step-rail/index.ts": {
+      "bytes": 110,
+      "frozen": true,
+      "sha256": "6c15a6cac82a91a4e7a527dae5f4b0cdf5fd22b6cb7afbb079b1c2d074133019"
+    },
+    "src/components/step-rail/step-rail.tsx": {
+      "bytes": 4737,
+      "frozen": true,
+      "sha256": "6631b04fca1a6980a9bd2db7f9b24dd09241b1d902a796a0b34c75d2f6597e05"
+    },
+    "src/components/template-modal/index.ts": {
+      "bytes": 153,
+      "frozen": true,
+      "sha256": "b4d2b5bef70922baa7295ac03ed194dfeaa48d1d203310c5f21a0fd778e4cc24"
+    },
+    "src/components/template-modal/template-modal.tsx": {
+      "bytes": 4966,
+      "frozen": true,
+      "sha256": "cee1cb1759f8be6c881ac28785a089ac0fd1bd12245a5c62097f16001856fb58"
+    },
+    "src/components/template-picker.tsx": {
+      "bytes": 11025,
+      "frozen": true,
+      "sha256": "940a2602a798f71d35d58892ef50c41433f8d30d18e319ce87a6c60fda5bb2df"
+    },
+    "src/components/ui/accordion.tsx": {
+      "bytes": 2063,
+      "frozen": true,
+      "sha256": "ca6654f87fda08249ea72bc36b6faa0b62bbc9d22982e573474f69967461c7f5"
+    },
+    "src/components/ui/alert-dialog.tsx": {
+      "bytes": 4183,
+      "frozen": true,
+      "sha256": "ee4d7f3341a1e5592787b7dac8e924bd226189492819f6704d8a7faf8fe64d20"
+    },
+    "src/components/ui/alert.tsx": {
+      "bytes": 1589,
+      "frozen": true,
+      "sha256": "e7f4c2e6f78c59270905b4152b7d3ef4d5c6b9e3b2d370daa7b301aa7cbd27b3"
+    },
+    "src/components/ui/aspect-ratio.tsx": {
+      "bytes": 143,
+      "frozen": true,
+      "sha256": "d72c73d629e37995a0a71647d851d68d6fdcd7ec120797f36ab83a8ee89f2cab"
+    },
+    "src/components/ui/avatar.tsx": {
+      "bytes": 1413,
+      "frozen": true,
+      "sha256": "0326c9041c5a0b1ba31ff29822c51950b6aeac485cd0985e7df714741a54e7f4"
+    },
+    "src/components/ui/badge.tsx": {
+      "bytes": 1123,
+      "frozen": true,
+      "sha256": "6519775252fe729f21c60b92c7c9feefd1fe7d0a8c2cf16d6f1c2fa7e153fe75"
+    },
+    "src/components/ui/breadcrumb.tsx": {
+      "bytes": 2861,
+      "frozen": true,
+      "sha256": "eb3e7380d860ab4735c38d75b3d3081d72532b62cf699949dd2652d3b742ad02"
+    },
+    "src/components/ui/button.tsx": {
+      "bytes": 1894,
+      "frozen": true,
+      "sha256": "e39813b666ba434660ec088356a0349246b6803a4e99961295d0c82bab1ab862"
+    },
+    "src/components/ui/calendar.tsx": {
+      "bytes": 7403,
+      "frozen": true,
+      "sha256": "af14225954eb106e1b11482c5f289aa417407234089e6bbba22d46a9103d76d3"
+    },
+    "src/components/ui/card.tsx": {
+      "bytes": 1817,
+      "frozen": true,
+      "sha256": "f13878a0078a5ef9f3e92af29259fc1e93ea56ea80cb992e0c4dea4e35396459"
+    },
+    "src/components/ui/carousel.tsx": {
+      "bytes": 6312,
+      "frozen": true,
+      "sha256": "282aa8bf811f1a2ffb545a01a5cdc256950c5516f369e15d2102e5ff3251a5a7"
+    },
+    "src/components/ui/chart.tsx": {
+      "bytes": 10570,
+      "frozen": true,
+      "sha256": "81b1f692f9334ba3030213ff37eeaf2dd762b644e5d96e51ada7072109f07430"
+    },
+    "src/components/ui/checkbox.tsx": {
+      "bytes": 1077,
+      "frozen": true,
+      "sha256": "92c04cf2264679f0d1abdc86383ac943ab2a15646f4f12ed1ad19efd6908cc4c"
+    },
+    "src/components/ui/collapsible.tsx": {
+      "bytes": 335,
+      "frozen": true,
+      "sha256": "5f0a45d8f6ca72d37ed10bf0a85306158b67d7cbc386319186ce013ead9bc0a6"
+    },
+    "src/components/ui/command.tsx": {
+      "bytes": 4911,
+      "frozen": true,
+      "sha256": "3f8e3519c2d556d3f2ce4f0fca97bdf7efc08448bec6022d91a19adaad13569a"
+    },
+    "src/components/ui/context-menu.tsx": {
+      "bytes": 7569,
+      "frozen": true,
+      "sha256": "e5a502462fd8020b5bd02bfe3db79f698f0d90fa7f999d2c0bd3a29b9624e4eb"
+    },
+    "src/components/ui/dialog.tsx": {
+      "bytes": 3682,
+      "frozen": true,
+      "sha256": "ce5d602056927b56ce8dc43029aea6d83b5382947d85117072cf5ce604193a4b"
+    },
+    "src/components/ui/drawer.tsx": {
+      "bytes": 2973,
+      "frozen": true,
+      "sha256": "478c487f66245641d5fa0f0d1c53a07d68bd60c4b3c497ec4c41ce08b482e14b"
+    },
+    "src/components/ui/dropdown-menu.tsx": {
+      "bytes": 7774,
+      "frozen": true,
+      "sha256": "8b80c00d97f6e004474bef46d9a526bc83e645395c7ea444822ab72d3ba63449"
+    },
+    "src/components/ui/form.tsx": {
+      "bytes": 4201,
+      "frozen": true,
+      "sha256": "1ed53d4ab564a64708938643de590f2bef3718b0b2a309c1019c57e9c1fde23f"
+    },
+    "src/components/ui/hover-card.tsx": {
+      "bytes": 1246,
+      "frozen": true,
+      "sha256": "69dc172ece56ac77bf3a044a1cd60ed601b0041945d16b5da4c6cc4f42116988"
+    },
+    "src/components/ui/input-otp.tsx": {
+      "bytes": 2196,
+      "frozen": true,
+      "sha256": "d594525e307932e9f98f33e80df4f480099b14d21d3fb7d2e75307d43f08ea96"
+    },
+    "src/components/ui/input.tsx": {
+      "bytes": 776,
+      "frozen": true,
+      "sha256": "92debb7d6d2d96d9e607a42d5ce8f37b2d63384ae5dd9ffbbf5f047b680ffb85"
+    },
+    "src/components/ui/label.tsx": {
+      "bytes": 716,
+      "frozen": true,
+      "sha256": "9f72e2ecf16206593aa9e3c4fbc14cd8e81aa8488d57d92d4a950b30935a9fa9"
+    },
+    "src/components/ui/menubar.tsx": {
+      "bytes": 8724,
+      "frozen": true,
+      "sha256": "6ddb5092bf8fe7269efe96b50b40793f90c7813ba8d07e844c8db65f3fd06e86"
+    },
+    "src/components/ui/navigation-menu.tsx": {
+      "bytes": 5200,
+      "frozen": true,
+      "sha256": "793834bb2e7e6b6fe9f52b4d4fa134ef991eb4da02d9f0f6d1ddf7b33f8b15f5"
+    },
+    "src/components/ui/pagination.tsx": {
+      "bytes": 2923,
+      "frozen": true,
+      "sha256": "733388e5d4dbdd5f3ee6d22cdc1c9775278f448ddfee5d1cf51b56e32b3bf119"
+    },
+    "src/components/ui/popover.tsx": {
+      "bytes": 1352,
+      "frozen": true,
+      "sha256": "861c18577ea5988c6f5ca00d1c677200319fd427cf8b424e59a5cca6ff24f830"
+    },
+    "src/components/ui/progress.tsx": {
+      "bytes": 781,
+      "frozen": true,
+      "sha256": "418f612946a520d1380b7a0d058185bb6a6d09846846dd6d6904a0016152dd4a"
+    },
+    "src/components/ui/radio-group.tsx": {
+      "bytes": 1445,
+      "frozen": true,
+      "sha256": "a6d6da7bba13668f8fc8d1d326bc279db0697fcd94d603b14549721a88f96b5e"
+    },
+    "src/components/ui/resizable.tsx": {
+      "bytes": 1595,
+      "frozen": true,
+      "sha256": "1aa3e32b805a3ca545afa34c3a0849c039e497691dec7a61b4cfa3652f4d2c9d"
+    },
+    "src/components/ui/scroll-area.tsx": {
+      "bytes": 1635,
+      "frozen": true,
+      "sha256": "b607f562455152a079d70a22538c95072b0267e0d59a1a1cf16a905a2e373a6f"
+    },
+    "src/components/ui/select.tsx": {
+      "bytes": 5939,
+      "frozen": true,
+      "sha256": "9ba3ee6d9ba8c74124e10e8ec43a890207668447659b9b8e09e75c4d90991bb1"
+    },
+    "src/components/ui/separator.tsx": {
+      "bytes": 723,
+      "frozen": true,
+      "sha256": "bf5838b692e5f74fde7083280b99492dd402bce6966e912e79f5e23f14bc98eb"
+    },
+    "src/components/ui/sheet.tsx": {
+      "bytes": 4282,
+      "frozen": true,
+      "sha256": "d7f1da54572d901b2b83a456c40abf13dc6039bdaf550ccf6aeab15666cab30a"
+    },
+    "src/components/ui/sidebar.tsx": {
+      "bytes": 24019,
+      "frozen": true,
+      "sha256": "1f1ff9594e6976a34b0708e24888d400092fd90e0a5403998b6f0fb8d0a80114"
+    },
+    "src/components/ui/skeleton.tsx": {
+      "bytes": 239,
+      "frozen": true,
+      "sha256": "f4c42257d73925b0b856a3500e2cbdd918fe6744fcd6be87ef28bb88e7eb7366"
+    },
+    "src/components/ui/slider.tsx": {
+      "bytes": 1025,
+      "frozen": true,
+      "sha256": "d307cf3ff05b54be4a04389ef4379f9e8b4dc49720197937991ce843a8d4b5ec"
+    },
+    "src/components/ui/sonner.tsx": {
+      "bytes": 734,
+      "frozen": true,
+      "sha256": "3ad40f66c339e799b1a57c00e10b4627294c7d580d99d8a48ae0d8d4c13cf931"
+    },
+    "src/components/ui/switch.tsx": {
+      "bytes": 1156,
+      "frozen": true,
+      "sha256": "c3c298df4ffb56695e4a8f0ff3e37eee08437dec542a677153ec16bed0820107"
+    },
+    "src/components/ui/table.tsx": {
+      "bytes": 2820,
+      "frozen": true,
+      "sha256": "1e945e564c2cc5ca3ef33019ba7da7a8b94cbc73feb3cbc2b7b33c36ea648d92"
+    },
+    "src/components/ui/tabs.tsx": {
+      "bytes": 1934,
+      "frozen": true,
+      "sha256": "e9b454d2f987c83b36cc8870bba47d9355db4e8f5c733b310dbc1119a7d27654"
+    },
+    "src/components/ui/textarea.tsx": {
+      "bytes": 677,
+      "frozen": true,
+      "sha256": "35617a2cf053e52c9e56983bde82d556861d38e462f9e578876c8e99a0432687"
+    },
+    "src/components/ui/toggle-group.tsx": {
+      "bytes": 1752,
+      "frozen": true,
+      "sha256": "d59cd3937c967a3e221fdfcfe4ea5cd57eb97cbe37e1ac98126664c9c7db49c1"
+    },
+    "src/components/ui/toggle.tsx": {
+      "bytes": 1534,
+      "frozen": true,
+      "sha256": "62e6e21993f1ab633b9f830cbbf0c181f3d161bae3a7792dbf2d842d42a2f09c"
+    },
+    "src/components/ui/tooltip.tsx": {
+      "bytes": 1278,
+      "frozen": true,
+      "sha256": "9682690fc3755d0f4b8684f2d7b1f77945876d41a45b723d0761b26804ad5010"
+    },
+    "src/components/upload-field/index.ts": {
+      "bytes": 127,
+      "frozen": true,
+      "sha256": "25d9fb4f200148a3e7ca77f270d48dcd6c562f6857c9b8d2ce3a8f09fe5ab3f8"
+    },
+    "src/components/upload-field/upload-field.tsx": {
+      "bytes": 7661,
+      "frozen": true,
+      "sha256": "88538dde6c61c03068667981738fe56734b18ed5d6b287a835a60290535116ef"
+    },
+    "src/game/audio.ts": {
+      "bytes": 21616,
+      "frozen": true,
+      "sha256": "4c2e1275731a100f2886c803bbc4de893a4fe1f4956d37a0528c5359730fa6c6"
+    },
+    "src/game/content/arc.ts": {
+      "bytes": 7748,
+      "frozen": true,
+      "sha256": "d57221a8f264705113bb26988ea94f3447372bc2cf81391c7cdb7e767c759708"
+    },
+    "src/game/content/customers.ts": {
+      "bytes": 7734,
+      "frozen": true,
+      "sha256": "1d8923b3b2b43a0c5d87bd77f0054afc457fba458e8f0a8e624f037b4ceccb14"
+    },
+    "src/game/content/journal.ts": {
+      "bytes": 9321,
+      "frozen": true,
+      "sha256": "dcb1f409430d1f3d440c5b6e60e6326e834238e462601aa47654a95d49e6e956"
+    },
+    "src/game/content/kit.ts": {
+      "bytes": 12030,
+      "frozen": true,
+      "sha256": "1d4487257e53ff96902bd8cca96ade7e51d6cdd18cb0500ac74ece1800fc7802"
+    },
+    "src/game/content/story.ts": {
+      "bytes": 30706,
+      "frozen": true,
+      "sha256": "2befc8a91d5cad7ee0cdc6d2b7b5eba0b4a04bd38c562ae1d592874b3a560b40"
+    },
+    "src/game/content/teaching.ts": {
+      "bytes": 23208,
+      "frozen": false,
+      "sha256": "ca589be6fdebf6bee80dec770038b5054b34f94758ac023cbd921b2e0f89a238"
+    },
+    "src/game/dev/kitted-bot.ts": {
+      "bytes": 6947,
+      "frozen": true,
+      "sha256": "377fbe35b9331ef1de609fe2b43ba7eeeb3cb270957d9b64c9035e82d55dca19"
+    },
+    "src/game/dev/kitted-profile.ts": {
+      "bytes": 3896,
+      "frozen": true,
+      "sha256": "96fd9452b844157fa0b70e75b39a50c70809bc771490990b648e12687efc9cc8"
+    },
+    "src/game/dev/run-sim.ts": {
+      "bytes": 16472,
+      "frozen": true,
+      "sha256": "01f75f07c7679d687cd1feb59562359a73614b825c6caeb32839a4e2b69e0b16"
+    },
+    "src/game/dev/sim.ts": {
+      "bytes": 14346,
+      "frozen": true,
+      "sha256": "807ac7b906b6cb93aef79155252c266d1379ee4d702bced0a63eab82c6c30b2f"
+    },
+    "src/game/dev/teach-sim.ts": {
+      "bytes": 18221,
+      "frozen": true,
+      "sha256": "96fcb580bf5cc517d77de8f85953686133d730eab01902ab59a573c7dee8056c"
+    },
+    "src/game/duel-actions.ts": {
+      "bytes": 24216,
+      "frozen": true,
+      "sha256": "094acb1c254ee7ab4167c8e085d009d36eec0f446f45dda73bc69fd821cb01e3"
+    },
+    "src/game/duel-clone.ts": {
+      "bytes": 2813,
+      "frozen": true,
+      "sha256": "b00653290b927f52ae3bf5fe9e1b86242a4dd16336eab1771928383d343e82d6"
+    },
+    "src/game/duel-commands.ts": {
+      "bytes": 7803,
+      "frozen": true,
+      "sha256": "aedbee5720a5faae63ff8614b956965f1fe7c4e994e604dfa8f392eda3871e32"
+    },
+    "src/game/duel-power.ts": {
+      "bytes": 13684,
+      "frozen": true,
+      "sha256": "91129b286cf0186f385138fd9febac2b2f9e780862a6a438889dc56ad2bd8d7c"
+    },
+    "src/game/duel-reducer.ts": {
+      "bytes": 4158,
+      "frozen": true,
+      "sha256": "8699b2d0d083a81a4c4d3c3863395f934c4987809b4d8772bafb913eea762174"
+    },
+    "src/game/duel-setup.ts": {
+      "bytes": 14021,
+      "frozen": true,
+      "sha256": "40fa00b859aed8311c19e7919e27752914297ec8676859df2004f68dae0f5fe1"
+    },
+    "src/game/duel-types.ts": {
+      "bytes": 14697,
+      "frozen": true,
+      "sha256": "dc5773e19f4263a38a0f76836d69d99da7bdd3000d750038606b4f99979d60e3"
+    },
+    "src/game/opponent.ts": {
+      "bytes": 21214,
+      "frozen": true,
+      "sha256": "05bcae1f0c00c9a37c67fe64c63dcbe6c43feddaa30560ce2418c370a78c9de5"
+    },
+    "src/game/patch-cells.ts": {
+      "bytes": 3704,
+      "frozen": true,
+      "sha256": "06b2d0e3759afabf4199e19a758ee74de66ca59c4aae9b57827488d977a3197a"
+    },
+    "src/game/rng.ts": {
+      "bytes": 1167,
+      "frozen": true,
+      "sha256": "821eb446211c7d96957938d1174c5d3629a4347312dee28cb598589682c1fc40"
+    },
+    "src/game/run-reducer.ts": {
+      "bytes": 22300,
+      "frozen": true,
+      "sha256": "10781a3cb57a2b4bfe8caf7b5bfbad5dbb340750809f99cac387f83c70ae9ad6"
+    },
+    "src/game/save.ts": {
+      "bytes": 14416,
+      "frozen": true,
+      "sha256": "ece7b6ceee247bf411b8e684dd22f30cd356cc424d1410f24b520f1b0ecbb796"
+    },
+    "src/game/sfxr.ts": {
+      "bytes": 6829,
+      "frozen": true,
+      "sha256": "b41bcd3ef134ec292a01be4e90755e83460b1bfa4c62abb5be815d44b2278d66"
+    },
+    "src/game/types.ts": {
+      "bytes": 792,
+      "frozen": true,
+      "sha256": "dbefca6b826a914af35433f16e1d3f9260259cdd2b757fb18d3ca3b0f10dcd15"
+    },
+    "src/game/version.ts": {
+      "bytes": 566,
+      "frozen": true,
+      "sha256": "cb514bb492eb3e8685d98074cfc48257b1aeab94fc00638e85b68dc76a5492f7"
+    },
+    "src/styles.css": {
+      "bytes": 328325,
+      "frozen": true,
+      "sha256": "105bb85fd151f5f078f18088c77baece7f47b37b270ef4c01921941c8a9170b4"
+    }
+  },
+  "frozen": "2026-08-13",
+  "frozen_count": 143,
+  "game_sha256": "8d5676fd190e05ffdfb22da4f779ceeb0e114bb2cf630cc96fe632b28b2d0cb4",
+  "mutable": [
+    "src/game/content/teaching.ts",
+    "src/components/game/duel.tsx"
+  ],
+  "schema": "kp-game-manifest/1",
+  "source": "kernel-panic/kernel-panic-site/app/src"
+}

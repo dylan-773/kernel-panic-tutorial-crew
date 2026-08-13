@@ -1,0 +1,15 @@
+{
+  "schema": "kp-verdict/1",
+  "gap": "kitConfig",
+  "verdict": "APPROVE",
+  "claims": [
+    {
+      "text": "config augment",
+      "symbol": "content/kit.ts:AUGMENTS",
+      "verdict": "TRUE",
+      "quote": "kind: \"config\","
+    }
+  ],
+  "objection": null,
+  "required": null
+}

@@ -1,0 +1,13 @@
+39 mechanics: 25 covered, 14 waived, 0 UNCOVERED
+10 moments, 7 tips, 10 beats, 9 mounts
+
+in the data but never rendered (the harness cannot see this):
+  patch-cell-use
+
+per surface (cap 2 firstSight, 4 total):
+  analyze    1/4 moments, 1/2 firstSight
+  duel       4/4 moments, 0/2 firstSight
+  result     3/4 moments, 1/2 firstSight
+  upgrade    2/4 moments, 2/2 firstSight  AT FIRSTSIGHT CAP
+
+free orders: 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22

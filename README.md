@@ -1,0 +1,366 @@
+# Kernel Panic tutorial crew
+
+**Assignment 5: a goal oriented coding agent.** It reads a Game Design
+Document, scans the codebase, finds the features the document describes that
+the code never teaches, decides which to build and in what order, and writes
+the code. It proves the work by turning the game's own coverage harness from
+red to green.
+
+The GDD is `gdd/`: the real Kernel Panic design vault, 216 wikilinked Obsidian
+notes, 379,028 bytes, frozen and sha256 manifested. It is the actual design
+document for the actual capstone game, not an extract made for this assignment.
+
+`game/` is the real teaching layer and the code behind it, 145 files vendored
+verbatim, **including `teach-sim.ts`, the harness that judges the run.** 143 of
+those files are marked frozen in the manifest and `selftest.py` fails if one
+moves. Only two are mutable, because only two are what the pipeline writes.
+
+```
+python3 tools/verify_submission.py    # maps each of the five requirements
+                                      # to the artifact that evidences it
+open out/before-after.html            # the run, before and after, no server
+```
+
+Or the pieces separately:
+
+```
+python3 tools/selftest.py                    # 7/7
+python3 tools/run_fixtures.py                # 22/22
+bun game/src/game/dev/teach-sim.ts           # the game's own harness
+```
+
+The full run report is `runs/2026-08-13-d/report.md`. It is generated, not
+written.
+
+---
+
+## The game, so the rest makes sense
+
+You inherited your father's computer repair shop and the machine in the back
+room he never let you touch. A job ticket is a device with an intrusion in it.
+You link in and fight the thing on a grid: rotate junctions, route a signal,
+light the core before it lights yours.
+
+Twenty seven tickets a run, three a day for nine days, then the finale on day
+10.
+
+## The before state, and why it had to be manufactured
+
+The shipped game's teaching coverage is complete. Its harness prints
+`OK: 39 mechanics, 25 taught, 14 waived`. There was no red state to find, so
+`tools/make_gap.py` removes four things: the `cascade` coachmark and its mount,
+the `ram` tooltip, the `modeLocked` tooltip, and the `reach2` waiver.
+
+**That is stated here rather than hidden, and three things keep it honest.**
+
+The removal is a committed script reading a committed plan, so the before state
+is derived on demand and not hand authored. Delete `game/` and `gaps/removed.json`,
+re-vendor, re-run `freeze.py` and `make_gap.py`, and you get the same before
+state this run started from.
+
+The four gaps have four **different** correct answers, one per rung of the
+ladder, so a seat cannot pass by writing four coachmarks.
+
+And the crew never sees what was removed. `Read(gaps/**)` is denied in
+`.claude/settings.json`, and `tools/verify_blind.py` audits the runtime's own
+transcript of every tool call the session made, subagents included. For this
+run: **611 tool calls across 5 actors, zero references to `gaps/`.**
+
+The best evidence that the crew is not reading the key is that **it disagreed
+with the key.** The plan expected `reach2` to be restored as a waiver, and run
+`c` returned a coachmark instead, arguing from code that nothing rendered the
+legal-cell glow. It was right about the code it could see and wrong about the
+game, because that render lived in a file I had not vendored. Fixing the vendor
+changed its verdict to a tier 0 waiver citing `dv-legalring` by name.
+
+## What it built
+
+Run `2026-08-13-d`. The GDD reader kept **64 player facing features out of 131
+candidates** and recorded the other 67 with a reason. The prioritizer returned
+**11 gaps**, not four: the five red mechanic ids collapse into four gaps, plus
+seven more it found by checking the reader's drift notes against the code.
+
+| rank | gap | tier | action | built |
+|---|---|---|---|---|
+| 1 | ram, ramCarry | 1 | tooltip | yes |
+| 2 | reach2 | 0 | waiver | yes |
+| 3 | cascade | 2 | coachmark | yes |
+| 4 | kitConfig | 1 | tooltip | yes |
+| 5 | patchCellUse | 2 | coachmark correction | yes |
+| 6 | oneUndo | 1 | tooltip | deferred |
+| 7 | builtVsPower | 0 | waiver | deferred |
+| 8 | splitBoards | 0 | waiver | deferred |
+| 9 | winConditions | 0 | waiver | deferred |
+| 10 | theKit | n/a | **declined** | no |
+| 11 | gridlockChip | n/a | **declined** | no |
+
+Five artifacts landed: two coachmarks, two tooltips, one waiver. 93 lines of
+diff across `content/teaching.ts` and `duel.tsx`, in
+`runs/2026-08-13-d/diff/`.
+
+**The gap.** The harness named five uncovered mechanics and exited 1. After the
+patch it exits 0:
+
+```
+BEFORE   TEACH FAIL: 5 problem(s)
+           - mechanic "cascade" (Cascade banking) has no teaching moment and no waiver.
+           - mechanic "kitConfig" (Swapping program modes) has no teaching moment and no waiver.
+           - mechanic "ram" (RAM per turn as the action budget) has no teaching moment and no waiver.
+           - mechanic "ramCarry" (Unspent RAM carries into the next turn, capped) has no teaching moment and no waiver.
+           - mechanic "reach2" (Rotating within two steps of your territory) has no teaching moment and no waiver.
+
+AFTER    OK: 39 mechanics, 25 taught, 14 waived, 10 coachmarks, 7 tips, 10 tutorial beats
+         OK: teaching coverage complete
+```
+
+That harness is `game/src/game/dev/teach-sim.ts`, 498 lines, vendored from the
+shipped game and never edited. Nothing in this repo wrote it, and the manifest
+marks it frozen so nothing in this repo can.
+
+## Why it picked cascade first, and why two answers were "build nothing"
+
+The assignment says the objective is the reasoning layer. This is it.
+
+The obvious way to prioritize is a weighted score: points for severity, reach
+and cost, sort, done. That would have been quicker and it would have been
+fiction, because I would have invented the weights and tuned them until the
+output looked sensible.
+
+Instead the crew uses **the placement bias order**, the decision procedure the
+game's own tutorial seat already runs. Five questions, asked in order, stop at
+the first yes:
+
+| tier | form | use when |
+|---|---|---|
+| 0 | make the UI say it | a label or affordance can carry the whole mechanic |
+| 1 | tooltip | the player will want this information AGAIN |
+| 2 | coachmark | a rule they need once, at a moment, that changes what they do |
+| 3 | interactive beat | they must perform the verb to continue |
+| 4 | scripted scene | it is a run structural reveal with story weight |
+
+It has a property no score has: **it prefers not building.** Tier 0 says make
+the interface carry it, and then the right output is a waiver, not a teaching
+artifact. Five of eleven gaps came back tier 0.
+
+Every ranking cites one of five signals, all read out of code: `harness-red`,
+`first-contact-day`, `resource-cost`, `ladder-tier`, `surface-budget`. Every
+gap carries a `ladderStop` naming the question it stopped on **and why the
+cheaper rungs cannot carry it.** That field is the deliverable. If it is empty
+the run produced work without producing a decision, and the orchestrator
+re-spawns the seat.
+
+`cascade` ranked third overall and is the highest ranked coachmark. Its stop,
+verbatim from `gaps.json`:
+
+> Stops at question 3, a coachmark. Question 1 fails: duel.tsx already fires a
+> retroactive pulse the instant RAM banks, but both only appear after the flip
+> resolves.
+
+A label cannot carry it because the payoff happens after the rotation resolves
+and there is nothing on screen at the moment of decision to hang a label on. A
+tooltip cannot carry it because the player needs it once, at the moment it
+first happens, and will not go looking for it again.
+
+Two gaps were **declined outright**, with reasons, and that is a result rather
+than a shortfall. `theKit` because no rung fits without authoring a new
+MANUAL.TXT section. `gridlockChip` because it is already waived and green, but
+its waiver claims an overlay that `DuelEndKind` cannot render, which is a
+finding for a human, not a coachmark.
+
+## The gap nobody planted
+
+Four gaps were removed by a script. Two more were already in the shipped game,
+and the crew found both.
+
+**One.** The live `cascade-bank` coachmark says a cascade banks RAM at "Four or
+more nodes". `kit.ts:cascadeRam` returns 0 only when `lit < 3`, so it pays from
+**three**. The word "claimed" is wrong too: `duel-types.ts` states there is "no
+territory and no claiming", and `settleBoard` calls `cascadeRam(f.built.length)`
+under the comment "Only first lights count".
+
+**Two.** The live `patch-cell-use` coachmark says a patch piece fuses in "for 2
+RAM". `patch-cells.ts:PLACE_COST` is **4**.
+
+Both sentences have been in front of players for the life of the code, and the
+harness has been green over both the whole time, because a coverage check
+cannot read English. The regenerated copy is correct on all three counts, and
+the critic backed it with `if (lit < 3) return 0;` and
+`export const PLACE_COST = 4;`, quoted from the files.
+
+## What the critic caught
+
+The critic returned **2 REVISE verdicts** in round one and both were rewritten
+to APPROVE. The stronger of the two, on `reach2`, verbatim:
+
+> `"text": "cells inReach returns true for"`,
+> `"symbol": "duel-power.ts:inReach"`, `"verdict": "FALSE"`,
+> `"quote": "if (!isJunction(c0) || c0.built) return false;"`
+
+The author's waiver claimed the legal glow marks cells that `inReach` returns
+true for. It does not: `inReach` returns false for a built junction, and built
+junctions are legal anyway by a different path. The waiver was true about the
+outcome and wrong about the mechanism, which is exactly the kind of claim that
+survives every mechanical check. The rewrite scopes it to unbuilt junctions and
+names `canRotate` separately.
+
+Final state: **5 APPROVE, 11 claims, every quote verified as a literal
+substring of the file it cites** by `verify_copy.py --kind verdict`.
+
+## The check the shipped game does not have
+
+`teach-sim.ts` proves a mechanic is *covered*. It cannot read English, so a
+coachmark stating the wrong number passes every check the game has. Two
+currently do.
+
+`verify_copy.py` closes the mechanical half. Every number in player facing copy
+must be covered by a `claim` naming the code symbol that holds it, every symbol
+must resolve, and the real source is printed directly beneath the claim:
+
+```
+kit.ts:cascadeRam   (game/src/game/content/kit.ts:64)
+    copy says:  "four or more nodes"
+    the code:
+      export function cascadeRam(lit: number): number {
+        if (lit < 3) return 0;
+```
+
+It deliberately stops short of judging. No arithmetic on the literal `3` tells
+you whether "three or more" or "more than three" is the true sentence, and a
+`Math.min` two lines down can change the answer again. So the tool guarantees
+the contradiction is *visible* and leaves the verdict to the critic, which
+cannot avoid seeing it.
+
+`fixtures/copy/shipped-cascade.json` pins this. It is the real shipped copy and
+it **passes**, on purpose, because it is mechanically accountable. What the
+fixture asserts is that `if (lit < 3) return 0;` appears directly under
+`copy says: "four or more nodes"`.
+
+## How the checks work
+
+Five things check this pipeline and none can answer another's question.
+
+| tool | asks | arguable |
+|---|---|---|
+| `verify_teaching.py` | is it well formed and inside the harness's limits | no |
+| `verify_copy.py` | is every number accountable to a real symbol | no |
+| `teach-sim.ts` | is every mechanic covered or waived | no |
+| `verify_blind.py` | did any seat read the answer key | no |
+| `copy-critic` | is the sentence true | only with a quote |
+
+Mechanical rules live in scripts, which cannot be talked out of a verdict.
+Judgment goes to the critic, constrained by having to quote code it read.
+
+There is no separate typecheck and no `npm install`: `bun` parses the generated
+TypeScript when the harness imports it, so a malformed moment fails with a file
+and a line before any check runs.
+
+## What building this taught me about the checks
+
+Four defects turned up in my own scaffolding, and each one was the same shape:
+a check that did not exist.
+
+**The vendor was incomplete.** I hand picked six component files. The crew
+concluded the legal-cell glow did not exist, correctly, from evidence I had
+withheld. Now all 117 components are vendored, and the manifest freezes them.
+
+**The read ledger did not happen.** Each seat was asked to log what it opened.
+The first real run produced no ledger at all, which is what you would predict
+from asking the subject to file its own paperwork. `verify_blind.py` now audits
+the runtime's transcript, which cannot be forgotten or forged.
+
+**`freeze.py` could destroy the thing it was protecting.** Run it while gaps
+were planted and it recorded the gapped files as pristine, with no error. It
+now refuses, and names the fix.
+
+**A generated class had no CSS.** The crew invented a `dv-ram-carry` badge.
+`styles.css` is frozen, so it could never be styled, and it would have rendered
+bare. Nothing noticed: the harness never reads CSS. `verify_teaching.py` now
+fails any generated `className` with no rule in the sheet, with a fixture
+pinning it.
+
+The last one is the point of the repo in miniature. The run was green, the
+artifact was wrong, and the gap was a check nobody had written.
+
+## Verification
+
+Python 3 standard library and `bun`. No `pip`, no `npm`, no network, no API
+keys.
+
+```
+python3 tools/selftest.py                     # 7/7
+python3 tools/run_fixtures.py                 # 22/22
+python3 tools/verify_blind.py runs/2026-08-13-d
+python3 tools/verify_submission.py
+bun game/src/game/dev/teach-sim.ts            # OK: teaching coverage complete
+open out/before-after.html
+```
+
+To reproduce the whole thing:
+
+```
+python3 tools/make_gap.py                     # red
+claude -p "/close-gaps" --permission-mode acceptEdits
+bun game/src/game/dev/teach-sim.ts            # green
+```
+
+Set `CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS=0` for the headless run; the GDD
+reader takes longer than the default background wait.
+
+## Did it run in the game
+
+Yes, in both directions.
+
+**The vendored slice is the game's teaching layer**, byte for byte, and the
+harness that declares it green is the game's own. That is the run above.
+
+**And one of its findings was landed upstream.** The cascade threshold defect
+the crew found is now fixed in the real capstone repo, `kernel-panic-site`:
+
+```diff
+-      "Four or more nodes claimed off one rotation banks bonus RAM for your very next turn.",
++      "Three or more nodes lit off one rotation banks bonus RAM for your very next turn.",
+```
+
+Verified with the game's full four command gate, all green:
+
+```
+bun run typecheck                     # clean
+bun run src/game/dev/sim.ts           # tutorial player wins: 0 of 200 (must be 0)
+bun run src/game/dev/run-sim.ts       # OK: 40 full runs, 1256 dispatches
+bun run src/game/dev/teach-sim.ts     # OK: teaching coverage complete
+```
+
+The second finding, `patch-cell-use` saying 2 RAM where `PLACE_COST` is 4, is
+reported and not yet landed. It is the same one line shape.
+
+## Layout
+
+```
+gdd/                     the design vault, 216 notes, frozen, sha256 manifested
+game/                    the teaching layer and its code, 145 files, 143 frozen
+gaps/                    plan, pristine originals, and the answer key. Read denied
+reference/               the ladder, the hard constraints, the schemas
+tools/                   11 scripts, Python 3 stdlib and bun
+fixtures/                22 cases proving the two verifiers actually catch things
+runs/2026-08-13-d/       one committed run: brief, features, gaps, generated,
+                         critic, diffs, before and after, generated report
+out/before-after.html    self contained, opens by double clicking
+.claude/agents/          the four seats
+.claude/skills/          the /close-gaps orchestration program
+```
+
+## Relationship to Assignments 3 and 4
+
+Assignment 3 (`kernel-panic-level-crew`) built levels; Assignment 4
+(`kernel-panic-content-crew`) built content from a retrieval grounded vault.
+Both are untouched.
+
+What carries over is the shape: one slash command, seats that each own one
+question, mechanical checks in scripts and judgment in a purple gate agent, a
+committed sample run, and an artifact that opens without a server.
+
+What is new is the direction. Those crews **wrote content into a game.** This
+one **reads a game, finds what is missing, and writes code.** The gate changed
+with it: Assignment 4's critic asked "is this consistent with the lore?" and
+cited a vault note. This one asks "is this true of the code?" and cites a
+symbol.

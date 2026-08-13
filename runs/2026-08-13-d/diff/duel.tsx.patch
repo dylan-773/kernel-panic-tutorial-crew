@@ -1,0 +1,12 @@
+--- /Users/lyd0n/Development/kernel-panic-tutorial-crew/gaps/pristine/duel.tsx	2026-08-13 15:15:25
++++ /Users/lyd0n/Development/kernel-panic-tutorial-crew/game/src/components/game/duel.tsx	2026-08-13 16:20:02
+@@ -1257,8 +1257,8 @@
+             )}
+           </div>
+           {coach && <div className="kp-coach">{coach}</div>}
++          <Teach id="patch-cell-use-cost" signals={{ holdingCells: state.patchPouch.length > 0 }} />
+           <Teach id="cascade-bank" signals={{ cascadeBanked: sawCascade }} />
+-          <Teach id="patch-cell-use" signals={{ holdingCells: state.patchPouch.length > 0 }} />
+         </div>
+ 
+         {/* ---- right rail: telemetry ---- */}

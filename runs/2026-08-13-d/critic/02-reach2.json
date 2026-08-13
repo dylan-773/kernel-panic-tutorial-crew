@@ -1,0 +1,21 @@
+{
+  "schema": "kp-verdict/1",
+  "gap": "reach2",
+  "verdict": "APPROVE",
+  "claims": [
+    {
+      "text": "cells inReach returns true for",
+      "symbol": "duel-power.ts:inReach",
+      "verdict": "TRUE",
+      "quote": "if (!isJunction(c0) || c0.built) return false;"
+    },
+    {
+      "text": "always legal to rotate regardless of reach",
+      "symbol": "duel-power.ts:canRotate",
+      "verdict": "TRUE",
+      "quote": "if (c.built) return true;"
+    }
+  ],
+  "objection": null,
+  "required": null
+}

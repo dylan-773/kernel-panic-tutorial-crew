@@ -1,0 +1,776 @@
+{
+  "schema": "kp-code-scan/1",
+  "limits": {
+    "finalDay": 10,
+    "maxCoachLine": 160,
+    "maxLines": 2,
+    "maxTipLen": 130,
+    "surfaces": [
+      "tutorial",
+      "duel",
+      "day",
+      "analyze",
+      "loadout",
+      "solder",
+      "result",
+      "upgrade",
+      "finalePre",
+      "runEnd",
+      "desktop"
+    ],
+    "whens": [
+      "firstSight",
+      "overPar",
+      "holdingCells",
+      "cascadeBanked",
+      "draftOffered",
+      "craftReady",
+      "swapOffered"
+    ],
+    "anchors": [
+      "readout",
+      "rows",
+      "draft",
+      "par",
+      "screen",
+      "patch",
+      "grid",
+      "craft"
+    ]
+  },
+  "inventory": [
+    {
+      "id": "rotate",
+      "label": "Rotate a junction",
+      "firstContact": "tutorial",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "flood",
+      "label": "Signal floods and claims",
+      "firstContact": "tutorial",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "scan",
+      "label": "SCAN.EXE",
+      "firstContact": "tutorial",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "defend",
+      "label": "DEFEND.EXE and purge",
+      "firstContact": "tutorial",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "attack",
+      "label": "ATTACK.EXE and redirect",
+      "firstContact": "tutorial",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "telegraph",
+      "label": "The machine aims a beat before it strikes",
+      "firstContact": "tutorial",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "cascade",
+      "label": "Cascade banking",
+      "firstContact": "duel",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "par",
+      "label": "Par, the rotation budget",
+      "firstContact": "duel",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "patchCellUse",
+      "label": "Spending a patch piece mid dive",
+      "firstContact": "duel",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "patchShapes",
+      "label": "Pieces roll a fixed shape and orientation, never rotating in hand",
+      "firstContact": "duel",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "patchCraft",
+      "label": "Combine two patch pieces into the union of their arms, at the SOLDER.BAY bench",
+      "firstContact": "solder",
+      "waiver": "SOLDER.BAY's status line states the outgrow rule every time a piece is picked up (PICK A PARTNER. THE WELD MUST OUTGROW BOTH.), the schematic blinks the arms a partner would add, and the rack marks non-outgrowing partners dead and disabled, so an illegal weld cannot be attempted at all. CRAFT shows no price inline, matching the convention that every paid action states its cost on its own row.",
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "strainChip",
+      "label": "Neural Strain as run health",
+      "firstContact": "result",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "manualRef",
+      "label": "MANUAL.TXT as the full reference",
+      "firstContact": "desktop",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "kitConfig",
+      "label": "Swapping program modes",
+      "firstContact": "loadout",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "analyzeTell",
+      "label": "The diagnostic readout and its tell",
+      "firstContact": "analyze",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "threatTier",
+      "label": "Threat tier 1 to 5",
+      "firstContact": "analyze",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "augmentDraft",
+      "label": "The post job augment draft",
+      "firstContact": "result",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "augmentCadence",
+      "label": "One augment per cleared ticket, three tickets a day",
+      "firstContact": "result",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "ram",
+      "label": "RAM per turn as the action budget",
+      "firstContact": "tutorial",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "ramCarry",
+      "label": "Unspent RAM carries into the next turn, capped",
+      "firstContact": "duel",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "dayUpgrade",
+      "label": "One upgrade per closed day",
+      "firstContact": "upgrade",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "nightPatch",
+      "label": "Buying strain back with credits",
+      "firstContact": "upgrade",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "darkWebBuy",
+      "label": "Buying a random patch piece on the darknet",
+      "firstContact": "upgrade",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "slotBuy",
+      "label": "Buying an extra boost bay at night",
+      "firstContact": "upgrade",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "boostSlots",
+      "label": "Boost bays cap ownership at 3, buyable to 5; configs exempt",
+      "firstContact": "result",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "boostSwap",
+      "label": "A full bay swaps a new boost in for one installed",
+      "firstContact": "result",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": true
+    },
+    {
+      "id": "reach2",
+      "label": "Rotating within two steps of your territory",
+      "firstContact": "tutorial",
+      "waiver": null,
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "turnCap",
+      "label": "Turn cap wins pay half",
+      "firstContact": "result",
+      "waiver": "The payout row names the halved rate inline on the only screen it can occur.",
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "credits",
+      "label": "Credits",
+      "firstContact": "day",
+      "waiver": "Every screen that spends puts the price and the balance in the same row.",
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "jobBoard",
+      "label": "Three tickets, shared strain",
+      "firstContact": "day",
+      "waiver": "INBOX's collapsed header states it every visit: three tickets, strain shared across all of them, order is yours.",
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "programTiers",
+      "label": "Program tiers widen a cast",
+      "firstContact": "loadout",
+      "waiver": "LOADOUT.CFG's program rows show each program's live RANGE or WIDTH number directly beside its TIER meter, every visit: the widening effect is the two numbers sitting next to each other.",
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "saveSlots",
+      "label": "Three save slots",
+      "firstContact": "desktop",
+      "waiver": "Standard login affordance. The slot list already states attempts and day reached.",
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "runReset",
+      "label": "The run resets on a loss",
+      "firstContact": "duel",
+      "waiver": "The dive's own CORE LOST overlay states it the instant it happens, and the run end scene restates it in story voice.",
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "finaleGate",
+      "label": "Day 10 is the back room",
+      "firstContact": "finalePre",
+      "waiver": "Day 10 replaces the job board with the door, and the morning scene frames it.",
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "finaleOppOpens",
+      "label": "The finale machine takes the first turn",
+      "firstContact": "duel",
+      "waiver": "The player watches it happen: the IT IS MOVING turnlight runs before their first input, at the only dive that opens this way.",
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "patchDrop",
+      "label": "Post dive piece rewards, the job drop and the CLEAN RUN bank",
+      "firstContact": "result",
+      "waiver": "The drop row names the recovered shape in text with its glyph inline, on the only screen a piece can arrive.",
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "gridlockChip",
+      "label": "Gridlock wins chip 6 strain at full pay",
+      "firstContact": "duel",
+      "waiver": "The gridlock end overlay says the dead link bites, and the result breakdown itemizes the 6 as its own row.",
+      "waiverPremise": null,
+      "covered": false
+    },
+    {
+      "id": "augmentEffects",
+      "label": "What each individual augment does",
+      "firstContact": "result",
+      "waiver": "Every augment carries its own desc on the draft card, in the loadout, and in MANUAL.TXT.",
+      "waiverPremise": "augmentDescs",
+      "covered": false
+    },
+    {
+      "id": "modeEffects",
+      "label": "What each individual attack and defend mode does",
+      "firstContact": "loadout",
+      "waiver": "Modes are variations on the three programs the opening dive teaches, and each carries its own desc on hover and in the kit card.",
+      "waiverPremise": "modeDescs",
+      "covered": false
+    }
+  ],
+  "moments": [
+    {
+      "id": "analyze-readout",
+      "teaches": [
+        "analyzeTell",
+        "threatTier"
+      ],
+      "surface": "analyze",
+      "when": "firstSight",
+      "anchor": "readout",
+      "order": 20,
+      "notBeforeDay": 1,
+      "title": "DIAGNOSTIC",
+      "lines": [
+        "This reads the intrusion cold: its dominant routine, its threat tier. It never bluffs.",
+        "Configure your kit against the named tell before you dive, not after you meet it."
+      ],
+      "mounted": true
+    },
+    {
+      "id": "par-budget",
+      "teaches": [
+        "par"
+      ],
+      "surface": "duel",
+      "when": "overPar",
+      "anchor": "par",
+      "order": 40,
+      "notBeforeDay": 1,
+      "title": "OVER PAR",
+      "lines": [
+        "PAR is the clean route, measured in rotations. You just spent past it.",
+        "A win still lands, but now it costs Neural Strain. Sloppy is survivable. It is not free."
+      ],
+      "mounted": true
+    },
+    {
+      "id": "strain-chip",
+      "teaches": [
+        "strainChip"
+      ],
+      "surface": "result",
+      "when": "firstSight",
+      "anchor": "rows",
+      "order": 60,
+      "notBeforeDay": 1,
+      "title": "NEURAL STRAIN",
+      "lines": [
+        "Strain is shared across every ticket today and will not recover between them. Zero ends the run.",
+        "It bills you for rotations past par, and separately for any of their traps that actually sprung on you."
+      ],
+      "mounted": true
+    },
+    {
+      "id": "augment-draft",
+      "teaches": [
+        "augmentDraft",
+        "augmentCadence"
+      ],
+      "surface": "result",
+      "when": "draftOffered",
+      "anchor": "draft",
+      "order": 61,
+      "notBeforeDay": 1,
+      "title": "AUGMENT DRAFT",
+      "lines": [
+        "Clearing a ticket offers three augments. Pick one and it holds for the rest of the run.",
+        "Three tickets a day, so a clean day banks three picks. CONFIG unlocks a mode, BOOST bends the economy. A full bay swaps instead of blocking."
+      ],
+      "mounted": true
+    },
+    {
+      "id": "day-upgrade",
+      "teaches": [
+        "dayUpgrade"
+      ],
+      "surface": "upgrade",
+      "when": "firstSight",
+      "anchor": "grid",
+      "order": 70,
+      "notBeforeDay": 1,
+      "title": "DAY CLOSED",
+      "lines": [
+        "There is no second pick later. Choose the one that fixes what tonight's dive actually needed."
+      ],
+      "mounted": true
+    },
+    {
+      "id": "night-shop",
+      "teaches": [
+        "nightPatch",
+        "darkWebBuy",
+        "slotBuy"
+      ],
+      "surface": "upgrade",
+      "when": "firstSight",
+      "anchor": "patch",
+      "order": 71,
+      "notBeforeDay": 1,
+      "title": "NIGHT SHOP",
+      "lines": [
+        "You can no longer choose a shape. DARKNET.LNK sells one blind pull, price climbing by the day.",
+        "Night patch still buys your strain back. Buy an extra boost bay tonight to raise your cap above 3."
+      ],
+      "mounted": true
+    },
+    {
+      "id": "patch-cell-use",
+      "teaches": [
+        "patchCellUse",
+        "patchShapes"
+      ],
+      "surface": "duel",
+      "when": "holdingCells",
+      "anchor": "screen",
+      "order": 80,
+      "notBeforeDay": 1,
+      "title": "PATCH PIECE",
+      "lines": [
+        "You are carrying a piece. Click a slag block within reach to fuse it in for 2 RAM. One use, then it is gone.",
+        "Arms land exactly as held, never rotating once placed. Fit it to the wall you cannot route around, not the first slag you see."
+      ],
+      "mounted": true
+    },
+    {
+      "id": "boost-swap",
+      "teaches": [
+        "boostSwap"
+      ],
+      "surface": "result",
+      "when": "swapOffered",
+      "anchor": "draft",
+      "order": 62,
+      "notBeforeDay": 1,
+      "title": "BAY FULL",
+      "lines": [
+        "Boost bays are full. Take this pick and you choose one installed boost to bench in its place.",
+        "CONFIGS never count against the cap and are never affected by a swap."
+      ],
+      "mounted": true
+    }
+  ],
+  "tips": [
+    {
+      "id": "par",
+      "teaches": [
+        "par"
+      ],
+      "control": "the PAR readout in the dive status bar",
+      "text": "Rotation budget for a clean route. Every rotation past par costs Neural Strain when you win."
+    },
+    {
+      "id": "strain",
+      "teaches": [
+        "strainChip"
+      ],
+      "control": "the STRAIN meter in the dive status bar and the day footer",
+      "text": "Neural Strain. Shared across every ticket in the run. At zero the run ends."
+    },
+    {
+      "id": "manualRef",
+      "teaches": [
+        "manualRef"
+      ],
+      "control": "the MANUAL.TXT desktop icon",
+      "text": "Full reference for the loop, the kit, and every augment. Open it any time."
+    },
+    {
+      "id": "threatTier",
+      "teaches": [
+        "threatTier"
+      ],
+      "control": "the THREAT pips on a ticket",
+      "text": "Threat tier, 1 to 5. Higher tiers field a wider kit and push harder from the first round."
+    },
+    {
+      "id": "boostSlots",
+      "teaches": [
+        "boostSlots"
+      ],
+      "control": "the boost bay counter on the LOADOUT.CFG bay card",
+      "text": "Boost bays hold 3 at once. Buy more at night, up to 5. Configs never count against this cap."
+    }
+  ],
+  "beats": [
+    {
+      "id": "watch-it-move",
+      "teaches": [
+        "telegraph"
+      ],
+      "line": "Now watch it move. Watch what it plants."
+    },
+    {
+      "id": "holding-back",
+      "teaches": [
+        "telegraph"
+      ],
+      "line": "It is holding back. It wants to see what you learned."
+    },
+    {
+      "id": "no-longer-holding",
+      "teaches": [
+        "telegraph"
+      ],
+      "line": "It has stopped holding back."
+    },
+    {
+      "id": "first-rotation",
+      "teaches": [
+        "rotate"
+      ],
+      "line": "The grid is live. Your programs are still indexing; for now, click a glowing junction to rotate it (1 RAM). Line the pipes up and your signal floods forward on its own."
+    },
+    {
+      "id": "chain-toward-core",
+      "teaches": [
+        "flood"
+      ],
+      "line": "Chain rotations toward the CORE. When a junction clicks into line, everything connected claims at once. Spend your RAM, then END TURN."
+    },
+    {
+      "id": "scan-it",
+      "teaches": [
+        "scan"
+      ],
+      "line": "It armed something on your lane last cycle. SCAN.EXE just came online: cast it (1 RAM) and it sweeps everything near your line. Always scan before you walk."
+    },
+    {
+      "id": "purge-it",
+      "teaches": [
+        "defend"
+      ],
+      "line": "There it is. DEFEND.EXE is online, set to PURGE: cast it, click the exposed trap, and defuse the thing before your flood walks in."
+    },
+    {
+      "id": "purge-waiting",
+      "teaches": [
+        "defend"
+      ],
+      "line": "The trap is gone but it WILL plant another. When one shows, DEFEND purges it. Keep pushing meanwhile."
+    },
+    {
+      "id": "attack-it",
+      "teaches": [
+        "attack"
+      ],
+      "line": "Last program: ATTACK.EXE, set to REDIRECT. Cast it and click one of ITS junctions to twist its line off true. Make it hurt."
+    },
+    {
+      "id": "whole-toolbox",
+      "teaches": [
+        "rotate",
+        "scan",
+        "defend",
+        "attack"
+      ],
+      "line": "That is the whole toolbox: scan, defend, attack, rotate. Push for the core with everything you have."
+    }
+  ],
+  "mounts": [
+    {
+      "id": "patch-cell-use",
+      "file": "src/components/game/duel.tsx",
+      "line": 1260,
+      "text": "          <Teach id=\"patch-cell-use\" signals={{ holdingCells: state.patchPouch.length > 0 }} />"
+    },
+    {
+      "id": "par-budget",
+      "file": "src/components/game/duel.tsx",
+      "line": 1344,
+      "text": "            <Teach id=\"par-budget\" signals={{ overPar: overPar > 0 }} />"
+    },
+    {
+      "id": "analyze-readout",
+      "file": "src/components/os/windows/inbox.tsx",
+      "line": 287,
+      "text": "      <Teach id=\"analyze-readout\" />"
+    },
+    {
+      "id": "strain-chip",
+      "file": "src/components/os/windows/report.tsx",
+      "line": 719,
+      "text": "      <Teach id=\"strain-chip\" />"
+    },
+    {
+      "id": "augment-draft",
+      "file": "src/components/os/windows/report.tsx",
+      "line": 720,
+      "text": "      <Teach id=\"augment-draft\" signals={{ draftOffered: r.draft.length > 0 }} />"
+    },
+    {
+      "id": "boost-swap",
+      "file": "src/components/os/windows/report.tsx",
+      "line": 721,
+      "text": "      <Teach id=\"boost-swap\" signals={{ swapOffered }} />"
+    },
+    {
+      "id": "day-upgrade",
+      "file": "src/components/os/windows/night.tsx",
+      "line": 375,
+      "text": "      <Teach id=\"day-upgrade\" />"
+    },
+    {
+      "id": "night-shop",
+      "file": "src/components/os/windows/night.tsx",
+      "line": 376,
+      "text": "      <Teach id=\"night-shop\" />"
+    }
+  ],
+  "gaps": {
+    "uncovered": [
+      {
+        "id": "cascade",
+        "label": "Cascade banking",
+        "firstContact": "duel"
+      },
+      {
+        "id": "kitConfig",
+        "label": "Swapping program modes",
+        "firstContact": "loadout"
+      },
+      {
+        "id": "ram",
+        "label": "RAM per turn as the action budget",
+        "firstContact": "tutorial"
+      },
+      {
+        "id": "ramCarry",
+        "label": "Unspent RAM carries into the next turn, capped",
+        "firstContact": "duel"
+      },
+      {
+        "id": "reach2",
+        "label": "Rotating within two steps of your territory",
+        "firstContact": "tutorial"
+      }
+    ],
+    "unmounted": [],
+    "orphanMounts": []
+  },
+  "budget": {
+    "maxFirstSightPerSurface": 2,
+    "maxMomentsPerSurface": 4,
+    "surfaces": {
+      "analyze": {
+        "moments": 1,
+        "firstSight": 1,
+        "ids": [
+          "analyze-readout"
+        ]
+      },
+      "duel": {
+        "moments": 2,
+        "firstSight": 0,
+        "ids": [
+          "par-budget",
+          "patch-cell-use"
+        ]
+      },
+      "result": {
+        "moments": 3,
+        "firstSight": 1,
+        "ids": [
+          "strain-chip",
+          "augment-draft",
+          "boost-swap"
+        ]
+      },
+      "upgrade": {
+        "moments": 2,
+        "firstSight": 2,
+        "ids": [
+          "day-upgrade",
+          "night-shop"
+        ]
+      }
+    }
+  },
+  "orders": {
+    "used": [
+      20,
+      40,
+      60,
+      61,
+      62,
+      70,
+      71,
+      80
+    ],
+    "free": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ]
+  },
+  "counts": {
+    "mechanics": 39,
+    "covered": 21,
+    "waived": 13,
+    "uncovered": 5,
+    "moments": 8,
+    "tips": 5,
+    "beats": 10
+  }
+}

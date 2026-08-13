@@ -1,0 +1,33 @@
+{
+  "schema": "kp-generated/1",
+  "gap": "cascade-as-shipped",
+  "action": "coachmark",
+  "moment": {
+    "id": "cascade-bank",
+    "teaches": [
+      "cascade"
+    ],
+    "surface": "duel",
+    "when": "cascadeBanked",
+    "anchor": "screen",
+    "order": 50,
+    "notBeforeDay": 1,
+    "title": "CASCADE",
+    "lines": [
+      "Four or more nodes claimed off one rotation banks bonus RAM for your very next turn.",
+      "That is what just happened. Line a chain up first, then trip it, instead of one node at a time."
+    ]
+  },
+  "mount": {
+    "file": "src/components/game/duel.tsx",
+    "anchorLine": "          {coach && <div className=\"kp-coach\">{coach}</div>}",
+    "jsx": "          <Teach id=\"cascade-bank\" signals={{ cascadeBanked: sawCascade }} />"
+  },
+  "claims": [
+    {
+      "text": "four or more nodes",
+      "symbol": "kit.ts:cascadeRam",
+      "resolves": "the cascade bonus threshold"
+    }
+  ]
+}

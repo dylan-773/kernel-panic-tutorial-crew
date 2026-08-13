@@ -1,0 +1,35 @@
+{
+  "schema": "kp-gap-plan/1",
+  "note": "Input to tools/make_gap.py. Four gaps, chosen so that each one's correct answer is a DIFFERENT rung of the placement bias order. If all four wanted a coachmark, the prioritizer would have nothing to reason about.",
+  "gaps": [
+    {
+      "kind": "teaching-moment",
+      "id": "cascade-bank",
+      "covers": ["cascade"],
+      "correct_action": "tier 2, a coachmark",
+      "why": "A rule the player needs once, at a moment, that changes what they do next: line a chain up and trip it, instead of rotating one node at a time. The GDD calls this the signature moment.",
+      "also_unmount": "cascade-bank"
+    },
+    {
+      "kind": "teach-tip",
+      "id": "ram",
+      "covers": ["ram", "ramCarry"],
+      "correct_action": "tier 1, a tooltip",
+      "why": "A recurring number the player will want AGAIN every turn for the whole run. Reference, not a rule. Strips coverage for two mechanics at once, which the prioritizer should notice."
+    },
+    {
+      "kind": "teach-tip",
+      "id": "modeLocked",
+      "covers": ["kitConfig"],
+      "correct_action": "tier 0, a label",
+      "why": "The button already renders OFFLINE and the tip only explains what OFFLINE means. A clearer label retires the need for teaching entirely. gdd/70-teaching/teaching-tips.md names this one as tier-0 work outright."
+    },
+    {
+      "kind": "mechanic-waiver",
+      "id": "reach2",
+      "covers": ["reach2"],
+      "correct_action": "restore the waiver, build nothing",
+      "why": "The legal rotation set is drawn as glowing junctions. The affordance is the teaching. Writing a coachmark here would be teaching something the board already says."
+    }
+  ]
+}

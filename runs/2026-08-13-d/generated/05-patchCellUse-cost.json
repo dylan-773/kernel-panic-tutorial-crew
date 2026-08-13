@@ -1,0 +1,37 @@
+{
+  "schema": "kp-generated/1",
+  "gap": "patchCellUse-cost",
+  "action": "coachmark",
+  "moment": {
+    "id": "patch-cell-use-cost",
+    "teaches": ["patchCellUse", "patchShapes"],
+    "surface": "duel",
+    "when": "holdingCells",
+    "anchor": "screen",
+    "order": 79,
+    "notBeforeDay": 1,
+    "title": "PATCH PIECE",
+    "lines": [
+      "You are carrying a piece. Click a slag block within reach to fuse it in for 4 RAM. One use, then it is gone.",
+      "Arms land exactly as held, never rotating once placed. Fit it to the wall you cannot route around, not the first slag you see."
+    ]
+  },
+  "mount": {
+    "file": "src/components/game/duel.tsx",
+    "anchorLine": "          <Teach id=\"patch-cell-use\" signals={{ holdingCells: state.patchPouch.length > 0 }} />",
+    "jsx": "          <Teach id=\"patch-cell-use-cost\" signals={{ holdingCells: state.patchPouch.length > 0 }} />"
+  },
+  "label": {
+    "file": "src/components/game/duel.tsx",
+    "before": "          <Teach id=\"patch-cell-use\" signals={{ holdingCells: state.patchPouch.length > 0 }} />\n",
+    "after": "",
+    "why": "The mount above inserts the corrected patch-cell-use-cost panel right after the shipped patch-cell-use line; this label then deletes that shipped line outright, in the same file, right after the insert runs. Only the corrected panel's Teach mount survives, so a player can never land on the old panel that still says 2 RAM after dismissing the corrected one. The shipped patch-cell-use entry stays in teaching.ts but is now unreachable: nothing mounts it, so it is never eligible and never shown."
+  },
+  "claims": [
+    {
+      "text": "4",
+      "symbol": "patch-cells.ts:PLACE_COST",
+      "resolves": "PLACE_COST = 4, the RAM charged when a patch piece is fused into a slag block mid dive."
+    }
+  ]
+}

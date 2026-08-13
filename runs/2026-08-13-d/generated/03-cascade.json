@@ -1,0 +1,41 @@
+{
+  "schema": "kp-generated/1",
+  "gap": "cascade",
+  "action": "coachmark",
+  "moment": {
+    "id": "cascade-bank",
+    "teaches": ["cascade"],
+    "surface": "duel",
+    "when": "cascadeBanked",
+    "anchor": "screen",
+    "order": 45,
+    "notBeforeDay": 1,
+    "title": "CASCADE",
+    "lines": [
+      "Lighting three or more nodes in one settle banks RAM into your next turn instead of spending it now.",
+      "Six or more shatters every enemy lock on this board. Ten or more also destroys one armed enemy trap. Hold the chain, then flip it."
+    ]
+  },
+  "mount": {
+    "file": "src/components/game/duel.tsx",
+    "anchorLine": "          <Teach id=\"patch-cell-use\" signals={{ holdingCells: state.patchPouch.length > 0 }} />",
+    "jsx": "          <Teach id=\"cascade-bank\" signals={{ cascadeBanked: sawCascade }} />"
+  },
+  "claims": [
+    {
+      "text": "three",
+      "symbol": "kit.ts:cascadeRam",
+      "resolves": "cascadeRam returns 0 when lit < 3, so three built nodes in one settle is the first count that pays banked RAM."
+    },
+    {
+      "text": "six",
+      "symbol": "kit.ts:surgeTierOf",
+      "resolves": "surgeTierOf returns surge at lit >= 6; settleBoard uses that tier to shatter every enemy lock on the board."
+    },
+    {
+      "text": "ten",
+      "symbol": "kit.ts:surgeTierOf",
+      "resolves": "surgeTierOf returns break at lit >= 10; settleBoard uses that tier to also destroy one armed enemy trap."
+    }
+  ]
+}

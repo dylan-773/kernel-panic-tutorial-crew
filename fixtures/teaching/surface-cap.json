@@ -1,0 +1,33 @@
+{
+  "schema": "kp-generated/1",
+  "gap": "dayUpgrade",
+  "action": "coachmark",
+  "moment": {
+    "id": "night-budget",
+    "teaches": [
+      "dayUpgrade"
+    ],
+    "surface": "upgrade",
+    "when": "firstSight",
+    "anchor": "rows",
+    "order": 55,
+    "notBeforeDay": 1,
+    "title": "CASCADE",
+    "lines": [
+      "Three or more nodes lit off one rotation banks bonus RAM for your very next turn.",
+      "Line a chain up behind one unturned junction, then trip it, instead of lighting one node at a time."
+    ]
+  },
+  "mount": {
+    "file": "src/components/os/windows/night.tsx",
+    "anchorLine": "      <Teach id=\"day-upgrade\" />",
+    "jsx": "      <Teach id=\"night-budget\" />"
+  },
+  "claims": [
+    {
+      "text": "three or more nodes",
+      "symbol": "kit.ts:cascadeRam",
+      "resolves": "returns 0 when lit < 3, so three is the first paying count"
+    }
+  ]
+}

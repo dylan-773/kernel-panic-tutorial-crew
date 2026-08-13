@@ -1,0 +1,18 @@
+{
+  "schema": "kp-generated/1",
+  "gap": "kitConfig",
+  "action": "tip",
+  "tip": {
+    "id": "modeLocked",
+    "teaches": ["kitConfig"],
+    "control": "a locked mode button in LOADOUT.CFG's program panel",
+    "text": "Locked until you draft the config augment that unlocks this mode. Owning it is not enough either: switch to it here before a dive."
+  },
+  "claims": [
+    {
+      "text": "config augment",
+      "symbol": "content/kit.ts:AUGMENTS",
+      "resolves": "AUGMENTS lists each config (cfgArmHalt, cfgArmSiphon, cfgLock, cfgWard) that unlocks its matching ATTACK or DEFEND mode; owning one does not switch the kit to it, LOADOUT.CFG's mode buttons still gate the switch."
+    }
+  ]
+}

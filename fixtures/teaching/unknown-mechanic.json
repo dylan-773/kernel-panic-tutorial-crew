@@ -1,0 +1,33 @@
+{
+  "schema": "kp-generated/1",
+  "gap": "cascade",
+  "action": "coachmark",
+  "moment": {
+    "id": "cascade-bank",
+    "teaches": [
+      "cascadeBanking"
+    ],
+    "surface": "duel",
+    "when": "cascadeBanked",
+    "anchor": "screen",
+    "order": 50,
+    "notBeforeDay": 1,
+    "title": "CASCADE",
+    "lines": [
+      "Three or more nodes lit off one rotation banks bonus RAM for your very next turn.",
+      "Line a chain up behind one unturned junction, then trip it, instead of lighting one node at a time."
+    ]
+  },
+  "mount": {
+    "file": "src/components/game/duel.tsx",
+    "anchorLine": "          {coach && <div className=\"kp-coach\">{coach}</div>}",
+    "jsx": "          <Teach id=\"cascade-bank\" signals={{ cascadeBanked: sawCascade }} />"
+  },
+  "claims": [
+    {
+      "text": "three or more nodes",
+      "symbol": "kit.ts:cascadeRam",
+      "resolves": "returns 0 when lit < 3, so three is the first paying count"
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "schema": "kp-gaps/1",
+  "run": "2026-08-13-d",
+  "agent": "gap-prioritizer",
+  "gaps": [
+    {
+      "id": "ram-budget",
+      "mechanics": ["ram", "ramCarry"],
+      "state": "uncovered",
+      "red": true,
+      "tier": 1,
+      "ladderStop": "Stops at question 2 (will the player want this information again). Tier 0 cannot carry the whole mechanic: duel.tsx already renders the RAM number, the pip row and a '+N NEXT' banked chip in the dv-rambox, but none of those glyphs say why the number resets each turn, what the per-turn refill is, or that only 2 unspent points survive into the next one; that context is exactly what makes it reference, not a label. It is not a coachmark either: the player rereads this fact every single turn for the whole run, which is the tip definition, not the once-and-dismissed coachmark one. The fix is cheap because the call site already exists and is empty: duel.tsx:1060 calls tip(\"ram\") inside a TapTip and gets undefined back, since no TeachTip with id \"ram\" exists in TEACH_TIPS.",
+      "action": "tip",
+      "surface": "duel",
+      "rank": 1,
+      "because": [
+        { "signal": "harness-red", "value": "teach-sim fails on both ram and ramCarry", "note": "teach-sim.before.txt lists both ids as uncovered with no waiver; the build stays red until something teaches them." },
+        { "signal": "first-contact-day", "value": "tutorial, day 0", "note": "ram's firstContact is tutorial: it governs every action the player can take from their very first click, before any other resource exists." },
+        { "signal": "resource-cost", "value": "RAM is one of the two scarce resources the signals table names", "note": "a wrong mental model of the per-turn budget or the carry cap costs a real decision on every turn of every dive, not just the first one." }
+      ]
+    },
+    {
+      "id": "reach2",
+      "mechanics": ["reach2"],
+      "state": "uncovered",
+      "red": true,
+      "tier": 0,
+      "ladderStop": "Stops at question 1 (can the interface just say it). Yes, and it already does: duel-board.tsx applies the dv-legal class and a lit dv-legalring rect only to cells inReach returns true for, so an out-of-reach junction never looks clickable and never highlights. The player learns the 2-step boundary the same way they learn a wall is solid, by watching which cells light up as their built ground grows, not by reading a number. No tier above zero adds anything a rendered affordance does not already carry, and the tutorial's own first beat already calls out 'a glowing junction,' which is this same highlight.",
+      "action": "waiver",
+      "surface": "tutorial",
+      "rank": 2,
+      "because": [
+        { "signal": "harness-red", "value": "teach-sim fails on reach2", "note": "teach-sim.before.txt lists reach2 as uncovered with no waiver." },
+        { "signal": "first-contact-day", "value": "tutorial, day 0", "note": "gates which cells the player can even attempt to act on from the first rotation of the opening dive." },
+        { "signal": "ladder-tier", "value": "tier 0, costs the teaching budget nothing", "note": "the fix is a waiver string, not new content, so it cannot strain any surface's moment cap." }
+      ]
+    },
+    {
+      "id": "cascade",
+      "mechanics": ["cascade"],
+      "state": "uncovered",
+      "red": true,
+      "tier": 2,
+      "ladderStop": "Stops at question 3 (is it a rule that changes what they should do, needed once, at a specific moment). Tier 0 cannot carry it: the payoff is read out of a settle event (kit.ts:cascadeRam banking RAM, surgeTierOf shattering locks or destroying a trap at higher counts) and there is nothing permanent on the grid to hang a label on between settles. Tier 1 is the wrong shape too: this is not a number the player consults on demand, it is a strategic instruction, hold the chain behind one unturned junction, then flip it together, that only matters the first time a bank actually lands. If it fires as reference instead of at the cascadeBanked moment, a player who never banks never sees it and keeps flipping nodes one at a time, missing the entire payoff. The known-drift table already flags that the shipped game's version of this exact coachmark states the wrong threshold (four nodes, cascadeRam pays from three), so whatever ships here has to be checked against the symbol, not copied from memory.",
+      "action": "coachmark",
+      "surface": "duel",
+      "rank": 3,
+      "because": [
+        { "signal": "harness-red", "value": "teach-sim fails on cascade", "note": "teach-sim.before.txt lists cascade as uncovered with no waiver." },
+        { "signal": "first-contact-day", "value": "duel, day 1", "note": "the first legitimate three-node settle can happen as early as the first regular dive after the tutorial." },
+        { "signal": "surface-budget", "value": "duel has 2 of 4 moments and 0 of 2 firstSight used", "note": "code_scan's budget.surfaces.duel shows room for a non-firstSight cascadeBanked moment without straining either cap." },
+        { "signal": "resource-cost", "value": "cascade banks RAM directly", "note": "cascadeRam pays RAM into the next turn only on a big settle, so missing this is a foregone resource advantage every dive, not flavor." }
+      ]
+    },
+    {
+      "id": "kitConfig",
+      "mechanics": ["kitConfig"],
+      "state": "uncovered",
+      "red": true,
+      "tier": 1,
+      "ladderStop": "Stops at question 2 (will the player want this information again). Tier 0 already carries half of it: loadout.tsx's lo-mode buttons disable unowned modes and suffix them with '?', which self-explains that a mode is locked. It cannot carry the other half, why it is locked and what unlocks it, because that fact has no label surface of its own. Tier 2 is the wrong shape: LOADOUT.CFG is revisited all run long with no single first-sight moment worth spending a callout on, and the screen's own footline already states configuring is optional ('TUNE IT WHENEVER'), so a once-only interruption fights the screen's own framing. The code already half-built the fix: loadout.tsx calls tip(\"modeLocked\") for every locked mode button and gets undefined back, since no TeachTip with that id exists in TEACH_TIPS yet.",
+      "action": "tip",
+      "surface": "loadout",
+      "rank": 4,
+      "because": [
+        { "signal": "harness-red", "value": "teach-sim fails on kitConfig", "note": "teach-sim.before.txt lists kitConfig as uncovered with no waiver." },
+        { "signal": "first-contact-day", "value": "loadout, pre-dive", "note": "lowest urgency of the four uncovered mechanics: LOADOUT.CFG has no clock and is freely revisited before every dive." },
+        { "signal": "ladder-tier", "value": "tier 1, costs nothing against any surface cap", "note": "tips are not subject to MAX_MOMENTS_PER_SURFACE or MAX_FIRST_SIGHT_PER_SURFACE, so this closes the gap for free." }
+      ]
+    },
+    {
+      "id": "patchCellUse-cost",
+      "mechanics": ["patchCellUse"],
+      "state": "miscovered",
+      "red": false,
+      "tier": 2,
+      "ladderStop": "Stops at question 3 (is it a rule that changes what they should do, needed once, at a specific moment), the same question that already justified tier 2 for patchCellUse and still does. The RAM cost of a placement is a fact the player needs at the moment they first hold a piece, not a recurring lookup, so tier 1 does not fit; there is also no permanent label surface for a per-placement cost sitting on the grid between holds, so tier 0 does not fit either. Nothing about the correct answer to question 3 has changed, so the coachmark stays. What changed is that the copy inside it is wrong: the shipped line says 'fuse it in for 2 RAM' while patch-cells.ts:PLACE_COST is 4. The fix rewrites the claim inside the existing patch-cell-use moment to cite PLACE_COST directly, so verify_copy.py can hold it accountable.",
+      "action": "coachmark",
+      "surface": "duel",
+      "rank": 5,
+      "because": [
+        { "signal": "resource-cost", "value": "states 2 RAM, code charges 4", "note": "every player who reads patch-cell-use's line before this fix budgets their RAM wrong for the rest of that turn and, if they remember the number, every turn after." },
+        { "signal": "ladder-tier", "value": "tier 2, unchanged", "note": "the mechanic is already correctly pitched as a once-per-first-holding coachmark; only the sentence inside it is wrong." }
+      ]
+    },
+    {
+      "id": "oneUndo",
+      "mechanics": ["oneUndo"],
+      "state": "uninventoried",
+      "red": false,
+      "tier": 1,
+      "ladderStop": "Stops at question 2 (will the player want this information again). Tier 0 cannot carry it alone: the UNDO button's dynamic label already states which move it will take back and that it is once per turn (duel.tsx: 'UNDO ' + undoLabel + ' (Z)'), but says nothing about a trap the move sprang. duel-commands.ts:takeUndo re-applies whatever the reverted move sprang and keeps the RAM drain, specifically, per its own comment, so undo cannot be used as 'a free minesweeper.' That is a fact worth having on hover every time the player weighs taking the undo, which is reference, not a rule they only need once. Tier 2 does not fit either: none of the seven TeachWhen triggers (firstSight, overPar, holdingCells, cascadeBanked, draftOffered, craftReady, swapOffered) fires on 'about to undo a sprung trap,' and inventing one is a reducer change outside this crew's scope, so a standing tip on the existing control is the only rung that needs nothing new from the engine.",
+      "action": "tip",
+      "surface": "duel",
+      "rank": 6,
+      "because": [
+        { "signal": "resource-cost", "value": "a sprung trap's drain survives the undo", "note": "duel-commands.ts:takeUndo keeps drainNext and re-fires the trap on rollback, so an undo does not refund what the trap already cost." },
+        { "signal": "ladder-tier", "value": "tier 1, no new trigger needed", "note": "no TeachWhen value fits this moment, so only a tier that does not require one, a tip on the existing UNDO control, is buildable without a reducer change." }
+      ]
+    },
+    {
+      "id": "builtVsPower",
+      "mechanics": ["builtVsPower"],
+      "state": "uninventoried",
+      "red": false,
+      "tier": 0,
+      "ladderStop": "Stops at question 1 (can the interface just say it). Yes, already does. duel-board.tsx pushes a distinct dv-cut class the instant a built junction goes dark while staying built, and the surrounding comment names this deliberately: 'the one state the old model could not express, and the one the player most needs to see.' The permanence of built ground is shown by that visual state persisting differently from both lit and never-built, not stated in words anywhere, so a moment or tip would only restate a distinction the grid already renders every round.",
+      "action": "waiver",
+      "surface": "duel",
+      "rank": 7,
+      "because": [
+        { "signal": "ladder-tier", "value": "tier 0, already rendered", "note": "dv-cut in duel-board.tsx marks built-but-dark distinctly from lit and from never-built on every render, with no gap for a coachmark to fill." }
+      ]
+    },
+    {
+      "id": "splitBoards",
+      "mechanics": ["splitBoards"],
+      "state": "uninventoried",
+      "red": false,
+      "tier": 0,
+      "ladderStop": "Stops at question 1 (can the interface just say it). Yes. The two sides render as two separate board panels the player switches between (the view state and TAB), and duel.tsx's own legal-cell logic enforces the separation rather than merely describing it: rotation returns no legal cells at all unless view === \"player\", and the enemy board is reachable only through ATTACK targeting. A player who tries to click across the enemy grid directly gets nothing, which teaches the separation more permanently than a callout would.",
+      "action": "waiver",
+      "surface": "duel",
+      "rank": 8,
+      "because": [
+        { "signal": "ladder-tier", "value": "tier 0, already structural", "note": "duel.tsx's legal-cell computation makes cross-board manipulation impossible by construction, not just unlabeled." }
+      ]
+    },
+    {
+      "id": "winConditions",
+      "mechanics": ["winConditions"],
+      "state": "uninventoried",
+      "red": false,
+      "tier": 0,
+      "ladderStop": "Stops at question 1 (can the interface just say it), split across three existing lines rather than one. A goal win prints its own end-of-dive sentence ('Your signal reached the goal first. The intrusion collapses.'), a cap win is already covered by the turnCap waiver's payout row, and the seal ending only exists inside the opening dive, where the bench narrates it directly as part of the scripted beat ladder. Nothing on any surface needs to enumerate 'there are three endings,' because the specific one that just happened is stated on the screen where it happened, every time.",
+      "action": "waiver",
+      "surface": "result",
+      "rank": 9,
+      "because": [
+        { "signal": "ladder-tier", "value": "tier 0, coverage already exists in three places", "note": "the goal overlay, the turnCap waiver, and the tutorial's own scripted seal narration between them already state every outcome the mechanic describes." }
+      ]
+    },
+    {
+      "id": "theKit",
+      "mechanics": ["theKit"],
+      "state": "uninventoried",
+      "red": false,
+      "tier": 1,
+      "ladderStop": "Never reaches a stop on the procedure. It fails question 1 because there is no single control to label, the claim spans all six modes across two programs. It fails question 2 because it is not a recurring number, it is a synthesis ('modes answer each other rather than laddering'). It fails question 3 because it is not tied to one moment either, a player can meet any of the six answers at any time depending on what the opponent telegraphs. The individual mode effects it is built from are already carried by the modeEffects blanket waiver (each mode has its own desc on hover, in the kit card, and in MANUAL.TXT). Teaching the closed-loop framing itself would mean authoring a new synthesis view, most plausibly a MANUAL.TXT section, which is a design and content project, not a placement decision this crew makes this cycle.",
+      "action": "none",
+      "surface": "loadout",
+      "rank": 10,
+      "because": [
+        { "signal": "ladder-tier", "value": "no rung fits without inventing a new surface", "note": "no existing control, trigger, or recurring number can anchor a six-mode synthesis; the closest fit is a MANUAL.TXT addition, which is out of scope for a coachmark or a tip." }
+      ]
+    },
+    {
+      "id": "gridlockChip",
+      "mechanics": ["gridlockChip"],
+      "state": "miscovered",
+      "red": false,
+      "tier": 0,
+      "ladderStop": "Exits at question 1 (can the interface just say it) with no usable answer, because there is no longer a state left for any interface to say anything about. gridlockChip's current waiver claims 'the gridlock end overlay says the dead link bites,' but duel-types.ts:DuelEndKind only defines 'goal' | 'cap' | 'seal', no gridlock case exists to render that overlay, and gridlockWin is threaded through run-reducer.ts and save.ts but is never set true anywhere in duel-actions.ts. Question 1 fails for lack of a screen to point at, and questions 2 through 5 fail for the same underlying reason and do not need to be asked: a tip, a coachmark and a beat all assume a player can still encounter the mechanic, and this one cannot be encountered in the shipped reducer at all. The fix is removing the dead field from the reducer, not answering any ladder question with a teaching artifact.",
+      "action": "none",
+      "surface": "duel",
+      "rank": 11,
+      "because": [
+        { "signal": "harness-red", "value": "not red, but stale", "note": "gridlockChip currently reads as waived and green, which hides that the waiver's own claim, a gridlock end overlay, has no code path left to trigger it." },
+        { "signal": "ladder-tier", "value": "no tier applies to dead code", "note": "every rung of the ladder assumes the mechanic can still happen to a player; this one cannot, so the fix is outside the ladder entirely." }
+      ]
+    }
+  ]
+}
