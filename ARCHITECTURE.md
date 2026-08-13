@@ -7,7 +7,7 @@ flowchart TD
     U(["/close-gaps"]) --> O["Orchestrator<br/>.claude/skills/close-gaps"]
 
     VAULT[("gdd/<br/>216 notes, frozen, sha256")]
-    SLICE[("game/<br/>the teaching layer + the code<br/>32 files frozen, 2 mutable")]
+    SLICE[("game/<br/>the teaching layer + the code<br/>143 files frozen, 2 mutable")]
     KEY[("gaps/<br/>the answer key<br/>Read denied")]
 
     O --> PLANT["tools/make_gap.py<br/>plant 4 gaps, reproducibly"]
@@ -83,7 +83,13 @@ means **the shipped game's own harness runs here, unmodified**. That is worth
 more than any check this repo could write, because it is the check the game
 already trusts.
 
-The manifest marks 32 of 34 files frozen. Only `content/teaching.ts` and
+The components come too, all 117 of them, and that was not the first instinct.
+An earlier vendor hand picked the six files that mount a callout, and the crew
+promptly concluded the legal-cell glow did not exist, correctly, from evidence
+the vendor had withheld. `duel-board.tsx` renders it. A slice chosen by what
+you expect to be read is a slice that decides the answer.
+
+The manifest marks 143 of 145 files frozen. Only `content/teaching.ts` and
 `duel.tsx` are mutable, because those are the two the pipeline writes. That
 split is the point: a green build is worthless if the way it went green was
 editing `cascadeRam` to agree with the copy instead of editing the copy to
