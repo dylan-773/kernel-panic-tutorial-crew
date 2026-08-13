@@ -6,6 +6,12 @@ the code never teaches, decides which to build and in what order, and writes
 the code. It proves the work by turning the game's own coverage harness from
 red to green.
 
+**The agent is a Claude Code skill: `/close-gaps`.** Its program is
+`.claude/skills/close-gaps/SKILL.md`, and it drives four subagent seats in
+`.claude/agents/`. Open Claude Code in this repo and type `/close-gaps` to run
+it. See [Run the agent](#4-run-the-agent-the-close-gaps-skill) for the two
+setup gotchas.
+
 The GDD is `gdd/`: the real Kernel Panic design vault, 216 wikilinked Obsidian
 notes, 379,028 bytes, frozen and sha256 manifested. It is the actual design
 document for the actual capstone game, not an extract made for this assignment.
@@ -72,17 +78,44 @@ bun game/src/game/dev/teach-sim.ts    # TEACH FAIL: 5 problem(s), exit 1
 python3 tools/make_gap.py --restore   # put it back
 ```
 
-### 4. Run the agent yourself
+### 4. Run the agent: the `/close-gaps` skill
 
-From the repo root, with the gaps planted:
+**The agent is a Claude Code skill.** This is the deliverable, and everything
+else in the repo exists to serve it or to check it.
+
+| file | what it is |
+|---|---|
+| `.claude/skills/close-gaps/SKILL.md` | **the agent.** A 13 step orchestration program: preflight, capture the before state, spawn each seat, run the checks between them, apply, prove it green |
+| `.claude/agents/gdd-reader.md` | seat 1, reads the GDD and decides what is a player facing feature |
+| `.claude/agents/gap-prioritizer.md` | seat 2, the reasoning layer: tier via the ladder, rank via five cited signals |
+| `.claude/agents/teaching-author.md` | seat 3, writes the moment, tip, label or waiver and the JSX mount |
+| `.claude/agents/copy-critic.md` | seat 4, the gate: is the sentence true, quoting the code |
+| `.claude/settings.json` | the tool allowlist, and the `Read(gaps/**)` deny that keeps the crew off the answer key |
+
+**Read `SKILL.md` first if you only read one file.** It is where the control
+flow, the handoffs, the re-spawn conditions and the failure policies live. The
+seats are prompts; the skill is the program that drives them.
+
+To run it, open Claude Code in the repo and invoke the skill:
+
+```
+cd kernel-panic-tutorial-crew
+python3 tools/make_gap.py             # plant the gaps, so there is something to find
+claude                                # then type:  /close-gaps
+```
+
+The skill discovers itself from `.claude/skills/`, so `/close-gaps` is available
+as soon as Claude Code opens in this directory. It carries
+`disable-model-invocation: true`, which means it only ever runs because someone
+asked for it by name.
+
+Headless, same thing:
 
 ```
 python3 tools/make_gap.py
 CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS=0 claude -p "/close-gaps" --permission-mode acceptEdits
 bun game/src/game/dev/teach-sim.ts    # OK: teaching coverage complete
 ```
-
-Or open `claude` interactively in the repo and type `/close-gaps`.
 
 **Two things will bite you, and both cost me a wasted run.**
 
@@ -403,6 +436,13 @@ reported and not yet landed. It is the same one line shape.
 ## Layout
 
 ```
+.claude/skills/close-gaps/SKILL.md    THE AGENT. The 13 step program that
+                                      drives the whole thing
+.claude/agents/*.md                   its four seats: gdd-reader,
+                                      gap-prioritizer, teaching-author,
+                                      copy-critic
+.claude/settings.json                 tool allowlist, and the gaps/ deny
+
 gdd/                     the design vault, 216 notes, frozen, sha256 manifested
 game/                    the teaching layer and its code, 145 files, 143 frozen
 gaps/                    plan, pristine originals, and the answer key. Read denied
@@ -412,8 +452,6 @@ fixtures/                22 cases proving the two verifiers actually catch thing
 runs/2026-08-13-d/       one committed run: brief, features, gaps, generated,
                          critic, diffs, before and after, generated report
 out/before-after.html    self contained, opens by double clicking
-.claude/agents/          the four seats
-.claude/skills/          the /close-gaps orchestration program
 ```
 
 ## Relationship to Assignments 3 and 4
