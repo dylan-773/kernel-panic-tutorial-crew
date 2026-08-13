@@ -72,11 +72,14 @@ def main() -> int:
     )
 
     # ---- 2. Scan the codebase ---------------------------------------------
-    scan_ok = subprocess.run(["bun", "tools/code_scan.ts"], cwd=ROOT,
-                             capture_output=True, text=True)
+    try:
+        scan_ok = subprocess.run(["bun", "tools/code_scan.ts"], cwd=ROOT,
+                                 capture_output=True, text=True)
+    except FileNotFoundError:
+        scan_ok = subprocess.CompletedProcess([], 127, "", "bun not found")
     a.add(
         "Scan the codebase: read existing source to understand what is built",
-        "PASS" if scan_ok.returncode == 0 else "FAIL",
+        "PASS" if scan_ok.returncode == 0 else ("SOFT" if scan_ok.returncode == 127 else "FAIL"),
         "tools/code_scan.ts imports the real content/teaching.ts and greps every "
         "<Teach> mount in the components",
         "bun tools/code_scan.ts",

@@ -21,6 +21,21 @@ import subprocess
 import sys
 from pathlib import Path
 
+
+def run(cmd, **kw):
+    """subprocess.run, but a missing binary is a failed check and not a crash.
+
+    `bun` is the one external binary this repo needs, and a reader without it
+    should still get the other five checks plus a line naming what is missing.
+    A traceback here would say nothing useful and would look like the repo is
+    broken.
+    """
+    try:
+        return subprocess.run(cmd, capture_output=True, text=True, **kw)
+    except FileNotFoundError:
+        return subprocess.CompletedProcess(cmd, 127, "", f"{cmd[0]}: not found on PATH")
+
+
 ROOT = Path(__file__).resolve().parent.parent
 
 
@@ -77,15 +92,14 @@ def main() -> int:
             f"{len(xm['mutable'])} files" + (f", bad: {bad_pristine}" if bad_pristine else ""))
 
     # 4. the harness runs at all
-    r = subprocess.run(["bun", "game/src/game/dev/teach-sim.ts"], cwd=ROOT,
-                       capture_output=True, text=True)
+    r = run(["bun", "game/src/game/dev/teach-sim.ts"], cwd=ROOT)
     out = (r.stdout + r.stderr).strip().splitlines()
     s.check("teach-sim runs", bool(out) and ("OK:" in out[0] or "TEACH FAIL" in out[0]),
             out[0][:64] if out else "no output")
+    have_bun = r.returncode != 127
 
     # 5. the scanner runs and agrees with the harness about coverage
-    r = subprocess.run(["bun", "tools/code_scan.ts", "--json"], cwd=ROOT,
-                       capture_output=True, text=True)
+    r = run(["bun", "tools/code_scan.ts", "--json"], cwd=ROOT)
     scan_ok = r.returncode == 0
     n_unc = 0
     if scan_ok:
@@ -93,11 +107,11 @@ def main() -> int:
         n_unc = scan["counts"]["uncovered"]
         harness_red = out and "TEACH FAIL" in out[0]
         scan_ok = bool(n_unc) == bool(harness_red)
-    s.check("code_scan agrees with the harness", scan_ok, f"{n_unc} uncovered")
+    s.check("code_scan agrees with the harness", scan_ok,
+            f"{n_unc} uncovered" if have_bun else "bun not on PATH")
 
     # 6. the checkers still catch what they claim to
-    r = subprocess.run(["python3", "tools/run_fixtures.py"], cwd=ROOT,
-                       capture_output=True, text=True)
+    r = run(["python3", "tools/run_fixtures.py"], cwd=ROOT)
     line = next((l for l in r.stdout.splitlines() if "fixture cases pass" in l), "")
     s.check("fixtures pass", r.returncode == 0, line.strip())
 
@@ -105,8 +119,7 @@ def main() -> int:
     tools = sorted(p.name for p in (ROOT / "tools").glob("*.py"))
     broken = []
     for t in tools:
-        r = subprocess.run(["python3", "-c", f"import ast,sys;ast.parse(open('tools/{t}').read())"],
-                           cwd=ROOT, capture_output=True, text=True)
+        r = run(["python3", "-c", f"import ast,sys;ast.parse(open('tools/{t}').read())"], cwd=ROOT)
         if r.returncode != 0:
             broken.append(t)
     s.check("tools parse", not broken, f"{len(tools)} tools" + (f", broken: {broken}" if broken else ""))

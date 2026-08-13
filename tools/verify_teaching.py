@@ -30,9 +30,15 @@ NEEDS_CLAIMS = ("coachmark", "tip", "label", "waiver")
 def load_scan(cached: str = "") -> dict:
     if cached:
         return json.loads(Path(cached).read_text())
-    out = subprocess.run(
-        ["bun", "tools/code_scan.ts", "--json"], cwd=ROOT, capture_output=True, text=True
-    )
+    try:
+        out = subprocess.run(
+            ["bun", "tools/code_scan.ts", "--json"], cwd=ROOT, capture_output=True, text=True
+        )
+    except FileNotFoundError:
+        raise SystemExit(
+            "verify_teaching: bun is not on PATH, so the live scan cannot run.\n"
+            "  Pass a cached one instead:  --scan fixtures/scan.json"
+        )
     if out.returncode != 0:
         raise SystemExit(f"verify_teaching: code_scan failed\n{out.stderr}")
     return json.loads(out.stdout)

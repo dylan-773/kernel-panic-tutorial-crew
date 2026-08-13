@@ -153,7 +153,7 @@ export const MECHANIC_INVENTORY: MechanicEntry[] = [
     id: "reach2",
     label: "Rotating within two steps of your territory",
     firstContact: "tutorial",
-    waiver: "On an unbuilt junction the dv-legal class and the lit dv-legalring rect apply only when inReach returns true, so the reach boundary for rotating into new ground is learned by watching which unclaimed junctions light up as built ground grows, not by reading a number. A built junction is always legal to rotate regardless of reach; that is ownership, not this mechanic, and ATTACK or DEFEND targeting during a cast is governed separately by attackTargetLegal and defendTargetLegal, not by inReach at all.",
+    waiver: "The legal set is drawn as glowing junctions. The affordance is the teaching.",
   },
   {
     id: "turnCap",
@@ -294,12 +294,13 @@ export const TEACHING: TeachingMoment[] = [
     surface: "duel",
     when: "cascadeBanked",
     anchor: "screen",
-    order: 45,
+    order: 50,
     notBeforeDay: 1,
     title: "CASCADE",
+    copyOrder: "copy-cascade-bank",
     lines: [
-      "Lighting three or more nodes in one settle banks RAM into your next turn instead of spending it now.",
-      "Six or more shatters every enemy lock on this board. Ten or more also destroys one armed enemy trap. Hold the chain, then flip it.",
+      "Four or more nodes claimed off one rotation banks bonus RAM for your very next turn.",
+      "That is what just happened. Line a chain up first, then trip it, instead of one node at a time.",
     ],
   },
   {
@@ -370,20 +371,6 @@ export const TEACHING: TeachingMoment[] = [
   // tier 0 (see the patchCraft waiver above); the coachmark was also mounted
   // on NIGHT.SYS while the crafting interface lives in SOLDER.BAY.
   {
-    id: "patch-cell-use-cost",
-    teaches: ["patchCellUse", "patchShapes"],
-    surface: "duel",
-    when: "holdingCells",
-    anchor: "screen",
-    order: 79,
-    notBeforeDay: 1,
-    title: "PATCH PIECE",
-    lines: [
-      "You are carrying a piece. Click a slag block within reach to fuse it in for 4 RAM. One use, then it is gone.",
-      "Arms land exactly as held, never rotating once placed. Fit it to the wall you cannot route around, not the first slag you see.",
-    ],
-  },
-  {
     id: "patch-cell-use",
     teaches: ["patchCellUse", "patchShapes"],
     surface: "duel",
@@ -443,6 +430,12 @@ export const TEACH_TIPS: TeachTip[] = [
     text: "Neural Strain. Shared across every ticket in the run. At zero the run ends.",
   },
   {
+    id: "ram",
+    teaches: ["ram", "ramCarry"],
+    control: "the RAM readout in the dive dock, and the day board's per turn summary",
+    text: "Refills every turn. A rotation or a cast costs 1. Up to 2 unspent carries over. The rest is lost.",
+  },
+  {
     id: "manualRef",
     teaches: ["manualRef"],
     control: "the MANUAL.TXT desktop icon",
@@ -461,16 +454,10 @@ export const TEACH_TIPS: TeachTip[] = [
     text: "Boost bays hold 3 at once. Buy more at night, up to 5. Configs never count against this cap.",
   },
   {
-    id: "ram",
-    teaches: ["ram", "ramCarry"],
-    control: "the RAM readout in the dive left rail",
-    text: "Refills to 5 RAM each turn, raisable to 9 by upgrade. Up to 2 unspent RAM carries into your next turn; past that it is lost.",
-  },
-  {
     id: "modeLocked",
     teaches: ["kitConfig"],
-    control: "a locked mode button in LOADOUT.CFG's program panel",
-    text: "Locked until you draft the config augment that unlocks this mode. Owning it is not enough either: switch to it here before a dive.",
+    control: "a locked mode button in the kit",
+    text: "Config not installed. Clear jobs and take a CONFIG augment from the draft to unlock it.",
   },
 ];
 

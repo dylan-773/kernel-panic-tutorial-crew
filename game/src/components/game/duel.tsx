@@ -1257,8 +1257,8 @@ export function DuelScreen(props: DuelScreenProps) {
             )}
           </div>
           {coach && <div className="kp-coach">{coach}</div>}
-          <Teach id="patch-cell-use-cost" signals={{ holdingCells: state.patchPouch.length > 0 }} />
           <Teach id="cascade-bank" signals={{ cascadeBanked: sawCascade }} />
+          <Teach id="patch-cell-use" signals={{ holdingCells: state.patchPouch.length > 0 }} />
         </div>
 
         {/* ---- right rail: telemetry ---- */}
